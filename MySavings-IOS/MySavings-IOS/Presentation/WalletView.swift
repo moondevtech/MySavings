@@ -75,7 +75,8 @@ class WalletViewModel : ObservableObject{
             .zip($cardModel)
             .share()
         
-        publisher.map{selectedCard, _ in
+        publisher
+            .map{selectedCard, _ in
             let isEmpty = selectedCard.name.isEmpty
             var copy = selectedCard
             copy.isSelected = !isEmpty
@@ -83,10 +84,12 @@ class WalletViewModel : ObservableObject{
         }
         .assign(to: &$selectedCard)
         
-        publisher.map(\.0)
+        publisher
+            .map(\.0)
             .flatMap({ cardModel -> AnyPublisher<TransactionData,Never> in
                 cardModel.cardData.transaction
                     .publisher
+                    .removeDuplicates()
                     .eraseToAnyPublisher()
             })
             .zip(Timer

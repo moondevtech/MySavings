@@ -21,7 +21,7 @@ struct SelectedCardView: View {
                 .onTapGesture {
                     viewModel.unselectCar()
                 }
-            
+
             VStack {
                 ForEach(viewModel.selectedCardTransactions, id: \.self) { transaction in
                     HStack{
@@ -38,6 +38,8 @@ struct SelectedCardView: View {
                 }
             }
             .padding(.top, 50)
+            
+            Spacer()
         }
         .onAppear{
             withAnimation {
@@ -46,7 +48,6 @@ struct SelectedCardView: View {
         }
         .transition(.scale)
         .padding(.top, 80 )
-        .frame(width: 400)
     }
 }
 
