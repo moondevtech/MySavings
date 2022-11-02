@@ -43,6 +43,7 @@ struct CreditCardView: View {
                         x: frame.width / 2,
                         y : frame.height * 0.60
                     )
+                    
                 
                 Text(card.date)
                     .font(.caption)
@@ -85,6 +86,7 @@ struct CreditCardView: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(lineWidth: 1).foregroundColor(.gray)
         )
+        .foregroundColor(.black)
         .rotationEffect(Angle(degrees: rotation))
         .animation(.linear, value: rotation)
         .frame(width: 240, height: 150)

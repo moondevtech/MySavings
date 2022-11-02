@@ -1,0 +1,100 @@
+//
+//  ExpensesView.swift
+//  MySavings-IOS
+//
+//  Created by Ruben Mimoun on 02/11/2022.
+//
+
+import SwiftUI
+import Charts
+
+struct ExpensesView: View {
+    
+    @EnvironmentObject var viewModel : WalletViewModel
+    @State var hideExpensesView : Bool = false
+    @Namespace var scrollSpace
+    
+    
+    
+    var body: some View {
+        let width : CGFloat = 400
+        let height : CGFloat = viewModel.hideExpensesView ? 1 : 400
+        
+        VStack {
+            
+            Label("Expenses", systemImage: "lines.measurement.horizontal")
+                .frame(width: 300, alignment: .leading)
+                .font(.body.bold())
+            
+            ScrollView(.horizontal){
+                ScrollViewReader{ reader in
+                    Chart{
+                        ForEach(viewModel.expensesGraphData, id: \.id) { data in
+                            BarMark(x: .value("Date", data.transaction.date.toDayShortFormat()),
+                                    y: .value("Amount", data.transaction.amount)
+                            )
+                            .foregroundStyle(by:.value("cardNumber", data.secretCardNumber))
+                        }
+                    }
+                    .chartYAxis {
+                        AxisMarks(position: .leading)
+                    }
+                    .chartPlotStyle { plotArea in
+                        plotArea
+                            .background(.white.opacity(0.2))
+                    }
+                    .chartXAxisLabel("Payment Date", alignment: .center)
+                    .chartYAxisLabel("Amount", alignment: .center)
+                    .chartOverlay { proxy  in
+                        GeometryReader { geo in
+                            Rectangle().fill(.clear).contentShape(Rectangle())
+                                .onTapGesture { location in
+                                    findSelectedTask(
+                                        at: location,
+                                        proxy: proxy,
+                                        geometry: geo)
+                                }
+                        }
+                    }
+                    .id(1)
+                    .onAppear{
+                        reader.scrollTo(1,anchor: .leading)
+                    }
+                }
+                .frame(width: width, height: height)
+            }
+            .background(GeometryReader { geo in
+                let offset = -geo.frame(in: .named(scrollSpace)).minY
+                Color.clear
+                    .preference(key: ScrollViewOffsetPreferenceKey.self,
+                                value: offset)
+            })
+            .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+                withAnimation {
+                    viewModel.hideExpensesView = value > 1
+                }
+            }
+        }
+        .onAppear{
+            viewModel.getTransactions()
+            
+        }
+        .frame(height: height)
+    }
+    
+    private func findSelectedTask(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {
+        let xPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
+        guard let date: String = proxy.value(atX: xPosition) else {
+            return
+        }
+        
+        viewModel.findSelectedPaymentsForDate(date)
+    }
+}
+
+struct ExpensesView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExpensesView()
+            .environmentObject(WalletViewModel())
+    }
+}

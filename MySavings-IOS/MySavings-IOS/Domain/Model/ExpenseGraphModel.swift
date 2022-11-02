@@ -16,4 +16,9 @@ struct ExpenseGraphModel : Identifiable{
     var transaction : TransactionData
     var cardColor : Color
     var cardNumber : String
+    
+    var secretCardNumber : String {
+        let lastNumbers =  Array(cardNumber.split(separator: " ")).last!
+        return "**** \(lastNumbers)"
+    }
 }

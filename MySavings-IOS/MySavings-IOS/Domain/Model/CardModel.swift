@@ -43,5 +43,9 @@ struct CardModel  : Identifiable, Hashable{
         cardData.name
     }
     
+    var secretCardNumber : String {
+        let lastNumbers =  Array(cardNumber.split(separator: " ")).last!
+        return "**** \(lastNumbers)"
+    }
     
 }
