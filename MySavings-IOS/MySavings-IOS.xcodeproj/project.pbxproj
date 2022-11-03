@@ -19,6 +19,7 @@
 		870B583429137AF900ED1810 /* AmountRemainingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583329137AF900ED1810 /* AmountRemainingInput.swift */; };
 		870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */; };
 		870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */; };
+		870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B58392913928900ED1810 /* TransactionUseCase.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* ContentView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		870B583329137AF900ED1810 /* AmountRemainingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainingInput.swift; sourceTree = "<group>"; };
 		870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainCounterType.swift; sourceTree = "<group>"; };
 		870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainingUseCase.swift; sourceTree = "<group>"; };
+		870B58392913928900ED1810 /* TransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUseCase.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,8 +101,9 @@
 		870B58292913701D00ED1810 /* Wallets */ = {
 			isa = PBXGroup;
 			children = (
-				870B583229137ADC00ED1810 /* MonthRemainingAmount */,
+				870B583229137ADC00ED1810 /* MonthRemainingAmountUseCase */,
 				870B582A2913716400ED1810 /* CardSelectionUseCase */,
+				870B58392913928900ED1810 /* TransactionUseCase.swift */,
 			);
 			path = Wallets;
 			sourceTree = "<group>";
@@ -115,14 +118,14 @@
 			path = CardSelectionUseCase;
 			sourceTree = "<group>";
 		};
-		870B583229137ADC00ED1810 /* MonthRemainingAmount */ = {
+		870B583229137ADC00ED1810 /* MonthRemainingAmountUseCase */ = {
 			isa = PBXGroup;
 			children = (
 				870B583329137AF900ED1810 /* AmountRemainingInput.swift */,
 				870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */,
 				870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */,
 			);
-			path = MonthRemainingAmount;
+			path = MonthRemainingAmountUseCase;
 			sourceTree = "<group>";
 		};
 		8776A1D9291048E80082D606 = {
@@ -314,6 +317,7 @@
 				8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */,
 				870B582229123DA100ED1810 /* ExpensesView.swift in Sources */,
 				8776A20E291168A30082D606 /* ScrollViewOffsetPreferenceKey.swift in Sources */,
+				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
 				870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */,
 				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
 				8776A1E8291048E80082D606 /* ContentView.swift in Sources */,

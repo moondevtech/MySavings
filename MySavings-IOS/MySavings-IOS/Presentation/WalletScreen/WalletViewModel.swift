@@ -22,7 +22,9 @@ class WalletViewModel : ObservableObject{
     var selectedCardEvent  = PassthroughSubject<CardModel, Never>()
     
     lazy var useCase : CardSelectionUseCase = CardSelectionUseCase(delegate: self)
-    lazy var useCaseTransaction : AmountRemainingUseCase = AmountRemainingUseCase(delegate: self)
+    lazy var useCaseAmount : AmountRemainingUseCase = AmountRemainingUseCase(delegate: self)
+    lazy var useCaseTransaction : TransactionUseCase = TransactionUseCase(delegate: self)
+
 
     
     init(){
@@ -45,52 +47,12 @@ class WalletViewModel : ObservableObject{
         selectCard(input: .select(Just(CardModel(cardData: .init(name: "")))))
     }
     
-    func handleSwipeDelay(){
-        $hideExpensesView
-            .receive(on: DispatchQueue.main)
-            .zip(Timer.publish(every: 1.5, on: .main, in: .common).autoconnect())
-            .sink { isHidden, timer in
-        
-            }
-            .store(in: &subsriptions)
-    }
-    
     func getTransactions(){
-        cardModel
-            .publisher
-            .flatMap { model in
-                model.cardData.transaction
-                    .publisher
-                    .map { transaction in
-                        ExpenseGraphModel(
-                            transaction: transaction,
-                            cardColor: .creditCardColor(model.cardData),
-                            cardNumber: model.cardData.cardNumber
-                        )
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .collect()
-            .sink(receiveValue: { result in
-                self.expensesGraphData = result.sorted(by: {$0.transaction.date < $1.transaction.date})
-            })
-            .store(in:&subsriptions)
+        handleTransactions(with: TransactionInput.fetch(cardModel))
     }
     
     func findSelectedPaymentsForDate(_ date : String){
-        cardModel
-            .publisher
-            .flatMap { card in
-                card.cardData.transaction
-                    .publisher
-                    .filter{$0.dayDateString == date}
-                    .map {_ in
-                        return card
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .collect()
-            .assign(to: &$cardUsedForPayment)
+        handleTransactions(with: .filter((cardModel,date)))
     }
     
 }
@@ -151,7 +113,7 @@ extension WalletViewModel  : AmountRemainCounterType {
     typealias Input = AmountRemainingInput
 
     func calculateCurrentTransactionAmount(input: AmountRemainingInput) {
-        useCaseTransaction.calculateTransactionAmount(input: input)
+        useCaseAmount.calculateTransactionAmount(input: input)
     }
     
 }
@@ -166,6 +128,38 @@ extension WalletViewModel : AmountRemainingUseCaseDelegate {
                 self.budgetLeft = remaining
             }
             .store(in: &subsriptions)
+    }
+}
+
+
+extension WalletViewModel : TransactionType {
+    
+    func handleTransactions(with input: TransactionInput) {
+        switch input {
+        case .fetch(let just):
+            useCaseTransaction.fetchTransactions(with: just)
+        case .filter(let just):
+            useCaseTransaction.filterCard(with: just)
+
+        }
+    }
+}
+
+extension WalletViewModel : TransactionUseCaseDelegate {
+    func graphTransactions(with result: AnyPublisher<[ExpenseGraphModel], Never>) {
+        result
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { result in
+                self.expensesGraphData = result.sorted(by: {$0.transaction.date < $1.transaction.date})
+            })
+            .store(in:&subsriptions)
+    }
+    
+    func cardUsedForPayments(with result: AnyPublisher<[CardModel], Never>) {
+        result
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$cardUsedForPayment)
+        
     }
     
     
