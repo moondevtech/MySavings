@@ -44,10 +44,10 @@ struct CreditCardData : Identifiable , Hashable {
     static var mock : [Self] = [
         CreditCardData(name: "Pikachu", cardNumber: "4234  4526  3584  2924"),
         CreditCardData(name: "Francis Lalane", cardNumber: "4234  9382  3584  2726"),
-        CreditCardData(name: "Malcolm x", cardNumber: "4234  4526  2934  2792"),
-        CreditCardData(name: "Raichu", cardNumber: "4234  1234  3584  2924"),
-        CreditCardData(name: "Francis Cabrel", cardNumber: "1234  9382  3584  2726"),
-        CreditCardData(name: "Malcolm Y", cardNumber: "4234  4526  2934  1234")
+        CreditCardData(name: "Malcolm x", cardNumber: "4234  4526  2934  2792")
+//        CreditCardData(name: "Raichu", cardNumber: "4234  1234  3584  2924"),
+//        CreditCardData(name: "Francis Cabrel", cardNumber: "1234  9382  3584  2726"),
+//        CreditCardData(name: "Malcolm Y", cardNumber: "4234  4526  2934  1234")
     ]
     
 }

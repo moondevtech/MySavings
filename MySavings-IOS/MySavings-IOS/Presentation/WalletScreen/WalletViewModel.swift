@@ -24,12 +24,13 @@ class WalletViewModel : ObservableObject{
     lazy var useCase : CardSelectionUseCase = CardSelectionUseCase(delegate: self)
     lazy var useCaseAmount : AmountRemainingUseCase = AmountRemainingUseCase(delegate: self)
     lazy var useCaseTransaction : TransactionUseCase = TransactionUseCase(delegate: self)
-
-
+    
+    
     
     init(){
         mockSetup()
         calculateCurrentTransactionAmount(input: AmountRemainingInput(cardUser: cardUser))
+        getTransactions()
     }
     
     private func mockSetup(){
@@ -39,12 +40,12 @@ class WalletViewModel : ObservableObject{
     }
     
     func selectCard(_ cardModel : CardModel){
-        selectCard(input: .select(Just(cardModel)))
-
+        handleCardInput(input: .select(Just(cardModel)))
+        
     }
     
     func unselectCar(){
-        selectCard(input: .select(Just(CardModel(cardData: .init(name: "")))))
+        handleCardInput(input: .select(Just(CardModel(cardData: .init(name: "")))))
     }
     
     func getTransactions(){
@@ -61,15 +62,15 @@ class WalletViewModel : ObservableObject{
 extension WalletViewModel : CardSelectorType{
     
     typealias Card = CardModel
-
-    func selectCard(input: CardSelectionInput) {
+    
+    func handleCardInput(input: CardSelectionInput) {
         switch input {
         case .select(let just):
             useCase.selectCard(with: just.eraseToAnyPublisher(), compareto: cardModel)
         case .unselect(let just):
             useCase.selectCard(with: just.eraseToAnyPublisher(), compareto: cardModel)
-            }
         }
+    }
 }
 
 extension WalletViewModel : CardSelectionUseCaseDelegate{
@@ -97,21 +98,21 @@ extension WalletViewModel : CardSelectionUseCaseDelegate{
             .sink { cards, selectedCard in
                 var received = cards
                 if !selectedCard.name.isEmpty{
-                    received.append(self.selectedCard)
+                    received.append(selectedCard)
                 }
                 self.cardModel = received.sorted(by: {$0.name > $1.name})
             }
             .store(in: &subsriptions)
     }
     
-
+    
 }
 
 
 extension WalletViewModel  : AmountRemainCounterType {
     
     typealias Input = AmountRemainingInput
-
+    
     func calculateCurrentTransactionAmount(input: AmountRemainingInput) {
         useCaseAmount.calculateTransactionAmount(input: input)
     }
@@ -140,7 +141,7 @@ extension WalletViewModel : TransactionType {
             useCaseTransaction.fetchTransactions(with: just)
         case .filter(let just):
             useCaseTransaction.filterCard(with: just)
-
+            
         }
     }
 }

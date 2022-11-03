@@ -70,10 +70,6 @@ struct ExpensesView: View {
             }
         }
         .frame(height: height)
-        .onAppear{
-            viewModel.getTransactions()
-            
-        }
     }
     
     private func findSelectedTask(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {

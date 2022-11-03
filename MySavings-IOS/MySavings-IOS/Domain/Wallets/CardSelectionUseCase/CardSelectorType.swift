@@ -11,6 +11,6 @@ protocol CardSelectorType {
     
     associatedtype Card
     
-    func selectCard(input : CardSelectionInput)
+    func handleCardInput(input : CardSelectionInput)
     
 }
