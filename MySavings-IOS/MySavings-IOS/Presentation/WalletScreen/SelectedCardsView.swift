@@ -12,6 +12,7 @@ struct SelectedCardsView: View {
     var cards : [CardModel]
     
     @State var scaleEffect : CGFloat = 0
+    @Environment (\.dismiss) var dimiss
     
     var body: some View {
         TabView {
@@ -20,6 +21,9 @@ struct SelectedCardsView: View {
                     
                     CreditCardView(card: card)
                         .scaleEffect(scaleEffect)
+                        .onTapGesture {
+                            dimiss.callAsFunction()
+                        }
                     
                     VStack {
                         ForEach(card.cardData.transaction, id: \.self) { transaction in

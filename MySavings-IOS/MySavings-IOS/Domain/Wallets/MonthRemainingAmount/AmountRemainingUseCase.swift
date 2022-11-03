@@ -25,14 +25,17 @@ class AmountRemainingUseCase {
     func calculateTransactionAmount(input : AmountRemainingInput ){
         let transactionAmount = input.cardUser.cards
             .publisher
-            .flatMap{ card in
-                card.transaction
-                    .publisher
+            .map{ card in
+               let result =  card.transaction
                     .map{
                         $0.amount
                     }
                     .reduce(0) { $0 + $1}
-                    .eraseToAnyPublisher()
+                return result
+            }
+            .collect()
+            .map{amounts in
+                amounts.reduce(0.0) { counter, value  in counter + value }
             }
             .eraseToAnyPublisher()
         
