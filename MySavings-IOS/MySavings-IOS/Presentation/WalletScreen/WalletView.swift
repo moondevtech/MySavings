@@ -14,10 +14,34 @@ struct WalletView: View {
     @StateObject var walletViewModel : WalletViewModel = .init()
     @State var showBigCard : Bool = false
     @State var showPaymentsForDate : Bool = false
-        
+    @State var defaultScrollY : CGFloat = 0.0
+    
     var body: some View {
+        let cardsPaddingTop : CGFloat = walletViewModel.hideExpensesView ? 20 : 40
         ScrollView{
-                        
+                GeometryReader{ geo in
+                    Rectangle()
+                        .frame(width: 0, height: 0)
+                        .onAppear{
+                            self.defaultScrollY = geo.frame(in: .global).midY
+                        }
+                        .onChange(of: geo.frame(in: .global).midY) { newValue in
+                            print("midY", newValue)
+                            if walletViewModel.hideExpensesView{
+                                if newValue > defaultScrollY * 1.1 {
+                                    withAnimation(.spring()) {
+                                        walletViewModel.hideExpensesView = false
+                                    }
+                                }
+                            }else{
+                                if  newValue < -defaultScrollY * 1.1 {
+                                    withAnimation(.spring()) {
+                                        walletViewModel.hideExpensesView = true
+                                    }
+                                }
+                            }
+                        }
+                }
             MonthAllowedBudgetView()
             
             if showBigCard{
@@ -26,8 +50,7 @@ struct WalletView: View {
                 VStack{
                     ExpensesView()
                     CardListView()
-                        .padding(.top, 40)
-                    
+                        .padding(.top, cardsPaddingTop)
                 }
                 .animation(.linear, value: walletViewModel.selectedCardTransactions)
             }
@@ -48,6 +71,7 @@ struct WalletView: View {
         }
     }
 }
+
 
 
 struct WalletView_Previews: PreviewProvider {

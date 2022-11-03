@@ -10,10 +10,15 @@ import Charts
 
 struct ExpensesView: View {
     
+    enum VisibleState {
+        case displayed, hidden
+    }
+    
     @EnvironmentObject var viewModel : WalletViewModel
     @State var hideExpensesView : Bool = false
-    @Namespace var scrollSpace
-    
+    @State var visibleState : VisibleState = .displayed
+    @State var currentScrollValue : CGFloat = .zero
+  //  @Namespace var scrollSpace
     
     
     var body: some View {
@@ -63,23 +68,12 @@ struct ExpensesView: View {
                 }
                 .frame(width: width, height: height)
             }
-            .background(GeometryReader { geo in
-                let offset = -geo.frame(in: .named(scrollSpace)).minY
-                Color.clear
-                    .preference(key: ScrollViewOffsetPreferenceKey.self,
-                                value: offset)
-            })
-            .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
-                withAnimation {
-                    viewModel.hideExpensesView = value > 1
-                }
-            }
         }
+        .frame(height: height)
         .onAppear{
             viewModel.getTransactions()
             
         }
-        .frame(height: height)
     }
     
     private func findSelectedTask(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) {

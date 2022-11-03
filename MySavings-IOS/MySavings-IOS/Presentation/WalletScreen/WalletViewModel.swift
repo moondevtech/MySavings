@@ -45,6 +45,16 @@ class WalletViewModel : ObservableObject{
         selectCard(input: .select(Just(CardModel(cardData: .init(name: "")))))
     }
     
+    func handleSwipeDelay(){
+        $hideExpensesView
+            .receive(on: DispatchQueue.main)
+            .zip(Timer.publish(every: 1.5, on: .main, in: .common).autoconnect())
+            .sink { isHidden, timer in
+        
+            }
+            .store(in: &subsriptions)
+    }
+    
     func getTransactions(){
         cardModel
             .publisher
@@ -121,9 +131,10 @@ extension WalletViewModel : CardSelectionUseCaseDelegate{
     
     func updateWalletCards(publisher: AnyPublisher<[CardModel], Never>) {
         publisher
-            .sink { cards in
+            .zip($selectedCard)
+            .sink { cards, selectedCard in
                 var received = cards
-                if !self.selectedCard.name.isEmpty{
+                if !selectedCard.name.isEmpty{
                     received.append(self.selectedCard)
                 }
                 self.cardModel = received.sorted(by: {$0.name > $1.name})

@@ -12,27 +12,22 @@ struct CardListView: View {
     @EnvironmentObject var viewModel : WalletViewModel
     
     var body: some View {
+        let maxCardModel = viewModel.cardModel.count == 1 ? 1 : viewModel.cardModel.count > 3 ? viewModel.cardModel.count / 2 : viewModel.cardModel.count
+        let cardModels =  viewModel.hideExpensesView ? viewModel.cardModel : Array(viewModel.cardModel[0..<maxCardModel])
+        
         VStack{
             Label("Cards", systemImage: "creditcard")
                 .frame(width: 300, alignment: .leading)
                 .font(.title.bold())
             
-            LazyVStack{
-                ForEach(viewModel.cardModel, id: \.id) { card in
+                ForEach(cardModels, id: \.id) { card in
                     CreditCardView(card: card)
                     .onTapGesture {
                         viewModel.selectCard(card)
                     }
                     .animation(.linear, value: card.isSelected)
                 }
-            }
         }
-        .safeAreaInset(edge: .top, content: {
-            if viewModel.hideExpensesView{
-                Color.clear
-                    .frame(height : 140)
-            }
-        })
         .transition(.move(edge: .bottom))
     }
 }

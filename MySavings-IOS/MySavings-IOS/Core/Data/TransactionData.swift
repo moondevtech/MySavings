@@ -36,7 +36,7 @@ struct TransactionData : Identifiable, Hashable{
             TransactionData(date: calendar.date(byAdding: .day, value: -Int.random(max: 14), to: .now)!,reason: "Had a drink", amount: 10.90),
             TransactionData(date: calendar.date(byAdding: .day, value: -Int.random(max: 12), to: .now)!,reason: "week end food", amount: 30.45),
             TransactionData(date: calendar.date(byAdding: .day, value: -Int.random(max: 10), to: .now)!,reason: "phone bill", amount: 50.70),
-            TransactionData(date: calendar.date(byAdding: .day, value: -Int.random(max: 2), to: .now)!,reason: "rent", amount: 200.0),
+            TransactionData(date: calendar.date(byAdding: .day, value: -Int.random(max: 2), to: .now)!,reason: "rent", amount: 1000.0),
         ]
         
         let randomMax =  Int.random(max: all.count)
