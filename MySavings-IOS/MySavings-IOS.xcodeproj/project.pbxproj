@@ -40,6 +40,14 @@
 		871E964E29165F250034D05A /* CreditCardCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964629165F250034D05A /* CreditCardCD+CoreDataProperties.swift */; };
 		871E96522916618C0034D05A /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96512916618C0034D05A /* UserRepository.swift */; };
 		871E96542916619B0034D05A /* UserRepositoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96532916619B0034D05A /* UserRepositoryDelegate.swift */; };
+		871E9656291695C40034D05A /* StartTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9655291695C40034D05A /* StartTabView.swift */; };
+		871E96582916960D0034D05A /* TitleTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96572916960D0034D05A /* TitleTab.swift */; };
+		871E965A291696470034D05A /* LetsGoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9659291696470034D05A /* LetsGoButton.swift */; };
+		871E965D291697380034D05A /* RegisterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E965C291697380034D05A /* RegisterTabView.swift */; };
+		871E965F291698820034D05A /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E965E291698820034D05A /* SuccessView.swift */; };
+		871E96612916993B0034D05A /* RegistrationSuccessTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96602916993B0034D05A /* RegistrationSuccessTab.swift */; };
+		871E9663291699C40034D05A /* AddFirstCardTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9662291699C40034D05A /* AddFirstCardTab.swift */; };
+		871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966529169C5F0034D05A /* BudgetListFirstCard.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* ContentView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -93,6 +101,14 @@
 		871E964629165F250034D05A /* CreditCardCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreditCardCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		871E96512916618C0034D05A /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		871E96532916619B0034D05A /* UserRepositoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryDelegate.swift; sourceTree = "<group>"; };
+		871E9655291695C40034D05A /* StartTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTabView.swift; sourceTree = "<group>"; };
+		871E96572916960D0034D05A /* TitleTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTab.swift; sourceTree = "<group>"; };
+		871E9659291696470034D05A /* LetsGoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoButton.swift; sourceTree = "<group>"; };
+		871E965C291697380034D05A /* RegisterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTabView.swift; sourceTree = "<group>"; };
+		871E965E291698820034D05A /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		871E96602916993B0034D05A /* RegistrationSuccessTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessTab.swift; sourceTree = "<group>"; };
+		871E9662291699C40034D05A /* AddFirstCardTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstCardTab.swift; sourceTree = "<group>"; };
+		871E966529169C5F0034D05A /* BudgetListFirstCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListFirstCard.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -171,7 +187,11 @@
 		870B583B29143B5B00ED1810 /* AuthScreen */ = {
 			isa = PBXGroup;
 			children = (
+				871E965B291697240034D05A /* Tabs */,
 				870B585D29155FB900ED1810 /* AuthScreen.swift */,
+				871E96572916960D0034D05A /* TitleTab.swift */,
+				871E9659291696470034D05A /* LetsGoButton.swift */,
+				871E965E291698820034D05A /* SuccessView.swift */,
 			);
 			path = AuthScreen;
 			sourceTree = "<group>";
@@ -253,6 +273,18 @@
 				871E96532916619B0034D05A /* UserRepositoryDelegate.swift */,
 			);
 			name = UserRepository;
+			sourceTree = "<group>";
+		};
+		871E965B291697240034D05A /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				871E9662291699C40034D05A /* AddFirstCardTab.swift */,
+				871E9655291695C40034D05A /* StartTabView.swift */,
+				871E965C291697380034D05A /* RegisterTabView.swift */,
+				871E96602916993B0034D05A /* RegistrationSuccessTab.swift */,
+				871E966529169C5F0034D05A /* BudgetListFirstCard.swift */,
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		8776A1D9291048E80082D606 = {
@@ -444,6 +476,7 @@
 				870B582429123EBE00ED1810 /* CardListView.swift in Sources */,
 				870B584529143CF800ED1810 /* DataSourceModelDelegate.swift in Sources */,
 				870B582029123CCC00ED1810 /* SelectedCardView.swift in Sources */,
+				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
 				870B582829136FEE00ED1810 /* WalletViewModel.swift in Sources */,
 				8776A214291222590082D606 /* ExpenseGraphModel.swift in Sources */,
@@ -455,15 +488,20 @@
 				871E963E29165E480034D05A /* TransactionDataModel.swift in Sources */,
 				8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */,
 				870B582229123DA100ED1810 /* ExpensesView.swift in Sources */,
+				871E965F291698820034D05A /* SuccessView.swift in Sources */,
+				871E9663291699C40034D05A /* AddFirstCardTab.swift in Sources */,
 				870B584029143C9B00ED1810 /* UserDataSourceDelegate.swift in Sources */,
 				870B5864291657C000ED1810 /* BudgetDataModel.swift in Sources */,
 				870B584C29143F6900ED1810 /* UserDataModel.swift in Sources */,
 				871E964729165F250034D05A /* UserCD+CoreDataClass.swift in Sources */,
+				871E96612916993B0034D05A /* RegistrationSuccessTab.swift in Sources */,
 				8776A20E291168A30082D606 /* ScrollViewOffsetPreferenceKey.swift in Sources */,
 				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
+				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
 				870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */,
 				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
 				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
+				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
 				8776A1E8291048E80082D606 /* ContentView.swift in Sources */,
 				8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */,
 				870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */,
@@ -471,6 +509,7 @@
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
 				871E964B29165F250034D05A /* TransactionsCD+CoreDataClass.swift in Sources */,
 				871E964C29165F250034D05A /* TransactionsCD+CoreDataProperties.swift in Sources */,
+				871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */,
 				8776A20B291165830082D606 /* Date + Extensions.swift in Sources */,
 				870B581E29123C6200ED1810 /* MonthAllowedBudgetView.swift in Sources */,
 				870B584229143CA900ED1810 /* LocalDataSource.swift in Sources */,
@@ -478,6 +517,7 @@
 				8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */,
 				8776A203291052200082D606 /* WalletView.swift in Sources */,
 				871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */,
+				871E9656291695C40034D05A /* StartTabView.swift in Sources */,
 				870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */,
 				871E964E29165F250034D05A /* CreditCardCD+CoreDataProperties.swift in Sources */,
 				870B583429137AF900ED1810 /* AmountRemainingInput.swift in Sources */,
