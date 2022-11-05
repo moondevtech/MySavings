@@ -48,8 +48,10 @@
 		871E96612916993B0034D05A /* RegistrationSuccessTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96602916993B0034D05A /* RegistrationSuccessTab.swift */; };
 		871E9663291699C40034D05A /* AddFirstCardTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9662291699C40034D05A /* AddFirstCardTab.swift */; };
 		871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966529169C5F0034D05A /* BudgetListFirstCard.swift */; };
+		871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96682916A4B60034D05A /* ScreenDelegate.swift */; };
+		871E966B2916A4BF0034D05A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966A2916A4BF0034D05A /* Router.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
-		8776A1E8291048E80082D606 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* ContentView.swift */; };
+		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
 		8776A1ED291048E90082D606 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1EC291048E90082D606 /* Preview Assets.xcassets */; };
 		8776A1EF291048E90082D606 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1EE291048E90082D606 /* Persistence.swift */; };
@@ -109,9 +111,11 @@
 		871E96602916993B0034D05A /* RegistrationSuccessTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessTab.swift; sourceTree = "<group>"; };
 		871E9662291699C40034D05A /* AddFirstCardTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstCardTab.swift; sourceTree = "<group>"; };
 		871E966529169C5F0034D05A /* BudgetListFirstCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListFirstCard.swift; sourceTree = "<group>"; };
+		871E96682916A4B60034D05A /* ScreenDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDelegate.swift; sourceTree = "<group>"; };
+		871E966A2916A4BF0034D05A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
-		8776A1E7291048E80082D606 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
 		8776A1E9291048E90082D606 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8776A1EC291048E90082D606 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8776A1EE291048E90082D606 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -287,6 +291,15 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		871E96672916A4A40034D05A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				871E96682916A4B60034D05A /* ScreenDelegate.swift */,
+				871E966A2916A4BF0034D05A /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		8776A1D9291048E80082D606 = {
 			isa = PBXGroup;
 			children = (
@@ -310,7 +323,7 @@
 				8776A1F92910495E0082D606 /* Core */,
 				8776A1F8291049590082D606 /* Domain */,
 				8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */,
-				8776A1E7291048E80082D606 /* ContentView.swift */,
+				8776A1E7291048E80082D606 /* BaseFlowView.swift */,
 				8776A1E9291048E90082D606 /* Assets.xcassets */,
 				8776A1EE291048E90082D606 /* Persistence.swift */,
 				8776A1F0291048E90082D606 /* MySavings_IOS.xcdatamodeld */,
@@ -353,6 +366,7 @@
 		8776A1FA291049680082D606 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				871E96672916A4A40034D05A /* Router */,
 				870B583B29143B5B00ED1810 /* AuthScreen */,
 				870B581C29123C3E00ED1810 /* WalletScreen */,
 				8776A20029104AAD0082D606 /* CreditCardView.swift */,
@@ -502,8 +516,9 @@
 				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
 				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
 				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
-				8776A1E8291048E80082D606 /* ContentView.swift in Sources */,
+				8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */,
 				8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */,
+				871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */,
 				870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */,
 				8776A1FC291049840082D606 /* CardUser.swift in Sources */,
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
@@ -516,6 +531,7 @@
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
 				8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */,
 				8776A203291052200082D606 /* WalletView.swift in Sources */,
+				871E966B2916A4BF0034D05A /* Router.swift in Sources */,
 				871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */,
 				871E9656291695C40034D05A /* StartTabView.swift in Sources */,
 				870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */,

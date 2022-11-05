@@ -19,6 +19,8 @@ struct AddFirstCardTab: View {
     
     @Binding var tabSelection : Int
     
+    @EnvironmentObject var router : Router
+    
     var body: some View {
         VStack{
             
@@ -37,7 +39,7 @@ struct AddFirstCardTab: View {
             AddBudgetButton()
 
             LetsGoButton(title: "Save the card !") {
-                
+                router.navigateToMain()
             }
             .offset(x: addCardOffset)
             .preferredColorScheme(.dark)
@@ -143,5 +145,6 @@ struct AddFirstCardTab: View {
 struct AddFirstCardTab_Previews: PreviewProvider {
     static var previews: some View {
         AddFirstCardTab(tabSelection: .constant(1))
+            .environmentObject(Router())
     }
 }

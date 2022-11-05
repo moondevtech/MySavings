@@ -13,7 +13,7 @@ struct MySavings_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BaseFlowView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

@@ -10,11 +10,13 @@ import SwiftUI
 struct LetsGoButton: View {
     
     var title : String
+    var isNavigation : Bool
     var action : () -> Void
     
-    init(title: String = "Lets go", action : @escaping () -> Void = {}) {
+    init(title: String = "Lets go", isNavigation : Bool = false ,action : @escaping () -> Void = {}) {
         self.title = title
         self.action = action
+        self.isNavigation = isNavigation
     }
     
     var body: some View {
@@ -31,6 +33,7 @@ struct LetsGoButton: View {
         .clipShape(Capsule())
         .padding(.top, 40)
     }
+
 }
 
 struct LetsGoButton_Previews: PreviewProvider {
