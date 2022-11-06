@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 struct UserDataModel : DataSourceModelDelegate {
-    var id : String
+    var id : String = UUID().uuidString
     var password : String
-    var registrationDate : Date
+    var registrationDate : Date = .now
     var username : String
     var cards : [CreditCardDataModel] = []
 }

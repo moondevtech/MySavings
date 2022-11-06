@@ -16,17 +16,14 @@ class UserLocalDataSource : UserDataSourceDelegate {
         case error(Error)
     }
     
-    func create(_ data: UserDataModel) {
+    func create(_ data: UserDataModel) throws {
         let userCd = UserCD(context: PersistenceController.shared.context)
         userCd.id = data.id
         userCd.username = data.username
         userCd.password = data.password
         
-        do{
-            try PersistenceController.shared.save()
-        }catch{
-            Log.e(error: error)
-        }
+        try PersistenceController.shared.save()
+
     }
     
     

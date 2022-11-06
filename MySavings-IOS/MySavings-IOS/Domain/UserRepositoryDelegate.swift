@@ -10,6 +10,7 @@ import Combine
 
 protocol UserRepositoryDelegate {
     
+    func create(_ data : UserDataModel) throws
     
     func fetch() throws -> AnyPublisher<UserCD, Never>
     

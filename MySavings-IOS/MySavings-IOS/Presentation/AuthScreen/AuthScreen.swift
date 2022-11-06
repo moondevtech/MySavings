@@ -7,60 +7,13 @@
 
 import SwiftUI
 
-
-struct AuthBudget : Identifiable , Hashable {
-    var id : String =  UUID().description
-    var title : String = "..."
-    var amount : String = "\(0.0)"
-    
-    func realAmount() -> Double{
-        Double(amount) ?? 0.0
-    }
-    
-    func isEmpty() -> Bool{
-        amount == "0.0" || title ==  "..."
-    }
-}
-
-struct AuthBudgets : Identifiable {
-    var id : String =  UUID().description
-    var budgets : [AuthBudget] = .init()
-    var tempBudgets : [AuthBudget] = .init()
-
-    
-    var savable : Bool {
-        tempBudgets.count > 0 &&
-        tempBudgets.map{$0.isEmpty()}.contains{$0 == false}
-    }
-    
-}
-
-struct CardHolder : Identifiable, Equatable {
-    
-    var id =  UUID().uuidString
-    var cardnumber : String = ""
-    var cardholder : String = ""
-    var cvv : String = ""
-    var expirationDate : Date = .now
-    var accountNumber : Date = .now
-}
-
 struct AuthScreen: View {
     
     
     @State var tabSelection : Int = 1
-    
+    @StateObject var authViewModel = AuthViewModel()
 
-    
-    //creditcard
-    @State var card : CardHolder = .init()
-    @State var addCardOffset : CGFloat = -400
-    @State var isAddingBudgets : Bool = false
-    @State var canAddBudget : Bool = false
-    @State var addedBudgets : AuthBudgets = .init()
-    @State var listHeight : CGFloat = 140
-    
-    
+        
     init(){
         UIScrollView.appearance().isScrollEnabled = false
     }
@@ -74,12 +27,14 @@ struct AuthScreen: View {
                 
                 RegisterTabView(tabSelection: $tabSelection)
                     .tag(2)
+                    .environmentObject(authViewModel)
 
                 RegistrationSuccessTab(tabSelection: $tabSelection)
                     .tag(3)
                 
                 AddFirstCardTab(tabSelection: $tabSelection)
                     .tag(4)
+                    .environmentObject(authViewModel)
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
@@ -88,12 +43,6 @@ struct AuthScreen: View {
         }
 
     }
-    
-}
-
-
-
-class AuthScreenViewModel : ObservableObject {
     
 }
 

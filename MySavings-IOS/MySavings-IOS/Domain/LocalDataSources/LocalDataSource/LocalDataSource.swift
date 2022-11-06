@@ -12,12 +12,12 @@ import CoreData
 
 typealias RepoResult = (Result<Bool,Error>) -> Void
 
-protocol LocalDataSource : AnyObject {
+protocol LocalDataSource  {
     
     associatedtype CD : NSManagedObject
     associatedtype Model : DataSourceModelDelegate
         
-    func create(_ data : Model)
+    func create(_ data : Model) throws
     
     func readAll() throws -> AnyPublisher<CD,Never>
     

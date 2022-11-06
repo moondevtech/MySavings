@@ -50,6 +50,26 @@
 		871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966529169C5F0034D05A /* BudgetListFirstCard.swift */; };
 		871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96682916A4B60034D05A /* ScreenDelegate.swift */; };
 		871E966B2916A4BF0034D05A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966A2916A4BF0034D05A /* Router.swift */; };
+		871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966C291760530034D05A /* BudgetCategoryDataModel.swift */; };
+		871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */; };
+		871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */; };
+		871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */; };
+		871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */; };
+		871E9679291766510034D05A /* AuthBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9678291766510034D05A /* AuthBudget.swift */; };
+		871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967A2917666A0034D05A /* AuthBudgets.swift */; };
+		871E967D291766860034D05A /* CardHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967C291766860034D05A /* CardHolder.swift */; };
+		871E9680291766E50034D05A /* BudgetCategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967F291766E50034D05A /* BudgetCategoryRepository.swift */; };
+		871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9681291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift */; };
+		871E968629176B6E0034D05A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E968529176B6E0034D05A /* AuthViewModel.swift */; };
+		871E9688291772480034D05A /* FailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9687291772480034D05A /* FailureView.swift */; };
+		871E968A291777640034D05A /* FailureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9689291777640034D05A /* FailureScreen.swift */; };
+		871E968C2917799F0034D05A /* AuthViewModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E968B2917799F0034D05A /* AuthViewModelInput.swift */; };
+		871E968E291779B30034D05A /* AuthViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E968D291779B30034D05A /* AuthViewModelOutput.swift */; };
+		871E9690291779CA0034D05A /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E968F291779CA0034D05A /* AuthError.swift */; };
+		871E9692291779E20034D05A /* AuthViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9691291779E20034D05A /* AuthViewModelType.swift */; };
+		871E9694291779FA0034D05A /* AuthUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9693291779FA0034D05A /* AuthUseCaseDelegate.swift */; };
+		871E969629177A1B0034D05A /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E969529177A1B0034D05A /* AuthUseCase.swift */; };
+		871E969829177A630034D05A /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E969729177A630034D05A /* AuthUser.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -113,6 +133,26 @@
 		871E966529169C5F0034D05A /* BudgetListFirstCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListFirstCard.swift; sourceTree = "<group>"; };
 		871E96682916A4B60034D05A /* ScreenDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDelegate.swift; sourceTree = "<group>"; };
 		871E966A2916A4BF0034D05A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		871E966C291760530034D05A /* BudgetCategoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataModel.swift; sourceTree = "<group>"; };
+		871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSourceDelegate.swift; sourceTree = "<group>"; };
+		871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSource.swift; sourceTree = "<group>"; };
+		871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		871E9678291766510034D05A /* AuthBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudget.swift; sourceTree = "<group>"; };
+		871E967A2917666A0034D05A /* AuthBudgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudgets.swift; sourceTree = "<group>"; };
+		871E967C291766860034D05A /* CardHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHolder.swift; sourceTree = "<group>"; };
+		871E967F291766E50034D05A /* BudgetCategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryRepository.swift; sourceTree = "<group>"; };
+		871E9681291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryRepositoryDelegate.swift; sourceTree = "<group>"; };
+		871E968529176B6E0034D05A /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		871E9687291772480034D05A /* FailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureView.swift; sourceTree = "<group>"; };
+		871E9689291777640034D05A /* FailureScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureScreen.swift; sourceTree = "<group>"; };
+		871E968B2917799F0034D05A /* AuthViewModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelInput.swift; sourceTree = "<group>"; };
+		871E968D291779B30034D05A /* AuthViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelOutput.swift; sourceTree = "<group>"; };
+		871E968F291779CA0034D05A /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		871E9691291779E20034D05A /* AuthViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelType.swift; sourceTree = "<group>"; };
+		871E9693291779FA0034D05A /* AuthUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCaseDelegate.swift; sourceTree = "<group>"; };
+		871E969529177A1B0034D05A /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		871E969729177A630034D05A /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
@@ -191,11 +231,14 @@
 		870B583B29143B5B00ED1810 /* AuthScreen */ = {
 			isa = PBXGroup;
 			children = (
+				871E96772917662F0034D05A /* AuthModels */,
 				871E965B291697240034D05A /* Tabs */,
 				870B585D29155FB900ED1810 /* AuthScreen.swift */,
 				871E96572916960D0034D05A /* TitleTab.swift */,
 				871E9659291696470034D05A /* LetsGoButton.swift */,
 				871E965E291698820034D05A /* SuccessView.swift */,
+				871E968529176B6E0034D05A /* AuthViewModel.swift */,
+				871E9687291772480034D05A /* FailureView.swift */,
 			);
 			path = AuthScreen;
 			sourceTree = "<group>";
@@ -203,6 +246,7 @@
 		870B583C29143C7100ED1810 /* LocalDataSources */ = {
 			isa = PBXGroup;
 			children = (
+				871E966E291761100034D05A /* BudgetCategoryDataSource */,
 				870B584A29143F5500ED1810 /* CDModels */,
 				870B584629143D0700ED1810 /* LocalDataSource */,
 				870B584329143CE000ED1810 /* UserDataSource */,
@@ -243,6 +287,7 @@
 				870B58562914423D00ED1810 /* CreditCardDataModel.swift */,
 				870B5863291657C000ED1810 /* BudgetDataModel.swift */,
 				871E963D29165E480034D05A /* TransactionDataModel.swift */,
+				871E966C291760530034D05A /* BudgetCategoryDataModel.swift */,
 			);
 			path = CDModels;
 			sourceTree = "<group>";
@@ -250,6 +295,8 @@
 		870B584D2914417A00ED1810 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */,
+				871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */,
 				871E963F29165F250034D05A /* UserCD+CoreDataClass.swift */,
 				871E964029165F250034D05A /* UserCD+CoreDataProperties.swift */,
 				871E964129165F250034D05A /* BudgetCD+CoreDataClass.swift */,
@@ -265,6 +312,7 @@
 		871E964F291661720034D05A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				871E967E291766BF0034D05A /* BudgetCategoryRepository */,
 				871E96502916617D0034D05A /* UserRepository */,
 			);
 			name = Repository;
@@ -287,6 +335,7 @@
 				871E965C291697380034D05A /* RegisterTabView.swift */,
 				871E96602916993B0034D05A /* RegistrationSuccessTab.swift */,
 				871E966529169C5F0034D05A /* BudgetListFirstCard.swift */,
+				871E9689291777640034D05A /* FailureScreen.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -298,6 +347,56 @@
 				871E966A2916A4BF0034D05A /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		871E966E291761100034D05A /* BudgetCategoryDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */,
+				871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */,
+			);
+			path = BudgetCategoryDataSource;
+			sourceTree = "<group>";
+		};
+		871E96772917662F0034D05A /* AuthModels */ = {
+			isa = PBXGroup;
+			children = (
+				871E9678291766510034D05A /* AuthBudget.swift */,
+				871E967A2917666A0034D05A /* AuthBudgets.swift */,
+				871E967C291766860034D05A /* CardHolder.swift */,
+				871E969729177A630034D05A /* AuthUser.swift */,
+			);
+			path = AuthModels;
+			sourceTree = "<group>";
+		};
+		871E967E291766BF0034D05A /* BudgetCategoryRepository */ = {
+			isa = PBXGroup;
+			children = (
+				871E967F291766E50034D05A /* BudgetCategoryRepository.swift */,
+				871E9681291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift */,
+			);
+			name = BudgetCategoryRepository;
+			sourceTree = "<group>";
+		};
+		871E968329176A260034D05A /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				871E968429176A350034D05A /* RegisterUserCase */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		871E968429176A350034D05A /* RegisterUserCase */ = {
+			isa = PBXGroup;
+			children = (
+				871E968B2917799F0034D05A /* AuthViewModelInput.swift */,
+				871E968D291779B30034D05A /* AuthViewModelOutput.swift */,
+				871E968F291779CA0034D05A /* AuthError.swift */,
+				871E9691291779E20034D05A /* AuthViewModelType.swift */,
+				871E9693291779FA0034D05A /* AuthUseCaseDelegate.swift */,
+				871E969529177A1B0034D05A /* AuthUseCase.swift */,
+			);
+			path = RegisterUserCase;
 			sourceTree = "<group>";
 		};
 		8776A1D9291048E80082D606 = {
@@ -343,6 +442,7 @@
 		8776A1F8291049590082D606 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				871E968329176A260034D05A /* UseCase */,
 				871E964F291661720034D05A /* Repository */,
 				870B584D2914417A00ED1810 /* CoreData */,
 				870B583C29143C7100ED1810 /* LocalDataSources */,
@@ -485,24 +585,32 @@
 				871E96542916619B0034D05A /* UserRepositoryDelegate.swift in Sources */,
 				8776A21229121E650082D606 /* Color + Extensions.swift in Sources */,
 				870B584929143E3400ED1810 /* Log.swift in Sources */,
+				871E9694291779FA0034D05A /* AuthUseCaseDelegate.swift in Sources */,
 				871E964829165F250034D05A /* UserCD+CoreDataProperties.swift in Sources */,
 				8776A1F2291048E90082D606 /* MySavings_IOS.xcdatamodeld in Sources */,
 				870B582429123EBE00ED1810 /* CardListView.swift in Sources */,
 				870B584529143CF800ED1810 /* DataSourceModelDelegate.swift in Sources */,
 				870B582029123CCC00ED1810 /* SelectedCardView.swift in Sources */,
+				871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */,
 				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
+				871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
 				870B582829136FEE00ED1810 /* WalletViewModel.swift in Sources */,
+				871E968E291779B30034D05A /* AuthViewModelOutput.swift in Sources */,
+				871E968A291777640034D05A /* FailureScreen.swift in Sources */,
 				8776A214291222590082D606 /* ExpenseGraphModel.swift in Sources */,
 				870B58572914423D00ED1810 /* CreditCardDataModel.swift in Sources */,
 				871E964D29165F250034D05A /* CreditCardCD+CoreDataClass.swift in Sources */,
+				871E968629176B6E0034D05A /* AuthViewModel.swift in Sources */,
 				870B582F291371F500ED1810 /* CardSelectorType.swift in Sources */,
 				870B58262912447800ED1810 /* SelectedCardsView.swift in Sources */,
 				870B582C2913718400ED1810 /* CardSelectionInput.swift in Sources */,
 				871E963E29165E480034D05A /* TransactionDataModel.swift in Sources */,
 				8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */,
 				870B582229123DA100ED1810 /* ExpensesView.swift in Sources */,
+				871E968C2917799F0034D05A /* AuthViewModelInput.swift in Sources */,
 				871E965F291698820034D05A /* SuccessView.swift in Sources */,
+				871E9679291766510034D05A /* AuthBudget.swift in Sources */,
 				871E9663291699C40034D05A /* AddFirstCardTab.swift in Sources */,
 				870B584029143C9B00ED1810 /* UserDataSourceDelegate.swift in Sources */,
 				870B5864291657C000ED1810 /* BudgetDataModel.swift in Sources */,
@@ -511,27 +619,39 @@
 				871E96612916993B0034D05A /* RegistrationSuccessTab.swift in Sources */,
 				8776A20E291168A30082D606 /* ScrollViewOffsetPreferenceKey.swift in Sources */,
 				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
+				871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */,
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
 				870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */,
 				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
+				871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */,
 				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
+				871E969629177A1B0034D05A /* AuthUseCase.swift in Sources */,
+				871E9692291779E20034D05A /* AuthViewModelType.swift in Sources */,
 				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
 				8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */,
 				8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */,
 				871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */,
 				870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */,
+				871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				8776A1FC291049840082D606 /* CardUser.swift in Sources */,
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
 				871E964B29165F250034D05A /* TransactionsCD+CoreDataClass.swift in Sources */,
 				871E964C29165F250034D05A /* TransactionsCD+CoreDataProperties.swift in Sources */,
 				871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */,
+				871E9688291772480034D05A /* FailureView.swift in Sources */,
 				8776A20B291165830082D606 /* Date + Extensions.swift in Sources */,
 				870B581E29123C6200ED1810 /* MonthAllowedBudgetView.swift in Sources */,
+				871E967D291766860034D05A /* CardHolder.swift in Sources */,
 				870B584229143CA900ED1810 /* LocalDataSource.swift in Sources */,
+				871E9680291766E50034D05A /* BudgetCategoryRepository.swift in Sources */,
+				871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */,
+				871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */,
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
 				8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */,
 				8776A203291052200082D606 /* WalletView.swift in Sources */,
 				871E966B2916A4BF0034D05A /* Router.swift in Sources */,
+				871E9690291779CA0034D05A /* AuthError.swift in Sources */,
+				871E969829177A630034D05A /* AuthUser.swift in Sources */,
 				871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */,
 				871E9656291695C40034D05A /* StartTabView.swift in Sources */,
 				870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */,
