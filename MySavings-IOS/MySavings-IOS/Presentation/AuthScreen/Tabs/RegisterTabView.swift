@@ -74,6 +74,7 @@ struct RegisterTabView: View {
                 
                 
                 LetsGoButton(title: "Done !"){
+                    hideKeyboard()
                     isRegistering = true
                     authViewModel.handleInput(authInput: .register(.init(name: userName, password: password)))
                 }
@@ -87,11 +88,15 @@ struct RegisterTabView: View {
             .onReceive(authViewModel.isRegistered, perform: { isRegistered in
                 isRegistering = false
                 if isRegistered{
-                    withAnimation{
+                    withAnimation(.spring()){
                         tabSelection = 3
+                        authViewModel.showTab.send(3)
                     }
                 }
             })
+            .onTapGesture {
+                hideKeyboard()
+            }
             .onReceive(authViewModel.authError, perform: { error in
                 isRegistering = false
                 showFailure = true
@@ -105,7 +110,6 @@ struct RegisterTabView: View {
             } content: {
                 FailureScreen()
             }
-            
             
             if isRegistering{
                 Color.black.opacity(0.3)

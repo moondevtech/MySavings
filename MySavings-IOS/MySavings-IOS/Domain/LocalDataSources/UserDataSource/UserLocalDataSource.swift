@@ -17,7 +17,7 @@ class UserLocalDataSource : UserDataSourceDelegate {
     }
     
     func create(_ data: UserDataModel) throws {
-        let userCd = UserCD(context: PersistenceController.shared.context)
+        let userCd = UserCD(context: PersistenceController.shared.container.viewContext)
         userCd.id = data.id
         userCd.username = data.username
         userCd.password = data.password
@@ -44,7 +44,7 @@ class UserLocalDataSource : UserDataSourceDelegate {
         fetchRequest.fetchBatchSize = 1
         fetchRequest.fetchLimit = 1
         fetchRequest.predicate = NSPredicate(format: "id == %@",id)
-            return try PersistenceController.shared.backgroundContext
+        return try PersistenceController.shared.container.viewContext
                 .fetch(fetchRequest)
                 .publisher
                 .map { cd in
@@ -53,6 +53,7 @@ class UserLocalDataSource : UserDataSourceDelegate {
                 .filter{$0.id == id}
                 .eraseToAnyPublisher()
     }
+    
     
     func update(with model : Model, completion : @escaping RepoResult){
         let fetchRequest =  CD.fetchRequest()

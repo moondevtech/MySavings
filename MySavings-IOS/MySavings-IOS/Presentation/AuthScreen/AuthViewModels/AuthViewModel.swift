@@ -15,6 +15,9 @@ class AuthViewModel : ObservableObject {
     @Published var userDataModel : UserDataModel = .init(password: "", username: "")
     var authError = PassthroughSubject<AuthError,Never>()
     var isRegistered = PassthroughSubject<Bool,Never>()
+    
+    //TabView Bug
+    var showTab = PassthroughSubject<Int,Never>()
 
     var userRepository : UserRepositoryDelegate
     lazy var useCase : AuthUseCase = AuthUseCase(userRepository, delegate: self)

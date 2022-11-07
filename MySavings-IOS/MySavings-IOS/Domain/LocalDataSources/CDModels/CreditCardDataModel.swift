@@ -15,7 +15,6 @@ struct CreditCardDataModel : DataSourceModelDelegate{
     var accountNumber: String
     var cardHolder: String
     var id: String
-    var owner: UserDataModel?
     var budgets : [BudgetDataModel]?
 
 }

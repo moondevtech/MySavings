@@ -50,7 +50,6 @@ extension BudgetCD : Identifiable {
             name: name ?? "",
             amountSpent: amountSpent ,
             maxAmount: maxAmount,
-            fromCard: fromCard?.toCreditCardModel(),
             transactions : (transactions?.allObjects as? [TransactionsCD])?.map{ $0.toTransactionDataModel() }
         )
     }

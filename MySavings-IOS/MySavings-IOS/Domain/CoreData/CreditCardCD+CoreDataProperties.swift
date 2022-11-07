@@ -54,7 +54,6 @@ extension CreditCardCD : Identifiable {
             accountNumber: accountNumber ?? "",
             cardHolder: cardHolder ?? "",
             id: id ?? "",
-            owner: owner?.toUserModel(),
             budgets: (budgets?.allObjects as? [BudgetCD])?.compactMap{ $0.toBudgetDataModel() }
         )
     }

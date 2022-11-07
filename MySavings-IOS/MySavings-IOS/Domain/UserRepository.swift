@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-
 class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelegate {
     
     private var currentUserCd : UserCD?
@@ -32,20 +31,13 @@ class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelega
     }
     
     func fetch(with id: String) throws -> AnyPublisher<UserCD, Never> {
-        let shared = try dataSource.read(with: id)
-            .compactMap{current in
-                ( current as! UserCD)
+        return try dataSource.read(with: id)
+            .compactMap{[weak self] current in
+                let user =  ( current as! UserCD)
+                print("user", user.username)
+                self?.currentUserCd = user
+                return user
             }
-            .share()
-        
-        shared.receive(on: DispatchQueue.main)
-            .sink {[weak self] cd in
-                self?.currentUserCd = cd
-            }
-            .store(in: &subscriptions)
-        
-        
-        return  shared
             .eraseToAnyPublisher()
     }
     

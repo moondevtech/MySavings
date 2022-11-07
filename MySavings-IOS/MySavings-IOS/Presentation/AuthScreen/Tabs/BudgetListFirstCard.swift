@@ -24,13 +24,14 @@ struct BudgetListFirstCard: View {
             ScrollViewReader { reader in
                                                 
                     List {
-                        ForEach($addedBudgets.tempBudgets, id: \.id) { budget in
+                        ForEach($addedBudgets.tempBudgets, id: \.id) { $budget in
                             VStack{
                                 HStack{
                                     Text("Reason")
                                         .font(.body.bold())
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    TextField(budget.title.wrappedValue, text: budget.title)
+                                    
+                                    TextField("...", text: $budget.title)
                                         .textFieldStyle(.roundedBorder)
                                         .font(.body)
                                 }
@@ -39,9 +40,12 @@ struct BudgetListFirstCard: View {
                                     Text("Amount")
                                         .font(.body.bold())
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    TextField("\(budget.amount.wrappedValue)", text: budget.amount)
+                                    
+                                    TextField("0.0", text: $budget.amount)
                                         .textFieldStyle(.roundedBorder)
                                         .font(.body)
+                                        .keyboardType(.decimalPad)
+                                        
                                 }
                             }
                             .id(budget.id)
@@ -52,18 +56,19 @@ struct BudgetListFirstCard: View {
                         
                         
                         Button("Add Budget ...") {
+                            hideKeyboard()
                             isAddingBudgets = true
-                                addedBudgets.tempBudgets.append(.init())
+                            addedBudgets.tempBudgets.append(.init())
                             reader.scrollTo(addedBudgets.tempBudgets.last?.id, anchor: .bottom)
 
                         }
                         
                         if addedBudgets.savable  {
                             Button("Finished") {
+                                hideKeyboard()
                                 isAddingBudgets = false
                             }
                         }
-                    
                     }
                     .scrollContentBackground(.hidden)
                     
@@ -76,6 +81,8 @@ struct BudgetListFirstCard: View {
 
 struct BudgetListFirstCard_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetListFirstCard( addedBudgets: .constant(.init()), isAddingBudgets: .constant(true))
+        BudgetListFirstCard(
+            addedBudgets: .constant(.init(tempBudgets: .init(repeating: .init(), count: 1))),
+            isAddingBudgets: .constant(true))
     }
 }

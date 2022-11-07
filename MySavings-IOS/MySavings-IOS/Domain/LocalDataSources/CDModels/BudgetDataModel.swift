@@ -13,7 +13,6 @@ struct BudgetDataModel : DataSourceModelDelegate {
     var name: String
     var amountSpent: Double
     var maxAmount: Double
-    var fromCard: CreditCardDataModel?
     var transactions : [TransactionDataModel]?
 }
 

@@ -15,5 +15,4 @@ struct CardHolder : Identifiable, Equatable {
     var cardholder : String = ""
     var cvv : String = ""
     var expirationDate : Date = .now
-    var accountNumber : Date = .now
 }

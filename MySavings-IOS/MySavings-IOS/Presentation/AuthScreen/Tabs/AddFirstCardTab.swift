@@ -18,12 +18,13 @@ struct AddFirstCardTab: View {
     @State var listHeight : CGFloat = 140
     
     @Binding var tabSelection : Int
-    
+
+    @StateObject var viewModel : FirstCardViewModel = .init()
+    @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var router : Router
     
     var body: some View {
         VStack{
-            
             TitleTab(content: "Credit Card ")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
@@ -39,15 +40,24 @@ struct AddFirstCardTab: View {
             AddBudgetButton()
 
             LetsGoButton(title: "Save the card !") {
-                router.navigateToMain()
+                viewModel.handleInput(.addCard(card, addedBudgets))
             }
             .offset(x: addCardOffset)
             .preferredColorScheme(.dark)
             
             Spacer()
         }
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .onReceive(viewModel.addCardRegistrationComplete){isComplete in
+            if isComplete{
+                router.navigateToMain()
+            }
+        }
         .onAppear{
             addCardOffset = 0
+            viewModel.setCurrentUser(authViewModel.userDataModel)
         }
         .animation(.spring().delay(0.8), value: addCardOffset)
         .animation(.spring(), value: isAddingBudgets)
@@ -59,12 +69,9 @@ struct AddFirstCardTab: View {
         }
     }
     
-    
     @ViewBuilder
     private func AddBudgetButton() -> some View{
         let addBudgetTitle = addedBudgets.budgets.count > 0 ? "Edit" : "Add Budget ..."
-                
-        
         if canAddBudget {
             Button(addBudgetTitle) {
                 isAddingBudgets = true
@@ -108,10 +115,13 @@ struct AddFirstCardTab: View {
             TextField("Card number", text: $card.cardnumber)
                 .padding(.bottom)
                 .textContentType(.creditCardNumber)
+            
             HStack{
                 TextField("CVV", text: $card.cvv)
-                TextField("Card holder", text: $card.cardholder)
                     .textContentType(.creditCardNumber)
+
+                TextField("Card holder", text: $card.cardholder)
+                    .textContentType(.name)
             }
             .padding(.bottom)
             
@@ -145,6 +155,7 @@ struct AddFirstCardTab: View {
 struct AddFirstCardTab_Previews: PreviewProvider {
     static var previews: some View {
         AddFirstCardTab(tabSelection: .constant(1))
+            .environmentObject(AuthViewModel())
             .environmentObject(Router())
     }
 }

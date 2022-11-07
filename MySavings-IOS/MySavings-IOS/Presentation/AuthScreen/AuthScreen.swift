@@ -9,6 +9,10 @@ import SwiftUI
 
 struct AuthScreen: View {
     
+    enum AuthTab {
+        case start, registration, success, addcard
+    }
+    
     
     @State var tabSelection : Int = 1
     @StateObject var authViewModel = AuthViewModel()
@@ -23,25 +27,36 @@ struct AuthScreen: View {
             TabView(selection: $tabSelection){
                 StartTabView(tabSelection: $tabSelection)
                     .tag(1)
+                    .onAppear{
+                        print(tabSelection)
+                    }
 
-                
                 RegisterTabView(tabSelection: $tabSelection)
                     .tag(2)
                     .environmentObject(authViewModel)
+                    .onAppear{
+                        print(tabSelection)
+                    }
 
                 RegistrationSuccessTab(tabSelection: $tabSelection)
                     .tag(3)
+                    .environmentObject(authViewModel)
+                    .onAppear{
+                        print(tabSelection)
+                    }
                 
                 AddFirstCardTab(tabSelection: $tabSelection)
                     .tag(4)
                     .environmentObject(authViewModel)
+                    .onAppear{
+                        print(tabSelection)
+                    }
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .navigationBarBackButtonHidden()
             
         }
-
     }
     
 }

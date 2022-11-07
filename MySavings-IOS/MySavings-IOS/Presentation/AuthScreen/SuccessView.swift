@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SuccessView: View {
-    
-    @State var imageScale : CGFloat = 0.0
-    
+        
     var body: some View {
         ZStack{
             Circle()
@@ -22,11 +20,7 @@ struct SuccessView: View {
                 .frame(width: 100)
                 .foregroundColor(.white)
         }
-        .scaleEffect(imageScale)
-        .animation(.spring().delay(0.4), value: imageScale)
-        .onAppear{
-            imageScale = 1.0
-        }
+
     }
 }
 
