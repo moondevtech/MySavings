@@ -11,6 +11,7 @@ import CoreData
 struct BaseFlowView: View {
     
     @StateObject var router : Router = .init()
+    @StateObject var authViewModel : AuthViewModel = .init()
     @Environment(\.managedObjectContext) private var viewContext
     
     
@@ -31,17 +32,24 @@ struct BaseFlowView: View {
 
                 }
                 .onAppear{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                    authViewModel.handleInput(authInput: .login)
+                }
+                .onReceive(authViewModel.isLoggedIn) { isLogged  in
+                    if isLogged{
+                        router.navigateToMain()
+                    }else{
                         router.navigateToAuth()
                     }
                 }
         }
+        .environmentObject(authViewModel)
     }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        BaseFlowView().environment(\.managedObjectContext, PersistenceController.shared.context)
+        BaseFlowView()
+            .environment(\.managedObjectContext, PersistenceController.shared.context)
     }
 }

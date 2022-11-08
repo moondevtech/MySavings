@@ -15,7 +15,7 @@ struct AuthScreen: View {
     
     
     @State var tabSelection : Int = 1
-    @StateObject var authViewModel = AuthViewModel()
+    @EnvironmentObject var authViewModel : AuthViewModel
 
         
     init(){
@@ -64,6 +64,7 @@ struct AuthScreen: View {
 struct AuthScreen_Previews: PreviewProvider {
     static var previews: some View {
         AuthScreen()
+            .environmentObject(AuthViewModel())
     }
 }
 

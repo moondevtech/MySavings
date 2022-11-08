@@ -9,5 +9,5 @@ import Foundation
 
 
 enum AuthViewModelInput {
-    case register(AuthUser)
+    case register(AuthUser) , login
 }

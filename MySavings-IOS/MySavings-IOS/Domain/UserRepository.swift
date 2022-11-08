@@ -23,7 +23,8 @@ class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelega
     }
     
     func fetch() throws -> AnyPublisher<UserCD, Never> {
-       try dataSource.readAll().compactMap{ current in
+       try dataSource.readAll()
+            .compactMap{ current in
                ( current as! UserCD)
         }
         .eraseToAnyPublisher()
