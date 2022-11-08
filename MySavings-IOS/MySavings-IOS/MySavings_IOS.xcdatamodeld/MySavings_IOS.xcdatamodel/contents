@@ -17,6 +17,7 @@
         <attribute name="accountNumber" attributeType="String" defaultValueString=""/>
         <attribute name="cardHolder" attributeType="String" defaultValueString=""/>
         <attribute name="cardNumber" attributeType="String" defaultValueString=""/>
+        <attribute name="cardType" attributeType="String" defaultValueString=""/>
         <attribute name="cvv" attributeType="String" defaultValueString=""/>
         <attribute name="expirationDate" attributeType="Date" defaultDateTimeInterval="689191920" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>

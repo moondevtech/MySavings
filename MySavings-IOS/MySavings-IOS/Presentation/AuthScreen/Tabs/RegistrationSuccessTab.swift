@@ -36,15 +36,9 @@ struct RegistrationSuccessTab: View {
             .offset(x: successTabOffset)
             .animation(.spring().delay(0.6), value: successTabOffset)
         }
-        .onReceive(authViewModel.showTab, perform: { tabIndex in
-            if tabIndex == tabSelection{
-                successTabOffset = 0
-                imageScale = 1.0
-            }
-        })
         .onAppear{
-
-            
+            successTabOffset = 0
+            imageScale = 1.0
         }
     }
 }

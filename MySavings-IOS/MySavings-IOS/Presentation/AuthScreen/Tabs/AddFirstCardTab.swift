@@ -33,7 +33,7 @@ struct AddFirstCardTab: View {
                 .animation(.spring().delay(0.2), value: addCardOffset)
             
             
-            CardDetailsView()
+            CardDetailsView(card: $card)
             
             AddedBudgetList()
             
@@ -72,7 +72,7 @@ struct AddFirstCardTab: View {
     @ViewBuilder
     private func AddBudgetButton() -> some View{
         let addBudgetTitle = addedBudgets.budgets.count > 0 ? "Edit" : "Add Budget ..."
-        if canAddBudget {
+        if card.isReady {
             Button(addBudgetTitle) {
                 isAddingBudgets = true
                 if addedBudgets.tempBudgets.count < 1 {
@@ -107,40 +107,6 @@ struct AddFirstCardTab: View {
             }
         }
     }
-    
-    
-    @ViewBuilder
-    private func CardDetailsView() -> some View {
-        VStack{
-            TextField("Card number", text: $card.cardnumber)
-                .padding(.bottom)
-                .textContentType(.creditCardNumber)
-            
-            HStack{
-                TextField("CVV", text: $card.cvv)
-                    .textContentType(.creditCardNumber)
-
-                TextField("Card holder", text: $card.cardholder)
-                    .textContentType(.name)
-            }
-            .padding(.bottom)
-            
-            DatePicker(selection: $card.expirationDate, in: Date.now...Date.distantFuture , displayedComponents: .date) {
-                Text("Expired")
-            }
-            .datePickerStyle(.automatic)
-        }
-        .padding()
-        .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .offset(x: addCardOffset)
-        .animation(.spring().delay(0.4), value: addCardOffset)
-        .padding()
-        .onChange(of: card) { newValue in
-            canAddBudget =  !newValue.cardnumber.isEmpty && !newValue.cvv.isEmpty && !newValue.cardholder.isEmpty
-        }
-    }
-    
     
     private func checkTempBudgets(){
         let toAdd =  addedBudgets.tempBudgets.filter { !$0.isEmpty() }

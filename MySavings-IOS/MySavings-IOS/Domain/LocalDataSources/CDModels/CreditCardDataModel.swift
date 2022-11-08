@@ -15,7 +15,12 @@ struct CreditCardDataModel : DataSourceModelDelegate{
     var accountNumber: String
     var cardHolder: String
     var id: String
+    var type : String
     var budgets : [BudgetDataModel]?
+    
+    var creditCardType : CardType {
+        CardType.cardType(for: type)
+    }
 
 }
 

@@ -90,7 +90,6 @@ struct RegisterTabView: View {
                 if isRegistered{
                     withAnimation(.spring()){
                         tabSelection = 3
-                        authViewModel.showTab.send(3)
                     }
                 }
             })

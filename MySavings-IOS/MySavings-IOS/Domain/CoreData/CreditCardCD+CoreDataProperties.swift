@@ -20,6 +20,7 @@ extension CreditCardCD {
     @NSManaged public var cardHolder: String?
     @NSManaged public var cardNumber: String?
     @NSManaged public var cvv: String?
+    @NSManaged public var cardType: String?
     @NSManaged public var expirationDate: Date?
     @NSManaged public var id: String?
     @NSManaged public var budgets: NSSet?
@@ -54,6 +55,7 @@ extension CreditCardCD : Identifiable {
             accountNumber: accountNumber ?? "",
             cardHolder: cardHolder ?? "",
             id: id ?? "",
+            type: cardType ?? "",
             budgets: (budgets?.allObjects as? [BudgetCD])?.compactMap{ $0.toBudgetDataModel() }
         )
     }

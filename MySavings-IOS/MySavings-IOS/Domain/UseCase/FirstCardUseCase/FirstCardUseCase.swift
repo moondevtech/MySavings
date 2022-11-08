@@ -32,6 +32,7 @@ class FirstCardUseCase {
         creditCardCd.cvv = cardHolder.cvv
         creditCardCd.expirationDate = cardHolder.expirationDate
         creditCardCd.cardHolder = cardHolder.cardholder
+        creditCardCd.cardType = cardHolder.cardType.rawValue
         creditCardCd.id = cardHolder.id
         
         let budgets = budgets.budgets.map { authBudget in
