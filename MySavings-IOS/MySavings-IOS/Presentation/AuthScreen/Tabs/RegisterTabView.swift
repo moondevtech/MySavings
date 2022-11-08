@@ -9,8 +9,16 @@ import SwiftUI
 
 struct RegisterTabView: View {
     
+    enum FocusedField {
+        case username, password
+    }
+    
+    @FocusState private var focusedField: FocusedField?
+
+    
     @State var secondTabAppeared : Bool = false
     @State var userName : String = ""
+    @State var userNameCorrect : Bool = true
     @State var password : String = ""
     @State var isRegistering : Bool = false
     @State var showFailure : Bool = false
@@ -37,10 +45,12 @@ struct RegisterTabView: View {
                         .font(.body.bold())
                         .foregroundColor(.white)
                     
-                    TextField("Here...", text: $userName)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundColor(.white)
-                    
+                    ValidationField(value: $userName) { input in
+                        input.count > 3
+                    }
+                    .focused($focusedField, equals: .username)
+                    .submitLabel(.continue)
+                                        
                 }
                 .padding()
                 .background(Color.white.opacity(0.2))
@@ -56,9 +66,12 @@ struct RegisterTabView: View {
                         .font(.body.bold())
                         .foregroundColor(.white)
                     
-                    TextField("Here...", text: $password)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundColor(.white)
+                    ValidationField(value: $password) { input in
+                        input.count > 3
+                    }
+                    .focused($focusedField, equals: .password)
+                    .submitLabel(.done)
+
                     
                 }
                 .padding()
@@ -93,6 +106,13 @@ struct RegisterTabView: View {
                     }
                 }
             })
+            .onSubmit {
+                if focusedField == .username {
+                    focusedField = .password
+                } else {
+                    focusedField = nil
+                }
+            }
             .onTapGesture {
                 hideKeyboard()
             }

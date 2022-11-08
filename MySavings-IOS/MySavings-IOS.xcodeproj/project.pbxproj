@@ -98,6 +98,7 @@
 		87E6B169291A0CEA00DA254C /* CardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B168291A0CEA00DA254C /* CardDetailsView.swift */; };
 		87E6B16C291A119C00DA254C /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B16B291A119C00DA254C /* CardType.swift */; };
 		87E6B16E291A122100DA254C /* CardMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B16D291A122100DA254C /* CardMatcher.swift */; };
+		87E6B171291A1B9300DA254C /* ValidationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B170291A1B9300DA254C /* ValidationField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +194,7 @@
 		87E6B168291A0CEA00DA254C /* CardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsView.swift; sourceTree = "<group>"; };
 		87E6B16B291A119C00DA254C /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		87E6B16D291A122100DA254C /* CardMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMatcher.swift; sourceTree = "<group>"; };
+		87E6B170291A1B9300DA254C /* ValidationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +502,7 @@
 		8776A1FA291049680082D606 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				87E6B16F291A1B6F00DA254C /* ToolView */,
 				871E96672916A4A40034D05A /* Router */,
 				870B583B29143B5B00ED1810 /* AuthScreen */,
 				870B581C29123C3E00ED1810 /* WalletScreen */,
@@ -574,6 +577,14 @@
 				87E6B16D291A122100DA254C /* CardMatcher.swift */,
 			);
 			path = CardMatcher;
+			sourceTree = "<group>";
+		};
+		87E6B16F291A1B6F00DA254C /* ToolView */ = {
+			isa = PBXGroup;
+			children = (
+				87E6B170291A1B9300DA254C /* ValidationField.swift */,
+			);
+			path = ToolView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -659,6 +670,7 @@
 				870B582029123CCC00ED1810 /* SelectedCardView.swift in Sources */,
 				871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */,
 				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
+				87E6B171291A1B9300DA254C /* ValidationField.swift in Sources */,
 				871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				87E6B160291A0A7700DA254C /* FirstCardError.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
