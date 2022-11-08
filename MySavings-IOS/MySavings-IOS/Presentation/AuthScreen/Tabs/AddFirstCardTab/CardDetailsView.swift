@@ -15,23 +15,24 @@ struct CardDetailsView: View {
     
     var body: some View {
         VStack{
-            TextField("Card number", text: $card.cardnumber)
+            ValidationField(placeholder: "Card number" ,
+                            value: $card.cardnumber,
+                            check: formatCardNumber(_:))
                 .padding(.bottom)
                 .textContentType(.creditCardNumber)
                 .submitLabel(.continue)
-                .onSubmit {
-                    formatCardNumber()
-                }
             
             HStack{
-                TextField("CVV", text: $card.cvv)
-                    .textContentType(.creditCardNumber)
-                    .submitLabel(.continue)
+                ValidationField(placeholder: "CVV" ,value: $card.cvv) { input in
+                    input.count == 3
+                }
+                .textContentType(.creditCardNumber)
+                .submitLabel(.continue)
+                
+                ValidationField(placeholder: "Card holder" ,value: $card.cardholder,check: handleCardHolder(_:))
+                .textContentType(.name)
+                .submitLabel(.done)
 
-
-                TextField("Card holder", text: $card.cardholder)
-                    .textContentType(.name)
-                    .submitLabel(.continue)
             }
             .padding(.bottom)
             
@@ -52,9 +53,9 @@ struct CardDetailsView: View {
         }
     }
     
-    private func formatCardNumber(){
+    private func formatCardNumber(_ input : String) -> Bool{
 
-        let (type, formatted, valid) = CardMatcher.shared.checkCardNumber(card.cardnumber)
+        let (type, formatted, valid) = CardMatcher.shared.checkCardNumber(input)
         Log.i(content:
         """
             cardtype : \(type),
@@ -65,7 +66,13 @@ struct CardDetailsView: View {
         
         card.cardType =  type
         card.cardnumber = formatted
-        card.isValid = valid        
+        card.isValid = valid
+        return valid
+    }
+    
+    private func handleCardHolder(_ input : String) -> Bool{
+        let toCheck = input.components(separatedBy: CharacterSet.decimalDigits).joined()
+        return !toCheck.isEmpty && toCheck.count > 3
     }
 }
 

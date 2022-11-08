@@ -355,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				87E6B167291A0CBC00DA254C /* AddFirstCardTab */,
-				871E9662291699C40034D05A /* AddFirstCardTab.swift */,
 				871E9655291695C40034D05A /* StartTabView.swift */,
 				871E965C291697380034D05A /* RegisterTabView.swift */,
 				871E96602916993B0034D05A /* RegistrationSuccessTab.swift */,
@@ -565,6 +564,7 @@
 		87E6B167291A0CBC00DA254C /* AddFirstCardTab */ = {
 			isa = PBXGroup;
 			children = (
+				871E9662291699C40034D05A /* AddFirstCardTab.swift */,
 				87E6B168291A0CEA00DA254C /* CardDetailsView.swift */,
 			);
 			path = AddFirstCardTab;
