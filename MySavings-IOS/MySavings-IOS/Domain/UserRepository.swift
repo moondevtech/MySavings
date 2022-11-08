@@ -31,10 +31,10 @@ class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelega
     }
     
     func fetch(with id: String) throws -> AnyPublisher<UserCD, Never> {
+        Log.i(content: "\(id)")
         return try dataSource.read(with: id)
             .compactMap{[weak self] current in
                 let user =  ( current as! UserCD)
-                print("user", user.username)
                 self?.currentUserCd = user
                 return user
             }
