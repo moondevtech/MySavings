@@ -15,7 +15,8 @@ typealias AddCategoryOutput = Result<Bool, FirstCardError>
 
 class FirstCardViewModel : ObservableObject {
     
-    private var currentUser : UserDataModel!
+    @CurrentUser var currentUser
+   // private var currentUser : UserDataModel!
     let userRepository : UserRepositoryDelegate
     let budgetRepository : BudgetCategoryRepositoryDelegate
     lazy var useCase = FirstCardUseCase(userRepo: userRepository, budgetRepo: budgetRepository, delegate: self)
@@ -30,7 +31,7 @@ class FirstCardViewModel : ObservableObject {
     }
     
     func setCurrentUser( _ currentUser : UserDataModel){
-        self.currentUser =  currentUser
+       // self.currentUser =  currentUser
     }
     
     private func handleAddCardOutput(_ output : AddCardOutput){

@@ -26,7 +26,7 @@ struct BaseFlowView: View {
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: Router.MainScreen.self) { main in
-                    WalletView()
+                    MainScreen()
                         .navigationBarBackButtonHidden()
                         .environmentObject(router)
 

@@ -10,7 +10,7 @@ import Combine
 import Charts
 
 struct WalletView: View {
-    
+    @CurrentUser var currentUser
     @StateObject var walletViewModel : WalletViewModel = .init()
     @State var showBigCard : Bool = false
     @State var showPaymentsForDate : Bool = false
@@ -59,6 +59,9 @@ struct WalletView: View {
         .environmentObject(walletViewModel)
         .animation(.linear, value: showBigCard)
         .preferredColorScheme(.dark)
+        .onAppear{
+            print("Saved user",currentUser.value)
+        }
         .onReceive(walletViewModel.$selectedCard) { card in
             showBigCard = card.isSelected
         }

@@ -12,6 +12,9 @@ import CoreData
 
 typealias RepoResult = (Result<Bool,Error>) -> Void
 
+
+protocol DataSource {}
+
 protocol LocalDataSource  {
     
     associatedtype CD : NSManagedObject

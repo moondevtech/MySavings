@@ -57,7 +57,7 @@ struct AddFirstCardTab: View {
         }
         .onAppear{
             addCardOffset = 0
-            viewModel.setCurrentUser(authViewModel.userDataModel)
+           // viewModel.setCurrentUser(authViewModel.userDataModel)
         }
         .animation(.spring().delay(0.8), value: addCardOffset)
         .animation(.spring(), value: isAddingBudgets)

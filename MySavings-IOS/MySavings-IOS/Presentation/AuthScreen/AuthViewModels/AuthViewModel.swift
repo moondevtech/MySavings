@@ -11,7 +11,7 @@ import Combine
 typealias RegistrationResult = Result<UserDataModel,AuthError>
 
 class AuthViewModel : ObservableObject {
-    
+    @CurrentUser var user 
     @Published var userDataModel : UserDataModel = .init(password: "", username: "")
     var authError = PassthroughSubject<AuthError,Never>()
     var isRegistered = PassthroughSubject<Bool,Never>()
@@ -28,7 +28,8 @@ class AuthViewModel : ObservableObject {
         switch registrationResult {
         case .success(let result):
             isRegistered.send(true)
-            self.userDataModel = result
+            user = DynamicReference(value: result)
+          //  self.userDataModel = result
         case .failure(let failure):
             //handle error
             authError.send(.wrongCredentials)
@@ -39,8 +40,8 @@ class AuthViewModel : ObservableObject {
     
     private func onLoggedIn(_ registrationResult : RegistrationResult){
         switch registrationResult {
-        case .success(let user):
-            self.userDataModel = user
+        case .success(let result):
+            user = DynamicReference(value: result)
             isLoggedIn.send(true)
         case .failure(let error):
             authError.send(.domain(error))
@@ -62,7 +63,7 @@ extension AuthViewModel : AuthViewModelType {
                 guard let self = self else {
                     return
                 }
-                if self.userDataModel.username.isEmpty{
+                if self.user[keyPath: \.username].isEmpty{
                     self.handleResult(result: .login(.failure(.none)))
                 }
             }
