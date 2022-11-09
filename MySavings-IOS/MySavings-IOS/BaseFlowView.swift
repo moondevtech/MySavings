@@ -20,16 +20,20 @@ struct BaseFlowView: View {
         NavigationStack(path: $router.navigationPath) {
             ProgressView()
                 .preferredColorScheme(.dark)
-                .navigationDestination(for: Router.AuthScreen.self) { auth in
-                    AuthScreen()
-                        .environmentObject(router)
-                        .navigationBarBackButtonHidden()
-                }
-                .navigationDestination(for: Router.MainScreen.self) { main in
-                    MainScreen()
-                        .navigationBarBackButtonHidden()
-                        .environmentObject(router)
-
+                .navigationDestination(for: ScreenRoute.self) { route in
+                    switch route{
+                    case .main :
+                        MainScreen()
+                            .navigationBarBackButtonHidden()
+                            .environmentObject(router)
+                    case .auth :
+                        AuthScreen()
+                            .environmentObject(router)
+                            .navigationBarBackButtonHidden()
+                    case .details(let id) :
+                        CardDetailsScreen(id: id )
+                        
+                    }
                 }
                 .onAppear{
                     authViewModel.handleInput(authInput: .login)

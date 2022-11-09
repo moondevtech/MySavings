@@ -12,10 +12,13 @@ let shekel = "₪"
 
 struct MainScreen: View {
     
+    @StateObject var viewModel : CardStackViewModel = .init()
     var body: some View {
         VStack{
             BudgetView()
+                .padding(.top, 80)
             Spacer()
+            CardStackView()
         }
     }
 

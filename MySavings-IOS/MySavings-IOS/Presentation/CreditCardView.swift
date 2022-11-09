@@ -12,6 +12,9 @@ struct CreditCardView: View {
     @State var rotation : CGFloat = 0
     @State var isSelected : Bool = false
     @State var offset : CGSize = .zero
+    @State var selectionScale : CGFloat = 1.0
+    
+    @EnvironmentObject var parentViewModel : CardStackViewModel
     
     var card : CardModel
     
@@ -90,8 +93,23 @@ struct CreditCardView: View {
         .rotationEffect(Angle(degrees: rotation))
         .animation(.linear, value: rotation)
         .frame(width: 240, height: 150)
+        .scaleEffect(selectionScale)
         .offset(offset)
         .zIndex(card.isSelected ? 20 : 0)
+        .animation(.spring(), value: selectionScale)
+        .onTapGesture {
+            handleScaleAnimation()
+        }
+
+    }
+    
+    
+    private func handleScaleAnimation(){
+        selectionScale = 0.9
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+            selectionScale = 1
+        }
+        parentViewModel.handleInput(.toCardDetails(card))
     }
     
     func toggleRotation(){
@@ -142,5 +160,6 @@ struct CreditCardView_Previews: PreviewProvider {
                         CardModel(
                             cardData: .init())
         )
+        .environmentObject(CardStackViewModel())
     }
 }

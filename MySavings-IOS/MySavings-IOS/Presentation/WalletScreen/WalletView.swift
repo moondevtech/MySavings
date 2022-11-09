@@ -26,7 +26,6 @@ struct WalletView: View {
                             self.defaultScrollY = geo.frame(in: .global).midY
                         }
                         .onChange(of: geo.frame(in: .global).midY) { newValue in
-                            print("midY", newValue)
                             if walletViewModel.hideExpensesView{
                                 if newValue > defaultScrollY * 1.1 {
                                     withAnimation(.spring()) {
@@ -59,9 +58,6 @@ struct WalletView: View {
         .environmentObject(walletViewModel)
         .animation(.linear, value: showBigCard)
         .preferredColorScheme(.dark)
-        .onAppear{
-            print("Saved user",currentUser.value)
-        }
         .onReceive(walletViewModel.$selectedCard) { card in
             showBigCard = card.isSelected
         }

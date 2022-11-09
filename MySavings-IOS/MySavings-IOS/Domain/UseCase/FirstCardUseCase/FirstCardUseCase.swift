@@ -49,7 +49,6 @@ class FirstCardUseCase {
         
         do{
             try userRepo.fetch(with: currentUser)
-                .print()
                 .receive(on: DispatchQueue.main)
                 .sink {[weak self] userCd in
                     userCd.addToCards(creditCardCd)

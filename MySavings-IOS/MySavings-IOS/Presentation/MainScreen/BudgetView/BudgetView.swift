@@ -30,7 +30,7 @@ struct BudgetView: View {
                 BudgetDisplayView()
             }
         }
-        .frame(height: 50)
+        .frame(height: 40)
         .clipShape(Capsule())
         .padding()
         .animation(.spring(), value: viewModel.percentSpent)

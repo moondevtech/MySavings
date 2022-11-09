@@ -29,7 +29,6 @@ class AuthUseCase {
                 .map{
                     $0.toUserModel()
                 }
-                .print()
                 .sink(receiveValue: { [weak self] userDataModel in
                     self?.delegate?.handleResult(result: .login(.success(userDataModel)))
                 })

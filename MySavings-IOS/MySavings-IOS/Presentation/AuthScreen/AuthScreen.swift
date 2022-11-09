@@ -27,30 +27,18 @@ struct AuthScreen: View {
             TabView(selection: $tabSelection){
                 StartTabView(tabSelection: $tabSelection)
                     .tag(1)
-                    .onAppear{
-                        print(tabSelection)
-                    }
-
+                
                 RegisterTabView(tabSelection: $tabSelection)
                     .tag(2)
                     .environmentObject(authViewModel)
-                    .onAppear{
-                        print(tabSelection)
-                    }
 
                 RegistrationSuccessTab(tabSelection: $tabSelection)
                     .tag(3)
                     .environmentObject(authViewModel)
-                    .onAppear{
-                        print(tabSelection)
-                    }
-                
+   
                 AddFirstCardTab(tabSelection: $tabSelection)
                     .tag(4)
                     .environmentObject(authViewModel)
-                    .onAppear{
-                        print(tabSelection)
-                    }
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

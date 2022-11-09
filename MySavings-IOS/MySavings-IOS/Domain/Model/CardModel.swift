@@ -10,7 +10,7 @@ import Foundation
 
 struct CardModel  : Identifiable, Hashable{
     
-    var id: UUID = .init()
+    var id: String = UUID().uuidString
     
     var updater : Bool = false
     
