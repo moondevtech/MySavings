@@ -17,7 +17,11 @@ struct CardDetailsScreen: View {
 
     var body: some View {
         VStack{
-            CreditCardView(card: card)
+            
+            BudgetView(cardId: id)
+                .padding(.bottom, 40)
+            
+            CreditCardView(card: card, isNavigatable: false)
                 .scaleEffect(scaleEffect)
                 .onTapGesture {
                 }
@@ -47,55 +51,15 @@ struct CardDetailsScreen: View {
         .frame(width: 400)
         .onReceive(viewModel.cardFoundEvent, perform: { card in
             self.card =  card
+            print("card", card)
         })
         .onAppear{
             withAnimation {
                 scaleEffect = 1.5
             }
-            viewModel.start(id: id)
+            viewModel.handleInput(.fetchCard(id))
         }
     }
-}
-
-class CardDetailsScreenViewModel  : ObservableObject{
-    
-    @CurrentUser var user
-    var cardFoundEvent : PassthroughSubject<CardModel,Never> = .init()
-    var subscriptions : Set<AnyCancellable> = .init()
-    @Published var transactions : [TransactionData] = .init()
-    
-    func start(id : String){
-        
-        user[keyPath: \.cards]
-            .publisher
-            .first(where: {$0.id == id })
-            .map { card in
-                CardModel(cardData: .init(
-                    name: card.cardHolder,
-                    cardNumber : card.cardNumber,
-                    expired: card.expirationDate,
-                    cvv : card.cvv,
-                    type: card.creditCardType.rawValue
-                    )
-                )
-            }
-            .map(\.cardData.transaction)
-            .flatMap{ transactions in
-                transactions
-                    .publisher
-                    .eraseToAnyPublisher()
-                    .flatMap(maxPublishers : .max(1)){
-                        Just($0).delay(for: 0.5, scheduler: DispatchQueue.main)
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .receive(on: DispatchQueue.main)
-            .sink { card in
-                self.transactions.append(card)
-            }
-            .store(in: &subscriptions)
-    }
-    
 }
 
 struct CardDetailsScreen_Previews: PreviewProvider {

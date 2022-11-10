@@ -10,6 +10,8 @@ import SwiftUI
 struct BudgetView: View {
     @StateObject var viewModel : BudgetViewVM = .init()
     
+    var cardId : String = ""
+    
     var body: some View {
         Button {
             viewModel.handleInput(.toggleDisplay)
@@ -36,10 +38,17 @@ struct BudgetView: View {
         .animation(.spring(), value: viewModel.percentSpent)
         .preferredColorScheme(.dark)
         .onAppear{
-            viewModel.handleInput(.fetchBudget)
+           handleBudgetFetching()
         }
     }
     
+    private func handleBudgetFetching(){
+        if cardId.isEmpty{
+            viewModel.handleInput(.fetchBudget)
+        }else{
+            viewModel.handleInput(.fetchBudgetByCardId(cardId))
+        }
+    }
     
     @ViewBuilder
     func BudgetDisplayView() -> some View {

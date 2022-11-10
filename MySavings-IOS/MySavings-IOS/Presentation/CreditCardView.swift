@@ -17,6 +17,7 @@ struct CreditCardView: View {
     @EnvironmentObject var parentViewModel : CardStackViewModel
     
     var card : CardModel
+    var isNavigatable : Bool = true
     
     var body: some View {
         ZStack{
@@ -109,7 +110,9 @@ struct CreditCardView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
             selectionScale = 1
         }
-        parentViewModel.handleInput(.toCardDetails(card))
+        if isNavigatable{
+            parentViewModel.handleInput(.toCardDetails(card))
+        }
     }
     
     func toggleRotation(){

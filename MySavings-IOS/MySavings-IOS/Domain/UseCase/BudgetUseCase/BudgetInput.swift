@@ -8,5 +8,5 @@
 import Foundation
 
 enum BudgetInput {
-    case fetchBudget, getPercent , toggleDisplay
+    case fetchBudget, fetchBudgetByCardId(String) , getPercent , toggleDisplay
 }

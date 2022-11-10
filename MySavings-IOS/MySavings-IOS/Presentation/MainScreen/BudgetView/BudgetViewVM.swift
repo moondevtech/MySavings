@@ -33,6 +33,8 @@ extension BudgetViewVM : BudgetVMType{
         switch input {
         case .fetchBudget:
             useCase.getBuget(with: user[keyPath: \.cards])
+        case .fetchBudgetByCardId(let cardId):
+            useCase.getBuget(with: user[keyPath: \.cards].filter{ $0.id == cardId } )
         case .toggleDisplay:
             useCase.toggleDisplay(from: budgetDisplayType)
         case .getPercent:
