@@ -97,7 +97,7 @@ struct CreditCardView: View {
         .scaleEffect(selectionScale)
         .offset(offset)
         .zIndex(card.isSelected ? 20 : 0)
-        .animation(.spring(), value: selectionScale)
+        .animation(.spring().speed(2.0), value: selectionScale)
         .onTapGesture {
             handleScaleAnimation()
         }

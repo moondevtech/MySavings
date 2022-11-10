@@ -85,6 +85,7 @@
 		8765BF84291CB31200989F81 /* CardDetailUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF83291CB31200989F81 /* CardDetailUseCaseDelegate.swift */; };
 		8765BF86291CB31B00989F81 /* CardDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF85291CB31B00989F81 /* CardDetailsUseCase.swift */; };
 		8765BF88291CB37300989F81 /* CardDetailsScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF87291CB37300989F81 /* CardDetailsScreenViewModel.swift */; };
+		8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF8A291CBA8700989F81 /* MenuView.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -205,6 +206,7 @@
 		8765BF83291CB31200989F81 /* CardDetailUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailUseCaseDelegate.swift; sourceTree = "<group>"; };
 		8765BF85291CB31B00989F81 /* CardDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsUseCase.swift; sourceTree = "<group>"; };
 		8765BF87291CB37300989F81 /* CardDetailsScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsScreenViewModel.swift; sourceTree = "<group>"; };
+		8765BF8A291CBA8700989F81 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
@@ -528,6 +530,14 @@
 			path = CardDetailsUseCase;
 			sourceTree = "<group>";
 		};
+		8765BF89291CBA6C00989F81 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				8765BF8A291CBA8700989F81 /* MenuView.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
 		8776A1D9291048E80082D606 = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +706,7 @@
 		87E6B17D291B757E00DA254C /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				8765BF89291CBA6C00989F81 /* MenuView */,
 				8765BF6E291C1E2000989F81 /* CardStackView */,
 				8765BF63291C1B3900989F81 /* CardDetailsScreen */,
 				87E6B18F291B909D00DA254C /* BudgetView */,
@@ -813,6 +824,7 @@
 				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
 				87E6B171291A1B9300DA254C /* ValidationField.swift in Sources */,
 				871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
+				8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */,
 				87E6B160291A0A7700DA254C /* FirstCardError.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
 				870B582829136FEE00ED1810 /* WalletViewModel.swift in Sources */,

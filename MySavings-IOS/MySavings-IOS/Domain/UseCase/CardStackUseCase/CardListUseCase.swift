@@ -48,7 +48,7 @@ class CardListUseCase {
     
     func navigateToCardDetails(_ data : AnyPublisher<CardModel,Never>){
         data
-            .delay(for: 0.8, scheduler: DispatchQueue.main)
+            .delay(for: 0.4, scheduler: DispatchQueue.main)
             .sink {[weak self] card in
                 self?.delegate?.handleOuput(.toCardDetails(card))
             }
