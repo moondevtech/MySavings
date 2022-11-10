@@ -21,19 +21,18 @@ struct BudgetView: View {
                     let frame = geo.frame(in: .local)
                     Color.green
                         .frame(width: viewModel.percentSpent * frame.width / 100)
-                    
-                    Capsule()
-                        .foregroundColor(.white.opacity(0.6))
-                        .frame(width: 50, height: 10)
-                        .position(x: frame.width * 0.9 , y : frame.height * 0.8)
                 }
-                .background(Color.red)
-                
+                .background(Color.white.opacity(0.1))
+                .overlay(
+                    Rectangle()
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(.white.opacity(0.3))
+                )
+
                 BudgetDisplayView()
             }
         }
         .frame(height: 40)
-        .clipShape(Capsule())
         .padding()
         .animation(.spring(), value: viewModel.percentSpent)
         .preferredColorScheme(.dark)
