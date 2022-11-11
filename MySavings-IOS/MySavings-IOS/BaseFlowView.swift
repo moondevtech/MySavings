@@ -17,34 +17,38 @@ struct BaseFlowView: View {
     
     var body: some View {
         
-        NavigationStack(path: $router.navigationPath) {
-            ProgressView()
-                .preferredColorScheme(.dark)
-                .navigationDestination(for: ScreenRoute.self) { route in
-                    switch route{
-                    case .main :
-                        MainScreen()
-                            .navigationBarBackButtonHidden()
-                            .environmentObject(router)
-                    case .auth :
-                        AuthScreen()
-                            .environmentObject(router)
-                            .navigationBarBackButtonHidden()
-                    case .details(let id) :
-                        CardDetailsScreen(id: id )
-                        
+        NavigationStack(path: $router.routes) {
+            ZStack {
+                ProgressView()
+                    .preferredColorScheme(.dark)
+                    .navigationDestination(for: ScreenRoute.self) { route in
+                        switch route{
+                        case .main :
+                            MainScreen()
+                                .navigationBarBackButtonHidden()
+                                .environmentObject(router)
+                        case .auth :
+                            AuthScreen()
+                                .environmentObject(router)
+                                .navigationBarBackButtonHidden()
+                        case .details(let id) :
+                            CardDetailsScreen(id: id)
+                        case .loading:
+                            ProgressView()
+                                .navigationBarBackButtonHidden()
+                        }
                     }
-                }
-                .onAppear{
-                    authViewModel.handleInput(authInput: .login)
-                }
-                .onReceive(authViewModel.isLoggedIn) { isLogged  in
-                    if isLogged{
-                        router.navigateToMain()
-                    }else{
-                        router.navigateToAuth()
+                    .onAppear{
+                        authViewModel.handleInput(authInput: .login)
                     }
+                    .onReceive(authViewModel.isLoggedIn) { isLogged  in
+                        if isLogged{
+                            router.navigateToMain()
+                        }else{
+                            router.navigateToAuth()
+                        }
                 }
+            }
         }
         .environmentObject(authViewModel)
     }

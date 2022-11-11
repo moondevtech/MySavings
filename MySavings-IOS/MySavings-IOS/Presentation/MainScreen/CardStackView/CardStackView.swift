@@ -23,6 +23,7 @@ struct CardStackView: View {
         .animation(.spring().delay(0.1), value: viewModel.cards)
         .onReceive(viewModel.toCarddetailsEvent, perform: { cardDetails in
             cardToShow = cardDetails
+           // router.navigateToCardDetails(cardDetails.id)
         })
         .sheet(item: $cardToShow, content: { cardModel in
             CardDetailsScreen(id: cardModel.id)
