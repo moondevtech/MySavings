@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionDataModel : DataSourceModelDelegate {
+struct TransactionDataModel : DataSourceModelDelegate, Equatable, Hashable {
     
     var id : String
     var amount : Double

@@ -8,5 +8,5 @@
 import Foundation
 
 enum CardDetailsInput {
-    case fetchCard(String), fetchTransaction(CardModel)
+    case fetchCard(String), fetchTransaction(CreditCardDataModel), saveTransaction(NewTransactionModel), updateUser, selectBudget(BudgetDataModel)
 }
