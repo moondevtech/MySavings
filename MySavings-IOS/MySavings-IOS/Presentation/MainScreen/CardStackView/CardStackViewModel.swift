@@ -20,13 +20,6 @@ class CardStackViewModel : ObservableObject {
     @Published var cards : [CardModel] = .init()
     
     
-    private func observeUser(){
-        $user.sink {[weak self] user in
-
-        }
-        .store(in: &subscriptions)
-    }
-    
     private func handleCardFetched(_ fetched : CardFetched){
         switch fetched {
         case .success(let cards):

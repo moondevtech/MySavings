@@ -30,6 +30,9 @@ struct CardStackView: View {
         .sheet(item: $cardToShow, content: { cardModel in
             CardDetailsScreen(id: cardModel.id)
         })
+        .onAppear{
+            viewModel.handleInput(.fetchCards)
+        }
         .onDisappear{
             viewModel.cards = .init()
         }

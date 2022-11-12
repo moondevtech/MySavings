@@ -16,8 +16,9 @@ struct AuthScreen: View {
     
     @State var tabSelection : Int = 1
     @EnvironmentObject var authViewModel : AuthViewModel
-
-        
+    @EnvironmentObject var router : Router
+    
+    
     init(){
         UIScrollView.appearance().isScrollEnabled = false
     }
@@ -31,14 +32,16 @@ struct AuthScreen: View {
                 RegisterTabView(tabSelection: $tabSelection)
                     .tag(2)
                     .environmentObject(authViewModel)
-
+                
                 RegistrationSuccessTab(tabSelection: $tabSelection)
                     .tag(3)
                     .environmentObject(authViewModel)
-   
-                AddFirstCardTab(tabSelection: $tabSelection)
-                    .tag(4)
-                    .environmentObject(authViewModel)
+                
+                AddFirstCardTab(tabSelection: $tabSelection){
+                    router.navigateToMain()
+                }
+                .tag(4)
+                .environmentObject(authViewModel)
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

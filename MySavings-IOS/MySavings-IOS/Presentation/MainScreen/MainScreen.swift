@@ -74,9 +74,6 @@ struct MainScreen: View {
         
         }
         .environmentObject(viewModel)
-        .onAppear{
-            viewModel.handleInput(.fetchCards)
-        }
         .onChange(of: showMenu) { isShow in
             menuTransitions(isShown: isShow)
         }

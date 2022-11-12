@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AddFirstCardTab: View {
-    
+
+    @Binding var tabSelection : Int
+    var onCardAdded : () -> Void
     //creditcard
     @State var card : CardHolder = .init()
     @State var addCardOffset : CGFloat = -400
@@ -17,11 +19,14 @@ struct AddFirstCardTab: View {
     @State var addedBudgets : AuthBudgets = .init()
     @State var listHeight : CGFloat = 140
     
-    @Binding var tabSelection : Int
-
     @StateObject var viewModel : FirstCardViewModel = .init()
     @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var router : Router
+    
+    init(tabSelection : Binding<Int>, onCardAdded : @escaping ()->Void) {
+        _tabSelection = tabSelection
+        self.onCardAdded = onCardAdded
+    }
     
     var body: some View {
         VStack{
@@ -52,12 +57,11 @@ struct AddFirstCardTab: View {
         }
         .onReceive(viewModel.addCardRegistrationComplete){isComplete in
             if isComplete{
-                router.navigateToMain()
+                onCardAdded()
             }
         }
         .onAppear{
             addCardOffset = 0
-           // viewModel.setCurrentUser(authViewModel.userDataModel)
         }
         .animation(.spring().delay(0.8), value: addCardOffset)
         .animation(.spring(), value: isAddingBudgets)
@@ -120,7 +124,9 @@ struct AddFirstCardTab: View {
 
 struct AddFirstCardTab_Previews: PreviewProvider {
     static var previews: some View {
-        AddFirstCardTab(tabSelection: .constant(1))
+        AddFirstCardTab(tabSelection: .constant(1)){
+            print("card added")
+        }
             .environmentObject(AuthViewModel())
             .environmentObject(Router())
     }

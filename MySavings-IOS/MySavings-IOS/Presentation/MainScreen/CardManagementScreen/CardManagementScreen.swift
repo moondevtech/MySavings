@@ -12,6 +12,7 @@ struct CardManagementScreen : View {
     @StateObject var viewModel : CardManagementViewModel = .init()
     @State var currentCardHolder : CardHolder = .init()
     @State var showRemoveButton : Bool = false
+    @State var showAddCard : Bool = false
     
     var body: some View {
         ZStack{
@@ -39,12 +40,19 @@ struct CardManagementScreen : View {
         .toolbar {
             ToolbarItem(placement : .navigationBarLeading) {
                 Button {
-                    
+                    showAddCard.toggle()
                 } label: {
                     Image(systemName: "plus")
                         .foregroundColor(.white)
                 }
                 
+            }
+        }
+        .sheet(isPresented: $showAddCard) {
+            AddFirstCardTab(tabSelection: .constant(0)) {
+                showAddCard = false
+                viewModel.cards = []
+                viewModel.handleInput(.fetchCards)
             }
         }
     }
