@@ -16,7 +16,16 @@ class CardStackViewModel : ObservableObject {
     private lazy var useCase : CardListUseCase = .init(delegate: self)
     var subscriptions : Set<AnyCancellable> = .init()
     var toCarddetailsEvent : PassthroughSubject<CardModel,Never> = .init()
+    var userHasChanged : PassthroughSubject<Bool,Never> = .init()
     @Published var cards : [CardModel] = .init()
+    
+    
+    private func observeUser(){
+        $user.sink {[weak self] user in
+
+        }
+        .store(in: &subscriptions)
+    }
     
     private func handleCardFetched(_ fetched : CardFetched){
         switch fetched {
@@ -37,6 +46,7 @@ class CardStackViewModel : ObservableObject {
                 .store(in: &subscriptions)
         }
     }
+    
 }
 
 
@@ -46,7 +56,7 @@ extension CardStackViewModel : CardListVMType {
     func handleInput(_ input: CardListVMInput) {
         switch input {
         case .fetchCards:
-            useCase.fetchCards(user[keyPath: \.cards])
+            useCase.fetchCards(user[keyPath: \.userDataModel.cards])
         case .toCardDetails(let card):
             useCase.navigateToCardDetails(Just(card).eraseToAnyPublisher())
         }

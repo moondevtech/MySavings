@@ -37,7 +37,7 @@ class CardSelectionUseCase {
             .map{selectedCard, _ in
                 let isEmpty = selectedCard.name.isEmpty
                 var copy = selectedCard
-                copy.isSelected = !isEmpty
+               // copy.isSelected = !isEmpty
                 return copy
             }
             .eraseToAnyPublisher()
@@ -67,7 +67,7 @@ class CardSelectionUseCase {
                     .publisher
                     .map { model in
                         var copy = model
-                        copy.isSelected = false
+                      //  copy.isSelected = false
                         return copy
                     }
                     .collect()

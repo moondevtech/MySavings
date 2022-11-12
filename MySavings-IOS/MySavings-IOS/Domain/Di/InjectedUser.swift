@@ -8,26 +8,32 @@
 import Foundation
 import Combine
 
+struct PersistingUser {
+    
+    var userDataModel : UserDataModel
+    var userCd : UserCD?
+}
+
 struct InjectedUser  {
     
     fileprivate static var current : Self = .init()
     
     private init(){}
     
-    var userDataModel : DynamicReference<UserDataModel> = .init(value: .init(password: "", username: ""))
+    var userDataModel : DynamicReference<PersistingUser> = .init(value: PersistingUser(userDataModel: .init(password: "", username: ""), userCd: nil))
     
 }
 
 @propertyWrapper
 struct CurrentUser {
     
-    var isMock = false
+    var isMock : Bool = false
     
     init(isMock: Bool = false) {
         self.isMock = isMock
         if isMock{
             wrappedValue = DynamicReference(
-                value: UserDataModel(
+                value: PersistingUser(userDataModel: UserDataModel(
                     password: "123456",
                     username: "Ruben",
                     cards: .init(arrayLiteral:
@@ -72,13 +78,13 @@ struct CurrentUser {
                             )
                         )
                     )
-                )
+                ))
                 
             )
         }
     }
     
-    var wrappedValue: DynamicReference<UserDataModel> {
+    var wrappedValue: DynamicReference<PersistingUser> {
         get {
             InjectedUser.current.userDataModel
         }
@@ -88,7 +94,7 @@ struct CurrentUser {
         }
     }
     
-    var projectedValue : AnyPublisher<UserDataModel,Never>{
+    var projectedValue : AnyPublisher<PersistingUser,Never>{
         Just(wrappedValue.value)
             .eraseToAnyPublisher()
     }

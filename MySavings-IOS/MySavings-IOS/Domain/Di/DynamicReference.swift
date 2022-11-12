@@ -17,7 +17,7 @@ class DynamicReference<Value> {
     }
 
     subscript<T>(dynamicMember keyPath: WritableKeyPath<Value, T>) -> T {
-        get {  value[keyPath: keyPath] }
+        get { value[keyPath: keyPath] }
         set { value[keyPath: keyPath] = newValue }
     }
 }

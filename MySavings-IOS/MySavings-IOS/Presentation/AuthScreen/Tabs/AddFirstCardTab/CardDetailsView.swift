@@ -10,6 +10,7 @@ import SwiftUI
 struct CardDetailsView: View {
     
     @Binding var card : CardHolder
+    var isManagementCard : Bool = false
     @State var addCardOffset : CGFloat = -800
 
     
@@ -45,7 +46,7 @@ struct CardDetailsView: View {
         .background(Color.white.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .offset(x: addCardOffset)
-        .animation(.spring().delay(0.6), value: addCardOffset)
+        .animation(.spring().delay(isManagementCard ? 0.2 : 0.6), value: addCardOffset)
         .padding()
         .preferredColorScheme(.dark)
         .onAppear{

@@ -19,8 +19,10 @@ struct BudgetView: View {
             ZStack{
                 GeometryReader{ geo in
                     let frame = geo.frame(in: .local)
+                    let width = viewModel.percentSpent > 0 ? viewModel.percentSpent * frame.width / 100 : 0
+
                     Color.green
-                        .frame(width: viewModel.percentSpent * frame.width / 100)
+                        .frame(width: width)
                 }
                 .background(Color.white.opacity(0.1))
                 .overlay(

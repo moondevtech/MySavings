@@ -30,13 +30,11 @@ class FirstCardViewModel : ObservableObject {
         self.budgetRepository = budgetRepository
     }
     
-    func setCurrentUser( _ currentUser : UserDataModel){
-       // self.currentUser =  currentUser
-    }
     
     private func handleAddCardOutput(_ output : AddCardOutput){
         switch output{
         case .success(let budgets):
+            updateCurrentUser()
             handleInput(.addCategory(budgets))
         case .failure(let error):
             Log.e(error: error)
@@ -48,16 +46,17 @@ class FirstCardViewModel : ObservableObject {
     private func handleAddCategoryOutput(_ output : AddCategoryOutput){
         switch output{
         case .success(let output):
+            updateCurrentUser()
             addCardRegistrationComplete.send(output)
-            try! userRepository.fetch()
-                .sink { userCd in
-                    Log.s(content: userCd.toUserModel())
-                }
-                .store(in: &subscriptions
-                )
         case .failure(let error):
             Log.e(error: error)
         }
+    }
+    
+    private func updateCurrentUser(){
+        try! userRepository.fetch()
+            .sink { _ in}
+            .store(in: &subscriptions)
     }
     
 }
@@ -67,7 +66,7 @@ extension FirstCardViewModel  : FirstCardType {
     func handleInput(_ input: FirstCardInput) {
         switch input {
         case .addCard(let cardHolder, let authBudgets):
-            useCase.addCard(with: cardHolder, and: authBudgets, for: currentUser.id)
+            useCase.addCard(with: cardHolder, and: authBudgets, for: currentUser.value.userDataModel.id)
         case .addCategory(let budgetCategoryDataModel):
             if budgetCategoryDataModel.isEmpty{
                 addCardRegistrationComplete.send(true)

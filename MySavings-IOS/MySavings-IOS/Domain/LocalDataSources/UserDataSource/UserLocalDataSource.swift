@@ -13,7 +13,7 @@ import CoreData
 class UserLocalDataSource : UserDataSourceDelegate {
     
     enum UserDataSourceError : LocalizedError {
-        case error(Error)
+        case error(Error), couldNotDelete
     }
     
     func create(_ data: UserDataModel) throws {

@@ -28,7 +28,7 @@ class AuthViewModel : ObservableObject {
         switch registrationResult {
         case .success(let result):
             isRegistered.send(true)
-            user = DynamicReference(value: result)
+            user = DynamicReference(value: PersistingUser(userDataModel: result, userCd: nil))
           //  self.userDataModel = result
         case .failure(let failure):
             //handle error
@@ -41,7 +41,7 @@ class AuthViewModel : ObservableObject {
     private func onLoggedIn(_ registrationResult : RegistrationResult){
         switch registrationResult {
         case .success(let result):
-            user = DynamicReference(value: result)
+            user = DynamicReference(value: PersistingUser(userDataModel: result, userCd: nil))
             isLoggedIn.send(true)
         case .failure(let error):
             authError.send(.domain(error))
@@ -63,7 +63,7 @@ extension AuthViewModel : AuthViewModelType {
                 guard let self = self else {
                     return
                 }
-                if self.user[keyPath: \.username].isEmpty{
+                if self.user[keyPath: \.userDataModel.username].isEmpty{
                     self.handleResult(result: .login(.failure(.none)))
                 }
             }

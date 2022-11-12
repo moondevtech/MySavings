@@ -11,7 +11,7 @@ import Combine
 
 class BudgetViewVM : ObservableObject {
     
-    @CurrentUser(isMock: true) var user
+    @CurrentUser var user
     private lazy var useCase : BudgetUseCase = BudgetUseCase(self)
     @Published var amountAllocated : Double = 0.0
     @Published var amounSpent: Double = 0.0
@@ -32,9 +32,9 @@ extension BudgetViewVM : BudgetVMType{
     func handleInput(_ input: BudgetInput) {
         switch input {
         case .fetchBudget:
-            useCase.getBuget(with: user[keyPath: \.cards])
+            useCase.getBuget(with: user[keyPath: \.userDataModel.cards])
         case .fetchBudgetByCardId(let cardId):
-            useCase.getBuget(with: user[keyPath: \.cards].filter{ $0.id == cardId } )
+            useCase.getBuget(with: user[keyPath: \.userDataModel.cards].filter{ $0.id == cardId } )
         case .toggleDisplay:
             useCase.toggleDisplay(from: budgetDisplayType)
         case .getPercent:

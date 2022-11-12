@@ -23,13 +23,13 @@ class CardListUseCase {
             .publisher
             .map { card in
                 CardModel(
-                    id: card.id, 
+                    id: card.id,
                     cardData: .init(
-                    name: card.cardHolder,
-                    cardNumber : card.cardNumber,
-                    expired: card.expirationDate,
-                    cvv : card.cvv,
-                    type: card.creditCardType.rawValue
+                        name: card.cardHolder,
+                        cardNumber : card.cardNumber,
+                        expired: card.expirationDate,
+                        cvv : card.cvv,
+                        type: card.creditCardType.rawValue
                     )
                 )
             }
@@ -44,7 +44,7 @@ class CardListUseCase {
                 )
             }
             .store(in: &subscriptions)
-        }
+    }
     
     func navigateToCardDetails(_ data : AnyPublisher<CardModel,Never>){
         data

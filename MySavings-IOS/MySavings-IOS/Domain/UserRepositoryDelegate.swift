@@ -16,4 +16,6 @@ protocol UserRepositoryDelegate {
     
     func fetch(with id : String)  throws -> AnyPublisher<UserCD, Never>
     
+    func removeCard(_ id : String) throws -> AnyPublisher<Bool, Never>
+    
 }

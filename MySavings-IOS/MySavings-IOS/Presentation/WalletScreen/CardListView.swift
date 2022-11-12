@@ -25,7 +25,7 @@ struct CardListView: View {
                     .onTapGesture {
                         viewModel.selectCard(card)
                     }
-                    .animation(.linear, value: card.isSelected)
+                   // .animation(.linear, value: card.isSelected)
                 }
         }
         .transition(.move(edge: .bottom))

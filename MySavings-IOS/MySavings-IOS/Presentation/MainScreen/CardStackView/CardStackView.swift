@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardStackView: View {
     
-    @StateObject var viewModel : CardStackViewModel = .init()
+    @EnvironmentObject var viewModel : CardStackViewModel
     @EnvironmentObject var router : Router
     @State var cardToShow : CardModel?
     
@@ -17,7 +17,6 @@ struct CardStackView: View {
         ScrollView{
             ForEach(viewModel.cards.reversed(), id:\.self) { card in
                 CreditCardView(card: card)
-                    .environmentObject(viewModel)
             }
         }
         .animation(.spring().delay(0.1), value: viewModel.cards)
@@ -25,12 +24,12 @@ struct CardStackView: View {
             cardToShow = cardDetails
            // router.navigateToCardDetails(cardDetails.id)
         })
+        .onReceive(viewModel.userHasChanged, perform: { _ in
+            viewModel.handleInput(.fetchCards)
+        })
         .sheet(item: $cardToShow, content: { cardModel in
             CardDetailsScreen(id: cardModel.id)
         })
-        .onAppear{
-            viewModel.handleInput(.fetchCards)
-        }
         .onDisappear{
             viewModel.cards = .init()
         }
@@ -40,6 +39,7 @@ struct CardStackView: View {
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
         CardStackView()
+            .environmentObject(CardStackViewModel())
             .environmentObject(Router())
     }
 }

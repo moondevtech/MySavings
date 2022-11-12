@@ -27,13 +27,15 @@ extension Double {
     func formatted(formatting : Formatting) -> String{
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 2
-        return "\(numberFormatter.string(from: NSNumber(value: self))!) \(formatting.endfix)"
+        let formatted = numberFormatter.string(from: NSNumber(value: self))!
+        let isNan = self.isNaN
+        return "\( isNan ? "0.0" : formatted ) \(formatting.endfix)"
     }
     
     func formatted() -> String{
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 2
-        return numberFormatter.string(from: NSNumber(value: self))!
+        return numberFormatter.string(from: NSNumber(value: self)) ?? "0.0"
     }
     
     func isPositive() -> Bool{

@@ -33,7 +33,7 @@ extension CardDetailsScreenViewModel : CardDetailsVMType {
     func handleInput(_ input: CardDetailsInput) {
         switch input {
         case .fetchCard(let id):
-            useCase.fetchCard(with: id, from: user[keyPath: \.cards])
+            useCase.fetchCard(with: id, from: user[keyPath: \.userDataModel.cards])
         case .fetchTransaction(let card):
             useCase.fetchTransactions(Just(card).eraseToAnyPublisher())
         }

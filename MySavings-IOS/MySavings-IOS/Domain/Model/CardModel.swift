@@ -48,4 +48,9 @@ struct CardModel  : Identifiable, Hashable{
         return "**** \(lastNumbers)"
     }
     
+    var secretCardNumber4 : String {
+        let lastNumbers = NSString(string: cardNumber).substring(with: NSRange(location: cardNumber.count - 4, length: 4))
+        return "**** \(lastNumbers) "
+    }
+    
 }

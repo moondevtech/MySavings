@@ -67,7 +67,7 @@ struct WalletView: View {
             .animation(.linear, value: showBigCard)
             .preferredColorScheme(.dark)
             .onReceive(walletViewModel.$selectedCard) { card in
-                showBigCard = card.isSelected
+              //  showBigCard = card.isSelected
             }
             .onReceive(walletViewModel.$cardUsedForPayment) { cards in
                 guard !cards.isEmpty else {return}

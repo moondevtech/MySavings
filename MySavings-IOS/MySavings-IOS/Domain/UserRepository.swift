@@ -10,7 +10,7 @@ import Combine
 
 class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelegate {
     
-    private var currentUserCd : UserCD?
+    @CurrentUser var user
     private let dataSource :   DataSource
     var subscriptions  = Set<AnyCancellable>()
     
@@ -18,30 +18,62 @@ class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelega
         self.dataSource = dataSource
     }
     
+    private func updateUserSource(_ userCd : UserCD){
+        self.user[keyPath: \.userCd] = userCd
+        self.user[keyPath : \.userDataModel ] = userCd.toUserModel()
+    }
+    
     func create(_ data: UserDataModel) throws {
-       try dataSource.create(data as! DataSource.Model )
+        try dataSource.create(data as! DataSource.Model )
     }
     
     func fetch() throws -> AnyPublisher<UserCD, Never> {
-       try dataSource.readAll()
-            .compactMap{ current in
-               ( current as! UserCD)
-        }
-        .eraseToAnyPublisher()
-     
+        try dataSource.readAll()
+            .compactMap{current in
+                let user =   ( current as! UserCD)
+                return user
+            }
+            .handleEvents(receiveOutput: {[weak self] userCd in
+                self?.updateUserSource(userCd)
+            })
+            .eraseToAnyPublisher()
+        
     }
     
     func fetch(with id: String) throws -> AnyPublisher<UserCD, Never> {
-        Log.i(content: "\(id)")
-        return try dataSource.read(with: id)
-            .compactMap{[weak self] current in
+         try dataSource.read(with: id)
+            .compactMap{ current in
                 let user =  ( current as! UserCD)
-                self?.currentUserCd = user
                 return user
             }
+            .handleEvents(receiveOutput: {[weak self] userCd in
+                self?.updateUserSource(userCd)
+            })
             .eraseToAnyPublisher()
     }
     
+    
+    func removeCard(_ id : String) throws -> AnyPublisher<Bool, Never>{
+         try fetch()
+            .map{ obj -> (UserCD, CreditCardCD)? in
+                if let card =  (obj.cards?.allObjects as? [CreditCardCD])?.first(where: {$0.id == id}){
+                    return (obj, card)
+                }else{
+                    return nil
+                }
+            }
+            .handleEvents(receiveOutput: {[weak self] result in
+                if let result = result{
+                    result.0.removeFromCards(result.1)
+                    try! PersistenceController.shared.save()
+                    self?.updateUserSource(result.0)
+                }
+            })
+            .map { result in
+                return result != nil
+            }
+            .eraseToAnyPublisher()
+    }
     
     
 }

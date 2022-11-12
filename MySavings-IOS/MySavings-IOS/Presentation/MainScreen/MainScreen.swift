@@ -57,7 +57,7 @@ struct MainScreen: View {
                         .navigationBarTitle("Settings")
 
                 case .management:
-                    Text("Management")
+                    CardManagementScreen()
                         .navigationBarTitle("Management")
                 }
             }
@@ -74,6 +74,9 @@ struct MainScreen: View {
         
         }
         .environmentObject(viewModel)
+        .onAppear{
+            viewModel.handleInput(.fetchCards)
+        }
         .onChange(of: showMenu) { isShow in
             menuTransitions(isShown: isShow)
         }
@@ -96,7 +99,6 @@ struct MainScreen: View {
                 BudgetView()
                 Spacer()
                 CardStackView()
-                
             }
     }
     

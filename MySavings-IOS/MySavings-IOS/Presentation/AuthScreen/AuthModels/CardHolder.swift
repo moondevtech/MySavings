@@ -16,6 +16,7 @@ struct CardHolder : Identifiable, Equatable {
     var cvv : String = ""
     var expirationDate : Date = .now
     var cardType : CardType = .Unknown
+
     var isValid : Bool = false
     var isReady : Bool {
         isValid && !cvv.isEmpty && !cardholder.isEmpty

@@ -8,6 +8,10 @@
 import CoreData
 
 struct PersistenceController {
+    
+    var currentUserCd : UserCD?
+
+    
     static let shared = PersistenceController()
 
     var context : NSManagedObjectContext {
