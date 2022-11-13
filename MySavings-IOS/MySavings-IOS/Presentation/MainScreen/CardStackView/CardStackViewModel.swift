@@ -52,6 +52,8 @@ extension CardStackViewModel : CardListVMType {
             useCase.fetchCards(user[keyPath: \.userDataModel.cards])
         case .toCardDetails(let card):
             useCase.navigateToCardDetails(Just(card).eraseToAnyPublisher())
+        case .selectCard(let model):
+            useCase.selectCard(model, from: cards)
         }
     }
 }
@@ -63,6 +65,8 @@ extension CardStackViewModel : CardListUseCaseDelegate {
             handleCardFetched(result)
         case .toCardDetails(let cardModel):
             toCarddetailsEvent.send(cardModel)
+        case .updateCards(let cards):
+            self.cards = cards
         }
     }
 }

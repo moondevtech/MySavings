@@ -10,6 +10,14 @@ import Combine
 
 let shekel = "₪"
 
+struct NewBudgetModel {
+    var reason : String = ""
+    var amount : String =  ""
+    var realAmount : Double {
+        return Double(amount) ?? 0.0
+    }
+}
+
 enum MainViewRoutes {
     case main, management, expenses, history, settings
 }
@@ -23,10 +31,17 @@ struct MainScreen: View {
     @StateObject var mainRouter : MainRouter = .init()
     @StateObject var viewModel : CardStackViewModel = .init()
     
+    @State var showAddNewBudget : Bool = false
     @State var showMenu : Bool = false
     @State var scaleEffect : CGFloat = 1.0
     @State var angleRotation : CGFloat = 0.0
     @State var offsetX : CGFloat = 0.0
+    
+    //budget
+    @State var newBudgetModel : NewBudgetModel = .init()
+    @State var tabselection : Int = 0
+    @State var successScaleEffect :  CGFloat = 0.0
+
     
     @EnvironmentObject var router : Router
     
@@ -78,6 +93,19 @@ struct MainScreen: View {
             menuTransitions(isShown: isShow)
         }
         .toolbar {
+
+            ToolbarItem(placement : .navigationBarLeading) {
+                if !showMenu{
+                    Button {
+                        showAddNewBudget.toggle()
+                    } label: {
+                        let image = "plus"
+                        Image(systemName: image)
+                            .foregroundColor(.white)
+                    }
+                    
+                }
+            }
             
             ToolbarItem(placement : .navigationBarTrailing) {
                 HStack{
@@ -86,7 +114,121 @@ struct MainScreen: View {
                 }
             }
         }
+        .sheet(isPresented: $showAddNewBudget) {
+            NewBudgetFlow()
+        }
 
+    }
+    
+    
+    @ViewBuilder
+    func NewBudgetFlow() -> some View {
+         NavigationView {
+            TabView(selection: $tabselection) {
+                NewBudgetForm()
+                    .tag(0)
+                
+                NewBudgetCards()
+                    .tag(1)
+                
+                SuccessView()
+                    .padding(.bottom, 30)
+                    .scaleEffect(successScaleEffect)
+                    .tag(2)
+                    .onAppear{
+                        withAnimation(.spring()) {
+                            successScaleEffect = 1.0
+                        }
+                        DispatchQueue.main.asyncAfter(deadline :.now() + 0.7){
+                            showAddNewBudget = false
+                        }
+                    }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .toolbar {
+                ToolbarItem(placement : .navigationBarLeading) {
+                    Button {
+                        if tabselection != 0 {
+                            withAnimation {
+                                tabselection -= 1
+                            }
+                        }else{
+                            showAddNewBudget = false
+                            newBudgetModel = NewBudgetModel()
+                        }
+                    } label: {
+                        let image = tabselection == 0 ? "xmark" : "arrow.left"
+                        Image(systemName: image)
+                            .foregroundColor(.white)
+                    }
+                    
+                }
+                
+                ToolbarItem(placement : .principal) {
+                    let title = tabselection == 0 ? "New budget" : tabselection == 1 ? "Select card" : tabselection == 2 ? "" : ""
+                    Text(title)
+                }
+                
+                if tabselection == 1 {
+                    ToolbarItem(placement : .navigationBarTrailing) {
+                        Button {
+                            withAnimation {
+                                tabselection = 2
+                            }
+                        } label: {
+                            Text("Done")
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    
+    @ViewBuilder
+    func NewBudgetCards() -> some View {
+        
+        List(viewModel.cards, id:\.id) { card in
+            Button {
+                viewModel.handleInput(.selectCard(card))
+            } label: {
+                HStack{
+                    let imageSelected = card.isSelected ? "checkmark" : "circle.dotted"
+                    Text(card.cardData.cardNumber)
+                    Spacer()
+                    Image(systemName: imageSelected)
+                }
+                .foregroundColor(.white)
+            }
+
+        }
+    }
+    
+    @ViewBuilder
+    func NewBudgetForm() -> some View {
+        Form {
+            Section(header : Text("Budget name")) {
+                TextField("", text: $newBudgetModel.reason)
+            }
+            
+            Section(header : Text("Amount")) {
+                TextField("", text: $newBudgetModel.amount)
+                    .keyboardType(.numberPad)
+            }
+            
+            Button {
+                withAnimation {
+                    tabselection = 1
+                }
+            } label: {
+                HStack{
+                    Spacer()
+                    Text("Add to card")
+                    Spacer()
+                }
+            }
+
+        }
     }
     
     

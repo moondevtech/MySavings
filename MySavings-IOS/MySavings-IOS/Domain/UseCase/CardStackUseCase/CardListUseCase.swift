@@ -53,6 +53,25 @@ class CardListUseCase {
                 self?.delegate?.handleOuput(.toCardDetails(card))
             }
             .store(in: &subscriptions)
+    }
+    
+    func selectCard(_ card : CardModel, from cards : [CardModel]){
+        cards
+            .publisher
+            .map { cm in
+                var copy = cm
+                if copy.isSelected {
+                    copy.isSelected = false
+                }else{
+                    copy.isSelected = card.id == cm.id
+                }
+                return copy
+            }
+            .collect()
+            .sink{ [weak self] cards in
+                self?.delegate?.handleOuput(.updateCards(cards))
+            }
+            .store(in: &subscriptions)
         
     }
     
