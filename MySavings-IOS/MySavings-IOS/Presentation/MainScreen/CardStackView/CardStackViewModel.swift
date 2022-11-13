@@ -17,6 +17,8 @@ class CardStackViewModel : ObservableObject {
     var subscriptions : Set<AnyCancellable> = .init()
     var toCarddetailsEvent : PassthroughSubject<CardModel,Never> = .init()
     var userHasChanged : PassthroughSubject<Bool,Never> = .init()
+    var moveToSuccess : PassthroughSubject<Bool,Never> = .init()
+
     @Published var cards : [CardModel] = .init()
     
     
@@ -40,6 +42,20 @@ class CardStackViewModel : ObservableObject {
         }
     }
     
+    private func handleNewBudgetAdded(_ result : Result<Bool, Error>){
+        switch result {
+        case .success(_) :
+            handleInput(.updateUser)
+        case .failure(let error) :
+            moveToSuccess.send(false)
+        }
+    }
+    
+    private func handleUserUpdated(){
+        cards = []
+        handleInput(.fetchCards)
+        moveToSuccess.send(true)
+    }
 }
 
 
@@ -54,6 +70,10 @@ extension CardStackViewModel : CardListVMType {
             useCase.navigateToCardDetails(Just(card).eraseToAnyPublisher())
         case .selectCard(let model):
             useCase.selectCard(model, from: cards)
+        case .newBudget(let newModel):
+            useCase.newBudget(newModel)
+        case .updateUser:
+            useCase.updateUser()
         }
     }
 }
@@ -67,6 +87,10 @@ extension CardStackViewModel : CardListUseCaseDelegate {
             toCarddetailsEvent.send(cardModel)
         case .updateCards(let cards):
             self.cards = cards
+        case .newBudgetsAdded(let result):
+            self.handleNewBudgetAdded(result)
+        case .userUpdated:
+            handleUserUpdated()
         }
     }
 }

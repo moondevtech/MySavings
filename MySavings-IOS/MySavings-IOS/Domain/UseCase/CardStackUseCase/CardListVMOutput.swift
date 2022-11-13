@@ -8,5 +8,5 @@
 import Foundation
 
 enum CardListVMOutput {
-    case fetchCard(CardFetched), toCardDetails(CardModel), updateCards([CardModel])
+    case fetchCard(CardFetched), toCardDetails(CardModel), updateCards([CardModel]), newBudgetsAdded(Result<Bool, Error>), userUpdated
 }

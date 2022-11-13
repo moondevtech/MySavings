@@ -8,5 +8,5 @@
 import Foundation
 
 enum CardListVMInput {
-    case fetchCards, toCardDetails(CardModel), selectCard(CardModel)
+    case fetchCards, toCardDetails(CardModel), selectCard(CardModel), newBudget(NewBudgetModel), updateUser
 }

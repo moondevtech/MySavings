@@ -13,6 +13,7 @@ let shekel = "₪"
 struct NewBudgetModel {
     var reason : String = ""
     var amount : String =  ""
+    var cardId : [String] = []
     var realAmount : Double {
         return Double(amount) ?? 0.0
     }
@@ -41,6 +42,8 @@ struct MainScreen: View {
     @State var newBudgetModel : NewBudgetModel = .init()
     @State var tabselection : Int = 0
     @State var successScaleEffect :  CGFloat = 0.0
+    @State var isSuccess :  Bool = true
+
 
     
     @EnvironmentObject var router : Router
@@ -131,7 +134,7 @@ struct MainScreen: View {
                 NewBudgetCards()
                     .tag(1)
                 
-                SuccessView()
+                ResultView()
                     .padding(.bottom, 30)
                     .scaleEffect(successScaleEffect)
                     .tag(2)
@@ -142,6 +145,9 @@ struct MainScreen: View {
                         DispatchQueue.main.asyncAfter(deadline :.now() + 0.7){
                             showAddNewBudget = false
                         }
+                    }
+                    .onDisappear{
+                        tabselection = 0
                     }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -172,17 +178,30 @@ struct MainScreen: View {
                 if tabselection == 1 {
                     ToolbarItem(placement : .navigationBarTrailing) {
                         Button {
-                            withAnimation {
-                                tabselection = 2
-                            }
+                            viewModel.handleInput(.newBudget(newBudgetModel))
                         } label: {
                             Text("Done")
                         }
                     }
                 }
             }
+            .onReceive(viewModel.moveToSuccess) { isSuccess in
+                self.isSuccess = isSuccess
+                withAnimation {
+                    tabselection = 2
+                }
+            }
         }
 
+    }
+    
+    @ViewBuilder
+    func ResultView() -> some View {
+        if isSuccess{
+            SuccessView()
+        }else{
+            FailureView()
+        }
     }
     
     @ViewBuilder
@@ -191,6 +210,13 @@ struct MainScreen: View {
         List(viewModel.cards, id:\.id) { card in
             Button {
                 viewModel.handleInput(.selectCard(card))
+                if card.isSelected{
+                    if let index = newBudgetModel.cardId.firstIndex(of: card.id){
+                        newBudgetModel.cardId.remove(at: index)
+                    }
+                }else{
+                    newBudgetModel.cardId.append(card.id)
+                }
             } label: {
                 HStack{
                     let imageSelected = card.isSelected ? "checkmark" : "circle.dotted"

@@ -32,8 +32,7 @@ class CardDetailsUseCase {
                     cardNumber : model.cardNumber,
                     expired: model.expirationDate,
                     cvv : model.cvv,
-                    type: model.creditCardType.rawValue
-                )
+                    type: model.creditCardType.rawValue)
                 )
                 
                 return (card,model)
@@ -48,6 +47,7 @@ class CardDetailsUseCase {
         cardModel
             .flatMap { card in
                 var dict = [BudgetDataModel : [TransactionDataModel]]()
+                Log.i(content: card.budgets)
                 card.budgets?.forEach{ bdg in
                     dict[bdg] = bdg.transactions ?? []
                 }
