@@ -19,6 +19,8 @@ class CardDetailsScreenViewModel  : ObservableObject{
     var cardFound : CreditCardDataModel?
     var subscriptions : Set<AnyCancellable> = .init()
     @Published var transactions : [BudgetDataModel : [TransactionDataModel]] = .init()
+    @Published var budgetRow : [BudgetRowModel] = .init()
+
 
     private func handleFetchedCard(_ cardModel : CardModel, cardData : CreditCardDataModel){
         self.cardFoundEvent.send(cardModel)
@@ -26,9 +28,13 @@ class CardDetailsScreenViewModel  : ObservableObject{
         handleInput(.fetchTransaction(cardData))
     }
     
-    private func handleFetchedTransaction(_ transaction : [BudgetDataModel : [TransactionDataModel]]){
+    private func handleFetchedTransaction(_ transaction : (BudgetDataModel, [TransactionDataModel])){
+        self.transactions[transaction.0] = transaction.1
+        budgetRow.append(BudgetRowModel(budgetDataModel: transaction.0))
+    }
+    
+    private func handleSelectedransaction(_ transaction : [ BudgetDataModel: [TransactionDataModel]]){
         self.transactions = transaction
-        Log.i(content: transaction.keys)
     }
     
     private func handleSavedTransaction(_ result : Result<Bool, Error>){
@@ -84,6 +90,8 @@ extension CardDetailsScreenViewModel : CardDetailUseCaseDelegate {
             handleSavedTransaction(result)
         case .userUpdated(let result):
             handleUserUpdated(result)
+        case .transactionSelected(let transactions):
+            handleSelectedransaction(transactions)
         }
     }
     

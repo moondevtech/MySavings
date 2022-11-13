@@ -46,12 +46,14 @@ class CardDetailsUseCase {
     
     func fetchTransactions(_ cardModel : AnyPublisher<CreditCardDataModel,Never>){
         cardModel
-            .map { card in
+            .flatMap { card in
                 var dict = [BudgetDataModel : [TransactionDataModel]]()
                 card.budgets?.forEach{ bdg in
                     dict[bdg] = bdg.transactions ?? []
                 }
                 return dict
+                    .publisher
+                    .eraseToAnyPublisher()
             }
             .receive(on: DispatchQueue.main)
             .sink {[weak self] transaction in
@@ -137,7 +139,7 @@ class CardDetailsUseCase {
                 return dict
             }
             .sink{[weak self] dict in
-                self?.delegate?.handleOutput(.fetchedTransactions(dict))
+                self?.delegate?.handleOutput(.transactionSelected(dict))
             }
             .store(in: &subscriptions)
   

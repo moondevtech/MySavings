@@ -8,6 +8,14 @@
 import SwiftUI
 import Combine
 
+
+struct BudgetRowModel: Identifiable, Hashable, Equatable {
+    var id : String =  UUID().uuidString
+    var budgetDataModel : BudgetDataModel
+    var isSelected : Bool = false
+    var offset : CGFloat = -800
+}
+
 struct NewTransactionModel {
     var budget : String = ""
     var reason : String = ""
@@ -46,7 +54,6 @@ struct CardDetailsScreen: View {
                 
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-           // .animation(.spring(), value: viewModel.transactions)
             .animation(.spring(), value : tabTransaction)
             .onReceive(viewModel.cardFoundEvent, perform: { card in
                 self.card =  card
@@ -111,13 +118,13 @@ struct CardDetailsScreen: View {
     
     @ViewBuilder
     func BudgetList() -> some View  {
-        List(viewModel.transactions.keys.reversed(), id: \.self) { budget in
+        List($viewModel.budgetRow, id: \.self) { $row in
             Button {
-                newTransaction.budget = budget.name
+                newTransaction.budget = row.budgetDataModel.name
                 tabTransaction += 1
             } label: {
                 HStack{
-                    Text(budget.name)
+                    Text(row.budgetDataModel.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.white)
                         .font(.body.bold())
@@ -126,7 +133,14 @@ struct CardDetailsScreen: View {
                     Image(systemName: "arrow.right")
                 }
             }
-
+            .offset(x: row.offset)
+            .onAppear{
+                let index =  viewModel.budgetRow.firstIndex(of: row)!
+                withAnimation(.spring().delay(Double(index) * 0.2)) {
+                    row.offset = 0
+                }
+            }
+            
         }
         .navigationTitle("Pick a budget")
         .padding(.top, 50)
@@ -143,9 +157,9 @@ struct CardDetailsScreen: View {
     
     
     @ViewBuilder
-    func TransactionView(_ budget : BudgetDataModel) -> some View {
-        if budget.isSelected{
-            ForEach(Array(viewModel.transactions[budget]!), id: \.self) { transaction in
+    func TransactionView(row : BudgetRowModel) -> some View {
+        if row.budgetDataModel.isSelected{
+            ForEach(Array(viewModel.transactions[row.budgetDataModel]!), id: \.self) { transaction in
                 HStack{
                     Text(transaction.transactionTitle)
                         .font(.body)
@@ -162,18 +176,19 @@ struct CardDetailsScreen: View {
     }
     
     @ViewBuilder
-    func BudgetRowButton(_ budget : BudgetDataModel) -> some View {
+    func BudgetRowButton(_ row : Binding<BudgetRowModel>) -> some View {
+
         Button {
-            viewModel.handleInput(.selectBudget(budget))
+            viewModel.handleInput(.selectBudget(row.wrappedValue.budgetDataModel))
         } label: {
             HStack{
-                Text(budget.name)
+                Text(row.wrappedValue.budgetDataModel.name)
                     .frame(alignment: .leading)
                     .foregroundColor(.white)
                     .font(.body.bold())
                     .padding(.horizontal, 40)
                 
-                Text("\(budget.realAmountSpent.formatted())/\(budget.maxAmount.formatted())")
+                Text("\(row.wrappedValue.budgetDataModel.realAmountSpent.formatted())/\(row.wrappedValue.budgetDataModel.maxAmount.formatted())")
                     .frame(alignment: .trailing)
                     .foregroundColor(.white)
                     .font(.body.bold())
@@ -182,6 +197,14 @@ struct CardDetailsScreen: View {
             .padding()
             .background(Color.white.opacity(0.2))
             .clipShape(Capsule())
+            .offset(x: row.wrappedValue.offset)
+
+        }
+        .onAppear{
+            let index =  viewModel.budgetRow.firstIndex(of: row.wrappedValue)!
+            withAnimation(.spring().delay(Double(index) * 0.2 + 0.5)) {
+                row.wrappedValue.offset = 0
+            }
         }
     }
     
@@ -192,9 +215,9 @@ struct CardDetailsScreen: View {
             Header()
             ScrollView {
                 VStack {
-                    ForEach(viewModel.transactions.keys.reversed(), id: \.self) { budget in
-                        BudgetRowButton(budget)
-                        TransactionView(budget)
+                    ForEach($viewModel.budgetRow, id: \.self) { $row in
+                        BudgetRowButton($row)
+                        TransactionView(row: row)
                     }
                 }
                 .padding(.top, 50)
