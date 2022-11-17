@@ -158,7 +158,7 @@ struct CardDetailsScreen: View {
     
     @ViewBuilder
     func TransactionView(row : BudgetRowModel) -> some View {
-        if row.budgetDataModel.isSelected{
+        //if row.budgetDataModel.isSelected{
             ForEach(Array(viewModel.transactions[row.budgetDataModel]!), id: \.self) { transaction in
                 HStack{
                     Text(transaction.transactionTitle)
@@ -172,42 +172,86 @@ struct CardDetailsScreen: View {
                 .background(Color.white.opacity(0.3))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-        }
+       // }
     }
     
     @ViewBuilder
     func BudgetRowButton(_ row : Binding<BudgetRowModel>) -> some View {
-
-        Button {
-            viewModel.handleInput(.selectBudget(row.wrappedValue.budgetDataModel))
-        } label: {
-            HStack{
-                Text(row.wrappedValue.budgetDataModel.name)
-                    .frame(alignment: .leading)
-                    .foregroundColor(.white)
-                    .font(.body.bold())
-                    .padding(.horizontal, 40)
-                
-                Text("\(row.wrappedValue.budgetDataModel.realAmountSpent.formatted())/\(row.wrappedValue.budgetDataModel.maxAmount.formatted())")
-                    .frame(alignment: .trailing)
-                    .foregroundColor(.white)
-                    .font(.body.bold())
-                    .padding(.horizontal, 40)
+//        Button {
+//            viewModel.handleInput(.selectBudget(row.wrappedValue.budgetDataModel))
+//        } label: {
+//            HStack{
+//                Text(row.wrappedValue.budgetDataModel.name)
+//                    .frame(alignment: .leading)
+//                    .foregroundColor(.white)
+//                    .font(.body.bold())
+//                    .padding(.horizontal, 40)
+//
+//                Text("\(row.wrappedValue.budgetDataModel.realAmountSpent.formatted())/\(row.wrappedValue.budgetDataModel.maxAmount.formatted())")
+//                    .frame(alignment: .trailing)
+//                    .foregroundColor(.white)
+//                    .font(.body.bold())
+//                    .padding(.horizontal, 40)
+//            }
+//            .padding()
+//            .background(Color.white.opacity(0.2))
+//            .clipShape(Capsule())
+//            .offset(x: row.wrappedValue.offset)
+//
+//        }
+//        .onAppear{
+//            let index =  viewModel.budgetRow.firstIndex(of: row.wrappedValue)!
+//            withAnimation(.spring().delay(Double(index) * 0.2 + 0.5)) {
+//                row.wrappedValue.offset = 0
+//            }
+//        }
+//
+        if let transactions =  row.wrappedValue.budgetDataModel.transactions,
+           !transactions.isEmpty{
+            NavigationLink {
+                VStack{
+                    RowBudgetButton(row.wrappedValue.budgetDataModel)
+                    TransactionView(row: row.wrappedValue)
+                        .padding(.horizontal)
+                }
+            } label: {
+                RowBudgetButton(row.wrappedValue.budgetDataModel, isLink: true)
             }
-            .padding()
-            .background(Color.white.opacity(0.2))
-            .clipShape(Capsule())
-            .offset(x: row.wrappedValue.offset)
-
-        }
-        .onAppear{
-            let index =  viewModel.budgetRow.firstIndex(of: row.wrappedValue)!
-            withAnimation(.spring().delay(Double(index) * 0.2 + 0.5)) {
-                row.wrappedValue.offset = 0
-            }
+        }else{
+            RowBudgetButton(row.wrappedValue.budgetDataModel)
         }
     }
     
+    
+    @ViewBuilder
+    func RowBudgetButton(_ budgetDataModel : BudgetDataModel, isLink : Bool  = false) -> some View {
+        HStack{
+            Text(budgetDataModel.name)
+                .frame(alignment: .leading)
+                .foregroundColor(.white)
+                .font(.body.bold())
+                .padding(.horizontal, 40)
+                        
+            Text("\(budgetDataModel.realAmountSpent.formatted())/\(budgetDataModel.maxAmount.formatted())")
+                .frame(alignment: .trailing)
+                .foregroundColor(.white)
+                .font(.body.bold())
+                .padding(.horizontal, 40)
+            
+            Spacer()
+
+                        
+            if isLink {
+                Image(systemName: "arrow.right")
+                    .foregroundColor(.white)
+            }
+        }
+        .padding()
+        .background(Color.white.opacity(0.2))
+        .clipShape(Capsule())
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 8, trailing: 16))
+
+    }
     
     @ViewBuilder
     func BudgetAndTransactions() ->some View{
@@ -217,7 +261,7 @@ struct CardDetailsScreen: View {
                 VStack {
                     ForEach($viewModel.budgetRow, id: \.self) { $row in
                         BudgetRowButton($row)
-                        TransactionView(row: row)
+                       // TransactionView(row: row)
                     }
                 }
                 .padding(.top, 50)

@@ -123,11 +123,12 @@ class CardDetailsUseCase {
             .publisher
             .map { pair -> Dictionary<BudgetDataModel, [TransactionDataModel]>.Element in
                 var copy = pair
-                if copy.key.isSelected {
-                    copy.key.isSelected = false
-                }else{
-                    copy.key.isSelected =  copy.key.id ==  budget.id
-                }
+//                if copy.key.isSelected {
+//                    copy.key.isSelected = false
+//                }else{
+//                    copy.key.isSelected =  copy.key.id ==  budget.id
+//                }
+                copy.key.isSelected =  true
                 return copy
             }
             .collect()

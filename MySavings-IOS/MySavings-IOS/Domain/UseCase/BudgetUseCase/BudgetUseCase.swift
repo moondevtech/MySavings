@@ -37,6 +37,7 @@ class BudgetUseCase {
         .map{amounts in
             amounts.reduce(0.0) { counter, value  in counter + value }
         }
+        .eraseToAnyPublisher()
         
         let spent =  userBudget
             .flatMap { budgets in
@@ -50,15 +51,14 @@ class BudgetUseCase {
                     .publisher
                     .eraseToAnyPublisher()
                     .map(\.amount)
-                    .reduce(0) { current, next in
-                        current + next
-                    }
+            }
+            .reduce(0) { current, next in
+                current + next
             }
             .eraseToAnyPublisher()
 
-
-        
         Publishers.Zip(amounts, spent)
+            .delay(for: 0.2, scheduler: RunLoop.main)
             .sink {[weak self] amount, spent in
                 self?.delegate?.handleOutput(.budgetFetched(amount, spent))
             }

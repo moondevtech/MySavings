@@ -25,16 +25,20 @@ class CardDetailsScreenViewModel  : ObservableObject{
     private func handleFetchedCard(_ cardModel : CardModel, cardData : CreditCardDataModel){
         self.cardFoundEvent.send(cardModel)
         self.cardFound = cardData
+        budgetRow = []
         handleInput(.fetchTransaction(cardData))
     }
     
     private func handleFetchedTransaction(_ transaction : (BudgetDataModel, [TransactionDataModel])){
         self.transactions[transaction.0] = transaction.1
         budgetRow.append(BudgetRowModel(budgetDataModel: transaction.0))
+        Log.i(content: transactions.keys)
+        Log.i(content: transaction.0)
+
     }
     
     private func handleSelectedransaction(_ transaction : [ BudgetDataModel: [TransactionDataModel]]){
-        self.transactions = transaction
+    //    self.transactions = transaction
     }
     
     private func handleSavedTransaction(_ result : Result<Bool, Error>){
