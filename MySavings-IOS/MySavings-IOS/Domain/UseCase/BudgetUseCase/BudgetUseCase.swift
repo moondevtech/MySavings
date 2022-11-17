@@ -38,20 +38,25 @@ class BudgetUseCase {
             amounts.reduce(0.0) { counter, value  in counter + value }
         }
         
-        
-       let spent =  userBudget.flatMap{ budgets in
-            budgets
-                .publisher
-                .eraseToAnyPublisher()
-                .map(\.amountSpent)
-                .reduce(0.0) { acc, next in
-                    acc + next
-                }
-        }
-        .collect()
-        .map{amounts in
-            amounts.reduce(0.0) { counter, value  in counter + value }
-        }
+        let spent =  userBudget
+            .flatMap { budgets in
+                budgets
+                    .publisher
+                    .eraseToAnyPublisher()
+            }
+            .compactMap(\.transactions)
+            .flatMap { transactions in
+                transactions
+                    .publisher
+                    .eraseToAnyPublisher()
+                    .map(\.amount)
+                    .reduce(0) { current, next in
+                        current + next
+                    }
+            }
+            .eraseToAnyPublisher()
+
+
         
         Publishers.Zip(amounts, spent)
             .sink {[weak self] amount, spent in
