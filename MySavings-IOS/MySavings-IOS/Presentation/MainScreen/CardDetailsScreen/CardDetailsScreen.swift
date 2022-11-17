@@ -160,17 +160,7 @@ struct CardDetailsScreen: View {
     func TransactionView(row : BudgetRowModel) -> some View {
         //if row.budgetDataModel.isSelected{
         ForEach(Array(viewModel.transactions[row.budgetDataModel]!), id: \.self) { transaction in
-            HStack{
-                Text(transaction.transactionTitle)
-                    .font(.body)
-                Spacer()
-                Text(transaction.amount.formatted() + "₪")
-                    .font(.body.bold())
-            }
-            .padding(.horizontal)
-            .frame(height: 50)
-            .background(Color.white.opacity(0.3))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            TransactionItemRow(transaction: transaction)
         }
         // }
     }

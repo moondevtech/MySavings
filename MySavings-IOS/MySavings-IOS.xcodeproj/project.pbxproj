@@ -93,6 +93,7 @@
 		8765BFAC291FC12D00989F81 /* CardManagementInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFA7291FC12D00989F81 /* CardManagementInput.swift */; };
 		8765BFAD291FC12D00989F81 /* CardManagementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFA8291FC12D00989F81 /* CardManagementType.swift */; };
 		8765BFAF291FC1FA00989F81 /* CardManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFAE291FC1FA00989F81 /* CardManagementViewModel.swift */; };
+		8765BFB429260C7F00989F81 /* TransactionItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFB329260C7F00989F81 /* TransactionItemRow.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -221,6 +222,7 @@
 		8765BFA7291FC12D00989F81 /* CardManagementInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagementInput.swift; sourceTree = "<group>"; };
 		8765BFA8291FC12D00989F81 /* CardManagementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagementType.swift; sourceTree = "<group>"; };
 		8765BFAE291FC1FA00989F81 /* CardManagementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagementViewModel.swift; sourceTree = "<group>"; };
+		8765BFB329260C7F00989F81 /* TransactionItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionItemRow.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 			children = (
 				8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */,
 				8765BF87291CB37300989F81 /* CardDetailsScreenViewModel.swift */,
+				8765BFB329260C7F00989F81 /* TransactionItemRow.swift */,
 			);
 			path = CardDetailsScreen;
 			sourceTree = "<group>";
@@ -920,6 +923,7 @@
 				8765BF80291CB2FE00989F81 /* CardDetailsVMType.swift in Sources */,
 				8765BFAF291FC1FA00989F81 /* CardManagementViewModel.swift in Sources */,
 				87E6B184291B902700DA254C /* BudgetDisplayType.swift in Sources */,
+				8765BFB429260C7F00989F81 /* TransactionItemRow.swift in Sources */,
 				8765BF8E291F955300989F81 /* CardManagementScreen.swift in Sources */,
 				871E969B29177AA30034D05A /* FirstCardViewModel.swift in Sources */,
 				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
