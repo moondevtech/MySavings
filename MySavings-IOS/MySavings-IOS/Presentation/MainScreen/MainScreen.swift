@@ -96,9 +96,9 @@ struct MainScreen: View {
             menuTransitions(isShown: isShow)
         }
         .toolbar {
-
-            ToolbarItem(placement : .navigationBarLeading) {
-                if !showMenu{
+            if !showMenu && mainRouter.route == .main{
+                
+                ToolbarItem(placement : .navigationBarLeading) {
                     Button {
                         showAddNewBudget.toggle()
                     } label: {
@@ -106,6 +106,7 @@ struct MainScreen: View {
                         Image(systemName: image)
                             .foregroundColor(.white)
                     }
+                    
                     
                 }
             }
