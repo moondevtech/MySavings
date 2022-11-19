@@ -24,7 +24,7 @@ class UserRepository<DataSource : UserDataSourceDelegate> : UserRepositoryDelega
     }
     
     func create(_ data: UserDataModel) throws {
-        try dataSource.create(data as! DataSource.Model )
+        try dataSource.create(data as! DataSource.Model)
     }
     
     func fetch() throws -> AnyPublisher<UserCD, Never> {

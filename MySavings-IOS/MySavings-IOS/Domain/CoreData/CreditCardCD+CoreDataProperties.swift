@@ -30,6 +30,10 @@ extension CreditCardCD {
 
 // MARK: Generated accessors for budgets
 extension CreditCardCD {
+    
+    var unwrappedBudget : [BudgetCD] {
+        budgets?.allObjects as? [BudgetCD] ?? []
+    }
 
     @objc(addBudgetsObject:)
     @NSManaged public func addToBudgets(_ value: BudgetCD)

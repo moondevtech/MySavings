@@ -11,5 +11,5 @@ struct BudgetRowModel: Identifiable, Hashable, Equatable {
     var id : String =  UUID().uuidString
     var budgetDataModel : BudgetDataModel
     var isSelected : Bool = false
-    var offset : CGFloat = -100
+    var offset : CGFloat = -600
 }

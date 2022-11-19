@@ -26,6 +26,10 @@ extension UserCD {
 
 // MARK: Generated accessors for cards
 extension UserCD {
+    
+    var unwrappedCards : [CreditCardCD] {
+        cards?.allObjects as? [CreditCardCD] ?? []
+    }
 
     @objc(addCardsObject:)
     @NSManaged public func addToCards(_ value: CreditCardCD)

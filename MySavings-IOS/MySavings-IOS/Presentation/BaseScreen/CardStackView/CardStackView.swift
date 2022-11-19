@@ -9,32 +9,36 @@ import SwiftUI
 
 struct CardStackView: View {
     
-    @EnvironmentObject var viewModel : CardStackViewModel
+    @EnvironmentObject var cardStackViewModel : CardStackViewModel
     @EnvironmentObject var router : Router
+    @EnvironmentObject var parentVientModel : HomeScreenViewModel
+
     @State var cardToShow : CardModel?
     
     var body: some View {
         ScrollView{
-            ForEach(viewModel.cards.reversed(), id:\.self) { card in
+            ForEach(cardStackViewModel.cards.reversed(), id:\.self) { card in
                 CreditCardView(card: card)
             }
         }
-        .animation(.spring().delay(0.1), value: viewModel.cards)
-        .onReceive(viewModel.toCarddetailsEvent, perform: { cardDetails in
+        .animation(.spring().delay(0.1), value: cardStackViewModel.cards)
+        .onReceive(cardStackViewModel.toCarddetailsEvent, perform: { cardDetails in
             cardToShow = cardDetails
-           // router.navigateToCardDetails(cardDetails.id)
         })
-        .onReceive(viewModel.userHasChanged, perform: { _ in
-            viewModel.handleInput(.fetchCards)
+        .onReceive(cardStackViewModel.userHasChanged, perform: { _ in
+            cardStackViewModel.handleInput(.fetchCards)
         })
-        .sheet(item: $cardToShow, content: { cardModel in
+        .sheet(item: $cardToShow,onDismiss: {
+            parentVientModel.handleInput(.refresh)
+        }, content: { cardModel in
             CardDetailsScreen(id: cardModel.id)
         })
+
         .onAppear{
-            viewModel.handleInput(.fetchCards)
+            cardStackViewModel.handleInput(.fetchCards)
         }
         .onDisappear{
-            viewModel.cards = .init()
+            cardStackViewModel.cards = .init()
         }
     }
 }

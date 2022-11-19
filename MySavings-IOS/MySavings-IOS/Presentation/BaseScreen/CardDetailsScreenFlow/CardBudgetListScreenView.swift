@@ -13,23 +13,24 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
     var header : () -> Header
     
     @EnvironmentObject var parentViewModel : CardDetailsScreenViewModel
-    
+        
     var body: some View {
         VStack{
             header()
             ScrollView {
-                ForEach(parentViewModel.budgetRow, id: \.self) { row in
+                ForEach($parentViewModel.budgetRow, id: \.self) { $row in
                     BudgetRowButton(row)
                 }
                 .padding(.top, 50)
             }
         }
+        .preferredColorScheme(.dark)
     }
     
     
     @ViewBuilder
     func BudgetRowButton(_ row : BudgetRowModel) -> some View {
-        ZStack{
+      //  ZStack{
             if let transactions =  row.budgetDataModel.transactions,
                !transactions.isEmpty{
                 NavigationLink {
@@ -44,7 +45,7 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
             }else{
                 RowBudgetButton(row.budgetDataModel)
             }
-        }
+       // }
         
     }
     
@@ -52,17 +53,21 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
     func RowBudgetButton(_ budgetDataModel : BudgetDataModel, isLink : Bool  = false) -> some View {
         HStack{
             Text(budgetDataModel.name)
+                .minimumScaleFactor(0.1)
                 .frame(alignment: .leading)
                 .foregroundColor(.white)
                 .font(.body.bold())
-                .padding(.horizontal, 40)
+                .padding(.leading, 20)
+            
+            Spacer()
+
             
             Text("\(budgetDataModel.realAmountSpent.formatted())/\(budgetDataModel.maxAmount.formatted())")
-                .frame(alignment: .trailing)
+                .minimumScaleFactor(0.1)
                 .foregroundColor(.white)
                 .font(.body.bold())
-                .padding(.horizontal, 40)
-            
+                .padding(.leading, 10)
+
             Spacer()
             
             
@@ -81,8 +86,8 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
 
 struct CardBudgetListScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        CardBudgetListScreenView<Text>(header : {
-            Text("Hello")
+        CardBudgetListScreenView<BudgetView>(header : {
+            BudgetView(needsRefresh: .constant(.init()))
         })
         .environmentObject(CardDetailsScreenViewModel())
     }

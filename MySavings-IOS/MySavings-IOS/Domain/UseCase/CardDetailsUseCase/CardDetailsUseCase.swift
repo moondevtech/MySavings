@@ -45,15 +45,12 @@ class CardDetailsUseCase {
     
     func fetchTransactions(_ cardModel : AnyPublisher<CreditCardDataModel,Never>){
         cardModel
-            .flatMap { card in
+            .map { card -> [BudgetDataModel : [TransactionDataModel]] in
                 var dict = [BudgetDataModel : [TransactionDataModel]]()
-                Log.i(content: card.budgets)
                 card.budgets?.forEach{ bdg in
                     dict[bdg] = bdg.transactions ?? []
                 }
                 return dict
-                    .publisher
-                    .eraseToAnyPublisher()
             }
             .receive(on: DispatchQueue.main)
             .sink {[weak self] transaction in
@@ -118,31 +115,4 @@ class CardDetailsUseCase {
         }
     }
     
-    func selectBudget(_ budget : BudgetDataModel, from budgets : [BudgetDataModel : [TransactionDataModel]]){
-        budgets
-            .publisher
-            .map { pair -> Dictionary<BudgetDataModel, [TransactionDataModel]>.Element in
-                var copy = pair
-//                if copy.key.isSelected {
-//                    copy.key.isSelected = false
-//                }else{
-//                    copy.key.isSelected =  copy.key.id ==  budget.id
-//                }
-                copy.key.isSelected =  true
-                return copy
-            }
-            .collect()
-            .map{ elements -> [BudgetDataModel : [TransactionDataModel]] in
-                var dict = [BudgetDataModel : [TransactionDataModel]]()
-                elements.forEach { element in
-                    dict[element.key] =  element.value
-                }
-                return dict
-            }
-            .sink{[weak self] dict in
-                self?.delegate?.handleOutput(.transactionSelected(dict))
-            }
-            .store(in: &subscriptions)
-  
-    }
 }

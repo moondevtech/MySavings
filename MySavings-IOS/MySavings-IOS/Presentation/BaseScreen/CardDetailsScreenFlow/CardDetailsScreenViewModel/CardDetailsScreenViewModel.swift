@@ -15,6 +15,8 @@ class CardDetailsScreenViewModel  : ObservableObject{
     private lazy var useCase : CardDetailsUseCase = .init(delegate: self)
     var cardFoundEvent : PassthroughSubject<CardModel,Never> = .init()
     var transactionSavedEvents : PassthroughSubject<Bool,Never> = .init()
+    var budgetRowReceived : PassthroughSubject<BudgetRowModel,Never> = .init()
+
 
     var cardFound : CreditCardDataModel?
     var subscriptions : Set<AnyCancellable> = .init()
@@ -29,16 +31,12 @@ class CardDetailsScreenViewModel  : ObservableObject{
         handleInput(.fetchTransaction(cardData))
     }
     
-    private func handleFetchedTransaction(_ transaction : (BudgetDataModel, [TransactionDataModel])){
-        self.transactions[transaction.0] = transaction.1
-        budgetRow.append(BudgetRowModel(budgetDataModel: transaction.0))
-        Log.i(content: transactions.keys)
-        Log.i(content: transaction.0)
-
+    private func handleFetchedTransaction(_ transaction : [BudgetDataModel: [TransactionDataModel]]){
+        self.transactions = transaction
+        self.budgetRow =  transaction.map(\.key).map{BudgetRowModel(budgetDataModel: $0)}
     }
     
     private func handleSelectedransaction(_ transaction : [ BudgetDataModel: [TransactionDataModel]]){
-    //    self.transactions = transaction
     }
     
     private func handleSavedTransaction(_ result : Result<Bool, Error>){
@@ -75,8 +73,6 @@ extension CardDetailsScreenViewModel : CardDetailsVMType {
             useCase.saveTransaction(newTransaction, cardData: cardFound)
         case .updateUser:
             useCase.updateUser()
-        case .selectBudget(let budget):
-            useCase.selectBudget(budget, from: transactions)
         }
     }
     
@@ -94,8 +90,6 @@ extension CardDetailsScreenViewModel : CardDetailUseCaseDelegate {
             handleSavedTransaction(result)
         case .userUpdated(let result):
             handleUserUpdated(result)
-        case .transactionSelected(let transactions):
-            handleSelectedransaction(transactions)
         }
     }
     

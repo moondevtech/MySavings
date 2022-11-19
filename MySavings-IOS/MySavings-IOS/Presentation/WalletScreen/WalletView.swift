@@ -49,7 +49,7 @@ struct WalletView: View {
             Color.black
             VStack{
                 
-                BudgetView()
+                BudgetView(needsRefresh: .constant(.init()))
                 
                 
                 ExpensesView()

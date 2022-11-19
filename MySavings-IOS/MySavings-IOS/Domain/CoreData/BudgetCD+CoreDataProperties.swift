@@ -27,6 +27,10 @@ extension BudgetCD {
 
 // MARK: Generated accessors for transactions
 extension BudgetCD {
+    
+    var unwrappedTransactions : [TransactionsCD] {
+        transactions?.allObjects as? [TransactionsCD] ?? []
+    }
 
     @objc(addTransactionsObject:)
     @NSManaged public func addToTransactions(_ value: TransactionsCD)

@@ -10,8 +10,7 @@ import Foundation
 
 enum CardDetailsOutput {
     case fetchedCard(CardModel, CreditCardDataModel)
-    case transactionSelected([BudgetDataModel: [TransactionDataModel]])
-    case fetchedTransactions((BudgetDataModel, [TransactionDataModel]))
+    case fetchedTransactions([BudgetDataModel : [TransactionDataModel]])
     case savedTransaction(Result<Bool,Error>)
     case userUpdated(Result<Bool,Error>)
 }

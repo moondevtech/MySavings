@@ -17,8 +17,8 @@ class BudgetViewVM : ObservableObject {
     @Published var amounSpent: Double = 0.0
     @Published var percentSpent : Double = 0.0
     @Published var budgetDisplayType : BudgetDisplayType = .percentType
-
-
+    var subscriptions : Set<AnyCancellable> = .init()
+    
     private func handleFetchedBudget(amount : Double, spent : Double){
         self.amountAllocated = amount
         self.amounSpent = spent

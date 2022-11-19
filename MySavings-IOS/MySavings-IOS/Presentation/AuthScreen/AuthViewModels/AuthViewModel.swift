@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-typealias RegistrationResult = Result<UserDataModel,AuthError>
+typealias RegistrationResult = Result<PersistingUser,AuthError>
 
 class AuthViewModel : ObservableObject {
     @CurrentUser var user 
@@ -28,8 +28,7 @@ class AuthViewModel : ObservableObject {
         switch registrationResult {
         case .success(let result):
             isRegistered.send(true)
-            user = DynamicReference(value: PersistingUser(userDataModel: result, userCd: nil))
-          //  self.userDataModel = result
+            user = DynamicReference(value: result)
         case .failure(let failure):
             //handle error
             authError.send(.wrongCredentials)
@@ -41,7 +40,7 @@ class AuthViewModel : ObservableObject {
     private func onLoggedIn(_ registrationResult : RegistrationResult){
         switch registrationResult {
         case .success(let result):
-            user = DynamicReference(value: PersistingUser(userDataModel: result, userCd: nil))
+            user = DynamicReference(value: result)
             isLoggedIn.send(true)
         case .failure(let error):
             authError.send(.domain(error))

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BudgetView: View {
+    
+    @Binding var needsRefresh : UUID
     @StateObject var viewModel : BudgetViewVM = .init()
     
     var cardId : String = ""
@@ -38,6 +40,9 @@ struct BudgetView: View {
         .padding()
         .animation(.spring(), value: viewModel.percentSpent)
         .preferredColorScheme(.dark)
+        .onChange(of: needsRefresh, perform: { newValue in
+            handleBudgetFetching()
+        })
         .onAppear{
            handleBudgetFetching()
         }
@@ -78,6 +83,8 @@ struct BudgetView: View {
 
 struct BudgetView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetView()
+        BudgetView(
+            needsRefresh: .constant(.init())
+        )
     }
 }

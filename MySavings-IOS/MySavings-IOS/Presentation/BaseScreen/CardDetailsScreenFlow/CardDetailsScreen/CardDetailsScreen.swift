@@ -58,7 +58,7 @@ struct CardDetailsScreen: View {
     
     @ViewBuilder
     func Header() -> some View {
-        BudgetView(cardId: id)
+        BudgetView(needsRefresh: .constant(.init()), cardId: id)
             .padding(.bottom, 40)
         
         CreditCardView(card: card, isNavigatable: false)

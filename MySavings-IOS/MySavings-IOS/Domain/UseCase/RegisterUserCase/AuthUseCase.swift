@@ -27,7 +27,7 @@ class AuthUseCase {
             try userRepository.fetch()
                 .first()
                 .map{
-                    $0.toUserModel()
+                    PersistingUser(userDataModel: $0.toUserModel(), userCd: $0)
                 }
                 .sink(receiveValue: { [weak self] userDataModel in
                     self?.delegate?.handleResult(result: .login(.success(userDataModel)))
@@ -48,7 +48,11 @@ class AuthUseCase {
         do{
             let model = UserDataModel(password: authUser.password, username: authUser.name)
            try userRepository.create(model)
-            delegate?.handleResult(result: .register(.success(model)))
+           try userRepository.fetch(with: model.id)
+                .sink(receiveValue: {[weak self] userCd in
+                    self?.delegate?.handleResult(result: .register(.success(PersistingUser(userDataModel: model, userCd: userCd))))
+                })
+                .store(in: &subscriptions)
         }catch{
             delegate?.handleResult(result: .register(.failure(.domain(error))))
         }

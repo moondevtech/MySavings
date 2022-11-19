@@ -9,5 +9,5 @@ import Foundation
 
 
 enum AuthViewModelOutput {
-    case register(Result<UserDataModel,AuthError>), login(Result<UserDataModel,AuthError>)
+    case register(Result<PersistingUser,AuthError>), login(Result<PersistingUser,AuthError>)
 }

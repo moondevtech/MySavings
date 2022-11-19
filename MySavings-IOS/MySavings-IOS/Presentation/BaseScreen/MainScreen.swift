@@ -55,7 +55,7 @@ struct MainScreen: View {
                 
                 switch mainRouter.route{
                 case .main :
-                    BaseView()
+                    HomeScreen()
                         .navigationBarTitle("Cards")
 
                 case .expenses:
@@ -256,15 +256,15 @@ struct MainScreen: View {
         }
     }
     
-    
-    @ViewBuilder
-    func BaseView() -> some View {
-            VStack{
-                BudgetView()
-                Spacer()
-                CardStackView()
-            }
-    }
+//    
+//    @ViewBuilder
+//    func BaseView() -> some View {
+//            VStack{
+//                BudgetView()
+//                Spacer()
+//                CardStackView()
+//            }
+//    }
     
     @ViewBuilder
     func MenuButtonOpener() -> some View{
