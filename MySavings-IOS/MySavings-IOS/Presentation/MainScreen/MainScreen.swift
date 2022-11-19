@@ -44,8 +44,6 @@ struct MainScreen: View {
     @State var successScaleEffect :  CGFloat = 0.0
     @State var isSuccess :  Bool = true
 
-
-    
     @EnvironmentObject var router : Router
     
     var body: some View {

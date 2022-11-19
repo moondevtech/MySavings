@@ -94,6 +94,12 @@
 		8765BFAD291FC12D00989F81 /* CardManagementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFA8291FC12D00989F81 /* CardManagementType.swift */; };
 		8765BFAF291FC1FA00989F81 /* CardManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFAE291FC1FA00989F81 /* CardManagementViewModel.swift */; };
 		8765BFB429260C7F00989F81 /* TransactionItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFB329260C7F00989F81 /* TransactionItemRow.swift */; };
+		8765BFB72928D21100989F81 /* TransactionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFB62928D21100989F81 /* TransactionsScreen.swift */; };
+		8765BFB92928D3B700989F81 /* CardBudgetListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFB82928D3B700989F81 /* CardBudgetListScreenView.swift */; };
+		8765BFBC2928D73E00989F81 /* BudgetListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFBB2928D73E00989F81 /* BudgetListScreen.swift */; };
+		8765BFBE2928DA9000989F81 /* NewTransactionFormScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFBD2928DA9000989F81 /* NewTransactionFormScreen.swift */; };
+		8765BFC12928DB3500989F81 /* NewTransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFC02928DB3500989F81 /* NewTransactionModel.swift */; };
+		8765BFC42928DB8A00989F81 /* BudgetRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BFC32928DB8A00989F81 /* BudgetRowModel.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -223,6 +229,12 @@
 		8765BFA8291FC12D00989F81 /* CardManagementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagementType.swift; sourceTree = "<group>"; };
 		8765BFAE291FC1FA00989F81 /* CardManagementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagementViewModel.swift; sourceTree = "<group>"; };
 		8765BFB329260C7F00989F81 /* TransactionItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionItemRow.swift; sourceTree = "<group>"; };
+		8765BFB62928D21100989F81 /* TransactionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsScreen.swift; sourceTree = "<group>"; };
+		8765BFB82928D3B700989F81 /* CardBudgetListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBudgetListScreenView.swift; sourceTree = "<group>"; };
+		8765BFBB2928D73E00989F81 /* BudgetListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListScreen.swift; sourceTree = "<group>"; };
+		8765BFBD2928DA9000989F81 /* NewTransactionFormScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionFormScreen.swift; sourceTree = "<group>"; };
+		8765BFC02928DB3500989F81 /* NewTransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionModel.swift; sourceTree = "<group>"; };
+		8765BFC32928DB8A00989F81 /* BudgetRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetRowModel.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
@@ -505,14 +517,17 @@
 			path = AuthViewModels;
 			sourceTree = "<group>";
 		};
-		8765BF63291C1B3900989F81 /* CardDetailsScreen */ = {
+		8765BF63291C1B3900989F81 /* CardDetailsScreenFlow */ = {
 			isa = PBXGroup;
 			children = (
-				8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */,
-				8765BF87291CB37300989F81 /* CardDetailsScreenViewModel.swift */,
-				8765BFB329260C7F00989F81 /* TransactionItemRow.swift */,
+				8765BFC22928DB7000989F81 /* CardDetailsScreenViewModel */,
+				8765BFBF2928DAFC00989F81 /* CardDetailsScreen */,
+				8765BFBA2928D71800989F81 /* TransactionScreen */,
+				8765BFB82928D3B700989F81 /* CardBudgetListScreenView.swift */,
+				8765BFBB2928D73E00989F81 /* BudgetListScreen.swift */,
+				8765BFBD2928DA9000989F81 /* NewTransactionFormScreen.swift */,
 			);
-			path = CardDetailsScreen;
+			path = CardDetailsScreenFlow;
 			sourceTree = "<group>";
 		};
 		8765BF6E291C1E2000989F81 /* CardStackView */ = {
@@ -583,6 +598,33 @@
 				8776A1EE291048E90082D606 /* Persistence.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		8765BFBA2928D71800989F81 /* TransactionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8765BFB329260C7F00989F81 /* TransactionItemRow.swift */,
+				8765BFB62928D21100989F81 /* TransactionsScreen.swift */,
+			);
+			path = TransactionScreen;
+			sourceTree = "<group>";
+		};
+		8765BFBF2928DAFC00989F81 /* CardDetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */,
+				8765BFC02928DB3500989F81 /* NewTransactionModel.swift */,
+			);
+			path = CardDetailsScreen;
+			sourceTree = "<group>";
+		};
+		8765BFC22928DB7000989F81 /* CardDetailsScreenViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8765BF87291CB37300989F81 /* CardDetailsScreenViewModel.swift */,
+				8765BFC32928DB8A00989F81 /* BudgetRowModel.swift */,
+			);
+			path = CardDetailsScreenViewModel;
 			sourceTree = "<group>";
 		};
 		8776A1D9291048E80082D606 = {
@@ -756,7 +798,7 @@
 				8765BF8C291F954000989F81 /* CardManagementScreen */,
 				8765BF89291CBA6C00989F81 /* MenuView */,
 				8765BF6E291C1E2000989F81 /* CardStackView */,
-				8765BF63291C1B3900989F81 /* CardDetailsScreen */,
+				8765BF63291C1B3900989F81 /* CardDetailsScreenFlow */,
 				87E6B18F291B909D00DA254C /* BudgetView */,
 				87E6B17E291B75A500DA254C /* MainScreen.swift */,
 			);
@@ -884,6 +926,7 @@
 				87E6B181291B8FA000DA254C /* BudgetView.swift in Sources */,
 				8765BF77291C1E6700989F81 /* CardListUseCaseDelegate.swift in Sources */,
 				8776A214291222590082D606 /* ExpenseGraphModel.swift in Sources */,
+				8765BFBE2928DA9000989F81 /* NewTransactionFormScreen.swift in Sources */,
 				87E6B186291B903200DA254C /* BudgetInput.swift in Sources */,
 				8765BFAC291FC12D00989F81 /* CardManagementInput.swift in Sources */,
 				87E6B16C291A119C00DA254C /* CardType.swift in Sources */,
@@ -908,6 +951,7 @@
 				87E6B17A291B657B00DA254C /* InjectedUser.swift in Sources */,
 				871E965F291698820034D05A /* SuccessView.swift in Sources */,
 				871E9679291766510034D05A /* AuthBudget.swift in Sources */,
+				8765BFB72928D21100989F81 /* TransactionsScreen.swift in Sources */,
 				871E9663291699C40034D05A /* AddFirstCardTab.swift in Sources */,
 				870B584029143C9B00ED1810 /* UserDataSourceDelegate.swift in Sources */,
 				8765BF84291CB31200989F81 /* CardDetailUseCaseDelegate.swift in Sources */,
@@ -926,6 +970,7 @@
 				8765BFB429260C7F00989F81 /* TransactionItemRow.swift in Sources */,
 				8765BF8E291F955300989F81 /* CardManagementScreen.swift in Sources */,
 				871E969B29177AA30034D05A /* FirstCardViewModel.swift in Sources */,
+				8765BFC42928DB8A00989F81 /* BudgetRowModel.swift in Sources */,
 				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
 				871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */,
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
@@ -933,12 +978,14 @@
 				870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */,
 				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
 				87E6B188291B903C00DA254C /* BudgetOutput.swift in Sources */,
+				8765BFBC2928D73E00989F81 /* BudgetListScreen.swift in Sources */,
 				87E6B15E291A0A6300DA254C /* FirstCardOutput.swift in Sources */,
 				871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */,
 				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
 				871E969629177A1B0034D05A /* AuthUseCase.swift in Sources */,
 				8765BF88291CB37300989F81 /* CardDetailsScreenViewModel.swift in Sources */,
 				871E9692291779E20034D05A /* AuthViewModelType.swift in Sources */,
+				8765BFB92928D3B700989F81 /* CardBudgetListScreenView.swift in Sources */,
 				8765BF73291C1E5200989F81 /* CardListVMOutput.swift in Sources */,
 				87E6B18A291B904600DA254C /* BudgetVMType.swift in Sources */,
 				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
@@ -949,6 +996,7 @@
 				871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				8776A1FC291049840082D606 /* CardUser.swift in Sources */,
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
+				8765BFC12928DB3500989F81 /* NewTransactionModel.swift in Sources */,
 				871E964B29165F250034D05A /* TransactionsCD+CoreDataClass.swift in Sources */,
 				871E964C29165F250034D05A /* TransactionsCD+CoreDataProperties.swift in Sources */,
 				871E966629169C5F0034D05A /* BudgetListFirstCard.swift in Sources */,
