@@ -19,7 +19,7 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
             header()
             ScrollView {
                 ForEach($parentViewModel.budgetRow, id: \.self) { $row in
-                    BudgetRowButton(row)
+                    BudgetButtonOrLink(row)
                 }
                 .padding(.top, 50)
             }
@@ -29,8 +29,7 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
     
     
     @ViewBuilder
-    func BudgetRowButton(_ row : BudgetRowModel) -> some View {
-      //  ZStack{
+    func BudgetButtonOrLink(_ row : BudgetRowModel) -> some View {
             if let transactions =  row.budgetDataModel.transactions,
                !transactions.isEmpty{
                 NavigationLink {
@@ -45,7 +44,6 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
             }else{
                 RowBudgetButton(row.budgetDataModel)
             }
-       // }
         
     }
     
