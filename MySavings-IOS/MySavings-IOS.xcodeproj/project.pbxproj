@@ -734,7 +734,6 @@
 				87E6B16F291A1B6F00DA254C /* ToolView */,
 				871E96672916A4A40034D05A /* Router */,
 				870B583B29143B5B00ED1810 /* AuthScreen */,
-				870B581C29123C3E00ED1810 /* ExpensesScreen */,
 				8776A20029104AAD0082D606 /* CreditCardView.swift */,
 			);
 			path = Presentation;
@@ -829,6 +828,7 @@
 		87E6B17D291B757E00DA254C /* BaseScreen */ = {
 			isa = PBXGroup;
 			children = (
+				870B581C29123C3E00ED1810 /* ExpensesScreen */,
 				8765BFC52928F7E400989F81 /* HomeScreen */,
 				8765BF8C291F954000989F81 /* CardManagementScreen */,
 				8765BF89291CBA6C00989F81 /* MenuView */,
