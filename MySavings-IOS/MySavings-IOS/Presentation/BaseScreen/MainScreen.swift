@@ -59,7 +59,7 @@ struct MainScreen: View {
                         .navigationBarTitle("Cards")
 
                 case .expenses:
-                    WalletView()
+                    ExpensesScreen()
                         .preferredColorScheme(.dark)
                         .navigationBarTitle("Expenses")
 

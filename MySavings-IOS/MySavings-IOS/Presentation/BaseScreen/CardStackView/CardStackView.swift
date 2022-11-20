@@ -25,9 +25,6 @@ struct CardStackView: View {
         .onReceive(cardStackViewModel.toCarddetailsEvent, perform: { cardDetails in
             cardToShow = cardDetails
         })
-        .onReceive(cardStackViewModel.userHasChanged, perform: { _ in
-            cardStackViewModel.handleInput(.fetchCards)
-        })
         .sheet(item: $cardToShow,onDismiss: {
             parentVientModel.handleInput(.refresh)
         }, content: { cardModel in

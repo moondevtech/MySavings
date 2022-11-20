@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Charts
 
-struct ExpenseGraphModel : Identifiable{
+struct ExpenseGraphModel : Identifiable, Equatable, Hashable{
     
     var id : UUID = UUID()
     

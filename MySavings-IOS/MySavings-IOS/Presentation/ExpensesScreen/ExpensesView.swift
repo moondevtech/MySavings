@@ -14,21 +14,16 @@ struct ExpensesView: View {
         case displayed, hidden
     }
     
-    @EnvironmentObject var viewModel : WalletViewModel
+    @EnvironmentObject var viewModel : ExpensesScreenViewModel
     @State var hideExpensesView : Bool = false
     @State var visibleState : VisibleState = .displayed
     @State var currentScrollValue : CGFloat = .zero
         
     var body: some View {
         let width : CGFloat = 400
-        let height : CGFloat = viewModel.hideExpensesView ? 1 : 400
+        let height : CGFloat =  400
         
         VStack {
-            
-//            Label("Expenses", systemImage: "lines.measurement.horizontal")
-//                .frame(width: 300, alignment: .leading)
-//                .font(.title.bold())
-            
             ScrollView(.horizontal){
                 ScrollViewReader{ reader in
                     Chart{
@@ -83,6 +78,6 @@ struct ExpensesView: View {
 struct ExpensesView_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesView()
-            .environmentObject(WalletViewModel())
+            .environmentObject(ExpensesScreenViewModel())
     }
 }

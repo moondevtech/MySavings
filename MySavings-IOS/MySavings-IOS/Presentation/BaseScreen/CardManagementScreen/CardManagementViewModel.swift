@@ -15,21 +15,9 @@ class CardManagementViewModel : ObservableObject {
     private lazy var useCase : CardManagementUseCase = .init(delegate: self)
     var subscriptions : Set<AnyCancellable> = .init()
     var cardHolderEvent : PassthroughSubject<CardHolder,Never> = .init()
-    var userHasChanged : PassthroughSubject<Bool,Never> = .init()
     @Published var cards : [CardModel] = .init()
     
-    init(){
-        observeUser()
-    }
-    
-    private func observeUser(){
-        $user.sink {[weak self] user in
-            self?.userHasChanged.send(true)
-            print("user has changed")
-        }
-        .store(in: &subscriptions)
-    }
-    
+
     private func handleCardFetched(_ fetched : CardFetched){
         switch fetched {
         case .success(let cards):

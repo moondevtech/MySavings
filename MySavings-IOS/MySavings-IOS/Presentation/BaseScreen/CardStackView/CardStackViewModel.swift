@@ -16,7 +16,6 @@ class CardStackViewModel : ObservableObject {
     private lazy var useCase : CardListUseCase = .init(delegate: self)
     var subscriptions : Set<AnyCancellable> = .init()
     var toCarddetailsEvent : PassthroughSubject<CardModel,Never> = .init()
-    var userHasChanged : PassthroughSubject<Bool,Never> = .init()
     var moveToSuccess : PassthroughSubject<Bool,Never> = .init()
 
     @Published var cards : [CardModel] = .init()

@@ -25,7 +25,7 @@ struct SelectedCardsView: View {
                             dimiss.callAsFunction()
                         }
                     
-                    VStack {
+                    ScrollView {
                         ForEach(card.cardData.transaction, id: \.self) { transaction in
                             HStack{
                                 Text(transaction.reason)

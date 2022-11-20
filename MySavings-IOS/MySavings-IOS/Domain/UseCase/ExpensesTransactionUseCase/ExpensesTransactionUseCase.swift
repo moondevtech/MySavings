@@ -8,32 +8,11 @@
 import Foundation
 import Combine
 
-enum TransactionInput {
+class ExpensesTransactionUseCase {
     
-   case fetch([CardModel]), filter(([CardModel],String))
+    weak var delegate : ExpensesTransactionUseCaseDelegate?
     
-}
-
-protocol TransactionType {
-    
-    func handleTransactions(with input : TransactionInput)
-    
-}
-
-protocol TransactionUseCaseDelegate : AnyObject {
-    
-    func graphTransactions(with result : AnyPublisher<[ExpenseGraphModel], Never>)
-    
-    func cardUsedForPayments(with result : AnyPublisher<[CardModel], Never>)
-
-}
-
-
-class TransactionUseCase {
-    
-    weak var delegate : TransactionUseCaseDelegate?
-    
-    init(delegate: TransactionUseCaseDelegate?) {
+    init(delegate: ExpensesTransactionUseCaseDelegate) {
         self.delegate = delegate
     }
     
@@ -52,8 +31,12 @@ class TransactionUseCase {
                     }
                     .eraseToAnyPublisher()
             }
-            .collect()
+            .flatMap(maxPublishers: .max(1)){
+                Just($0)
+                    .delay(for: 0.2, scheduler: RunLoop.main)
+            }
             .eraseToAnyPublisher()
+
         
         delegate?.graphTransactions(with: publisher)
     }
@@ -65,11 +48,15 @@ class TransactionUseCase {
                 cardModel.cardData.transaction
                     .publisher
                     .filter {$0.dayDateString == input.1}
-                    .map{ _ in
-                        cardModel
+                    .collect()
+                    .map{ transactions in
+                        var copy = cardModel
+                        copy.cardData.transaction = transactions
+                        return copy
                     }
                     .eraseToAnyPublisher()
             }
+            .removeDuplicates()
             .collect()
             .eraseToAnyPublisher()
         

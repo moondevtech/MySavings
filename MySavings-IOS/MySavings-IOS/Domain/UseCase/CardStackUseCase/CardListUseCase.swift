@@ -30,6 +30,7 @@ class CardListUseCase {
                 .sink(receiveValue: { [weak self] _ in
                     self?.delegate?.handleOuput(.userUpdated)
                 })
+                .store(in: &subscriptions)
         }catch{
             Log.e(error: error)
         }
@@ -39,14 +40,19 @@ class CardListUseCase {
         data
             .publisher
             .map { card in
-                CardModel(
+                let transactions = card.budgets?.compactMap{$0.transactions}.flatMap{$0}
+                let transactionData =  transactions?.compactMap({ t in
+                    TransactionData(date: t.transactionData, reason: t.transactionTitle, amount: t.amount)
+                }) ?? []
+               return  CardModel(
                     id: card.id,
                     cardData: .init(
                         name: card.cardHolder,
                         cardNumber : card.cardNumber,
                         expired: card.expirationDate,
                         cvv : card.cvv,
-                        type: card.creditCardType.rawValue
+                        type: card.creditCardType.rawValue,
+                        transaction: transactionData
                     )
                 )
             }

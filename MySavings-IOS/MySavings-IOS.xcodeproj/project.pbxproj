@@ -7,19 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870B581E29123C6200ED1810 /* MonthAllowedBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B581D29123C6200ED1810 /* MonthAllowedBudgetView.swift */; };
-		870B582029123CCC00ED1810 /* SelectedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B581F29123CCC00ED1810 /* SelectedCardView.swift */; };
 		870B582229123DA100ED1810 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582129123DA100ED1810 /* ExpensesView.swift */; };
-		870B582429123EBE00ED1810 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582329123EBE00ED1810 /* CardListView.swift */; };
 		870B58262912447800ED1810 /* SelectedCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B58252912447800ED1810 /* SelectedCardsView.swift */; };
-		870B582829136FEE00ED1810 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582729136FEE00ED1810 /* WalletViewModel.swift */; };
-		870B582C2913718400ED1810 /* CardSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582B2913718400ED1810 /* CardSelectionInput.swift */; };
-		870B582F291371F500ED1810 /* CardSelectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582E291371F500ED1810 /* CardSelectorType.swift */; };
-		870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B58302913727C00ED1810 /* CardSelectionUseCase.swift */; };
-		870B583429137AF900ED1810 /* AmountRemainingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583329137AF900ED1810 /* AmountRemainingInput.swift */; };
-		870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */; };
-		870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */; };
-		870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B58392913928900ED1810 /* TransactionUseCase.swift */; };
+		870B582829136FEE00ED1810 /* ExpensesScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B582729136FEE00ED1810 /* ExpensesScreenViewModel.swift */; };
+		870B583A2913928900ED1810 /* ExpensesTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B58392913928900ED1810 /* ExpensesTransactionUseCase.swift */; };
 		870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583D29143C8B00ED1810 /* UserLocalDataSource.swift */; };
 		870B584029143C9B00ED1810 /* UserDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B583F29143C9B00ED1810 /* UserDataSourceDelegate.swift */; };
 		870B584229143CA900ED1810 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B584129143CA900ED1810 /* LocalDataSource.swift */; };
@@ -114,6 +105,10 @@
 		8768B5962928FE6600D01CFE /* TransactionVMOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B5952928FE6600D01CFE /* TransactionVMOutput.swift */; };
 		8768B5982928FE7900D01CFE /* TransactionVMInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B5972928FE7900D01CFE /* TransactionVMInput.swift */; };
 		8768B59A2928FE9000D01CFE /* TransactionScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B5992928FE9000D01CFE /* TransactionScreenModel.swift */; };
+		8768B59D2929F05A00D01CFE /* ExpensesTransactionUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B59C2929F05A00D01CFE /* ExpensesTransactionUseCaseDelegate.swift */; };
+		8768B59F2929F07100D01CFE /* ExpensesTransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B59E2929F07100D01CFE /* ExpensesTransactionType.swift */; };
+		8768B5A12929F08800D01CFE /* ExpensesTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B5A02929F08800D01CFE /* ExpensesTransactionInput.swift */; };
+		8768B5A32929F1E400D01CFE /* SelectedCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B5A22929F1E400D01CFE /* SelectedCardContent.swift */; };
 		8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */; };
 		8776A1E8291048E80082D606 /* BaseFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1E7291048E80082D606 /* BaseFlowView.swift */; };
 		8776A1EA291048E90082D606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8776A1E9291048E90082D606 /* Assets.xcassets */; };
@@ -123,7 +118,7 @@
 		8776A1FC291049840082D606 /* CardUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1FB291049840082D606 /* CardUser.swift */; };
 		8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A1FD291049B10082D606 /* CreditCardData.swift */; };
 		8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A20029104AAD0082D606 /* CreditCardView.swift */; };
-		8776A203291052200082D606 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A202291052200082D606 /* WalletView.swift */; };
+		8776A203291052200082D606 /* ExpensesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A202291052200082D606 /* ExpensesScreen.swift */; };
 		8776A2052911175D0082D606 /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A2042911175D0082D606 /* TransactionData.swift */; };
 		8776A2082911654E0082D606 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A2072911654E0082D606 /* CardModel.swift */; };
 		8776A20B291165830082D606 /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A20A291165830082D606 /* Date + Extensions.swift */; };
@@ -156,19 +151,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		870B581D29123C6200ED1810 /* MonthAllowedBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAllowedBudgetView.swift; sourceTree = "<group>"; };
-		870B581F29123CCC00ED1810 /* SelectedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCardView.swift; sourceTree = "<group>"; };
 		870B582129123DA100ED1810 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
-		870B582329123EBE00ED1810 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		870B58252912447800ED1810 /* SelectedCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCardsView.swift; sourceTree = "<group>"; };
-		870B582729136FEE00ED1810 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
-		870B582B2913718400ED1810 /* CardSelectionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectionInput.swift; sourceTree = "<group>"; };
-		870B582E291371F500ED1810 /* CardSelectorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectorType.swift; sourceTree = "<group>"; };
-		870B58302913727C00ED1810 /* CardSelectionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectionUseCase.swift; sourceTree = "<group>"; };
-		870B583329137AF900ED1810 /* AmountRemainingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainingInput.swift; sourceTree = "<group>"; };
-		870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainCounterType.swift; sourceTree = "<group>"; };
-		870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountRemainingUseCase.swift; sourceTree = "<group>"; };
-		870B58392913928900ED1810 /* TransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUseCase.swift; sourceTree = "<group>"; };
+		870B582729136FEE00ED1810 /* ExpensesScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesScreenViewModel.swift; sourceTree = "<group>"; };
+		870B58392913928900ED1810 /* ExpensesTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTransactionUseCase.swift; sourceTree = "<group>"; };
 		870B583D29143C8B00ED1810 /* UserLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalDataSource.swift; sourceTree = "<group>"; };
 		870B583F29143C9B00ED1810 /* UserDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSourceDelegate.swift; sourceTree = "<group>"; };
 		870B584129143CA900ED1810 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
@@ -263,6 +249,10 @@
 		8768B5952928FE6600D01CFE /* TransactionVMOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVMOutput.swift; sourceTree = "<group>"; };
 		8768B5972928FE7900D01CFE /* TransactionVMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVMInput.swift; sourceTree = "<group>"; };
 		8768B5992928FE9000D01CFE /* TransactionScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionScreenModel.swift; sourceTree = "<group>"; };
+		8768B59C2929F05A00D01CFE /* ExpensesTransactionUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTransactionUseCaseDelegate.swift; sourceTree = "<group>"; };
+		8768B59E2929F07100D01CFE /* ExpensesTransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTransactionType.swift; sourceTree = "<group>"; };
+		8768B5A02929F08800D01CFE /* ExpensesTransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTransactionInput.swift; sourceTree = "<group>"; };
+		8768B5A22929F1E400D01CFE /* SelectedCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCardContent.swift; sourceTree = "<group>"; };
 		8776A1E2291048E80082D606 /* MySavings-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MySavings-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8776A1E5291048E80082D606 /* MySavings_IOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySavings_IOSApp.swift; sourceTree = "<group>"; };
 		8776A1E7291048E80082D606 /* BaseFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowView.swift; sourceTree = "<group>"; };
@@ -273,7 +263,7 @@
 		8776A1FB291049840082D606 /* CardUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUser.swift; sourceTree = "<group>"; };
 		8776A1FD291049B10082D606 /* CreditCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardData.swift; sourceTree = "<group>"; };
 		8776A20029104AAD0082D606 /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
-		8776A202291052200082D606 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		8776A202291052200082D606 /* ExpensesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesScreen.swift; sourceTree = "<group>"; };
 		8776A2042911175D0082D606 /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		8776A2072911654E0082D606 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		8776A20A291165830082D606 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
@@ -316,48 +306,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		870B581C29123C3E00ED1810 /* WalletScreen */ = {
+		870B581C29123C3E00ED1810 /* ExpensesScreen */ = {
 			isa = PBXGroup;
 			children = (
-				8776A202291052200082D606 /* WalletView.swift */,
-				870B581D29123C6200ED1810 /* MonthAllowedBudgetView.swift */,
-				870B581F29123CCC00ED1810 /* SelectedCardView.swift */,
+				8776A202291052200082D606 /* ExpensesScreen.swift */,
 				870B582129123DA100ED1810 /* ExpensesView.swift */,
-				870B582329123EBE00ED1810 /* CardListView.swift */,
 				870B58252912447800ED1810 /* SelectedCardsView.swift */,
-				870B582729136FEE00ED1810 /* WalletViewModel.swift */,
+				870B582729136FEE00ED1810 /* ExpensesScreenViewModel.swift */,
+				8768B5A22929F1E400D01CFE /* SelectedCardContent.swift */,
 			);
-			path = WalletScreen;
-			sourceTree = "<group>";
-		};
-		870B58292913701D00ED1810 /* Wallets */ = {
-			isa = PBXGroup;
-			children = (
-				870B583229137ADC00ED1810 /* MonthRemainingAmountUseCase */,
-				870B582A2913716400ED1810 /* CardSelectionUseCase */,
-				870B58392913928900ED1810 /* TransactionUseCase.swift */,
-			);
-			path = Wallets;
-			sourceTree = "<group>";
-		};
-		870B582A2913716400ED1810 /* CardSelectionUseCase */ = {
-			isa = PBXGroup;
-			children = (
-				870B582B2913718400ED1810 /* CardSelectionInput.swift */,
-				870B582E291371F500ED1810 /* CardSelectorType.swift */,
-				870B58302913727C00ED1810 /* CardSelectionUseCase.swift */,
-			);
-			path = CardSelectionUseCase;
-			sourceTree = "<group>";
-		};
-		870B583229137ADC00ED1810 /* MonthRemainingAmountUseCase */ = {
-			isa = PBXGroup;
-			children = (
-				870B583329137AF900ED1810 /* AmountRemainingInput.swift */,
-				870B583529137B4E00ED1810 /* AmountRemainCounterType.swift */,
-				870B583729137BC000ED1810 /* AmountRemainingUseCase.swift */,
-			);
-			path = MonthRemainingAmountUseCase;
+			path = ExpensesScreen;
 			sourceTree = "<group>";
 		};
 		870B583B29143B5B00ED1810 /* AuthScreen */ = {
@@ -513,6 +471,7 @@
 		871E968329176A260034D05A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				8768B59B2929EF9000D01CFE /* ExpensesTransactionUseCase */,
 				8768B58E2928FD9800D01CFE /* TransactionDetailsUseCase */,
 				8768B57F2928FBFF00D01CFE /* HomeScreenUsecase */,
 				8765BF8F291FC07900989F81 /* CardManagementUseCase */,
@@ -692,6 +651,17 @@
 			path = TransactionDetailsUseCase;
 			sourceTree = "<group>";
 		};
+		8768B59B2929EF9000D01CFE /* ExpensesTransactionUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				870B58392913928900ED1810 /* ExpensesTransactionUseCase.swift */,
+				8768B59C2929F05A00D01CFE /* ExpensesTransactionUseCaseDelegate.swift */,
+				8768B59E2929F07100D01CFE /* ExpensesTransactionType.swift */,
+				8768B5A02929F08800D01CFE /* ExpensesTransactionInput.swift */,
+			);
+			path = ExpensesTransactionUseCase;
+			sourceTree = "<group>";
+		};
 		8776A1D9291048E80082D606 = {
 			isa = PBXGroup;
 			children = (
@@ -740,7 +710,6 @@
 				871E964F291661720034D05A /* Repository */,
 				870B584D2914417A00ED1810 /* CoreData */,
 				870B583C29143C7100ED1810 /* LocalDataSources */,
-				870B58292913701D00ED1810 /* Wallets */,
 				8776A206291165400082D606 /* Model */,
 			);
 			path = Domain;
@@ -765,7 +734,7 @@
 				87E6B16F291A1B6F00DA254C /* ToolView */,
 				871E96672916A4A40034D05A /* Router */,
 				870B583B29143B5B00ED1810 /* AuthScreen */,
-				870B581C29123C3E00ED1810 /* WalletScreen */,
+				870B581C29123C3E00ED1810 /* ExpensesScreen */,
 				8776A20029104AAD0082D606 /* CreditCardView.swift */,
 			);
 			path = Presentation;
@@ -973,11 +942,10 @@
 				87E6B162291A0A8300DA254C /* FirstCardType.swift in Sources */,
 				8776A1F2291048E90082D606 /* MySavings_IOS.xcdatamodeld in Sources */,
 				8768B5852928FC5600D01CFE /* HomeScreenInputType.swift in Sources */,
-				870B582429123EBE00ED1810 /* CardListView.swift in Sources */,
 				87E6B18C291B905000DA254C /* BudgetUseCaseDelegate.swift in Sources */,
 				870B584529143CF800ED1810 /* DataSourceModelDelegate.swift in Sources */,
-				870B582029123CCC00ED1810 /* SelectedCardView.swift in Sources */,
 				871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */,
+				8768B59F2929F07100D01CFE /* ExpensesTransactionType.swift in Sources */,
 				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
 				8768B5832928FC3E00D01CFE /* HomeScreenOutput.swift in Sources */,
 				87E6B171291A1B9300DA254C /* ValidationField.swift in Sources */,
@@ -988,7 +956,7 @@
 				8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */,
 				87E6B160291A0A7700DA254C /* FirstCardError.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
-				870B582829136FEE00ED1810 /* WalletViewModel.swift in Sources */,
+				870B582829136FEE00ED1810 /* ExpensesScreenViewModel.swift in Sources */,
 				871E968E291779B30034D05A /* AuthViewModelOutput.swift in Sources */,
 				87E6B166291A0A9E00DA254C /* FirstCardUseCase.swift in Sources */,
 				8765BF6D291C1DCC00989F81 /* CardStackView.swift in Sources */,
@@ -1005,16 +973,15 @@
 				87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */,
 				871E964D29165F250034D05A /* CreditCardCD+CoreDataClass.swift in Sources */,
 				87E6B17C291B6AB800DA254C /* DynamicReference.swift in Sources */,
+				8768B59D2929F05A00D01CFE /* ExpensesTransactionUseCaseDelegate.swift in Sources */,
 				87E6B15C291A0A5600DA254C /* FirstCardInput.swift in Sources */,
 				87E6B17F291B75A500DA254C /* MainScreen.swift in Sources */,
 				8765BF82291CB30700989F81 /* CardDetailsOutput.swift in Sources */,
 				8765BF71291C1E4700989F81 /* CardListVMInput.swift in Sources */,
 				8768B5812928FC2000D01CFE /* HomeScreenInput.swift in Sources */,
 				871E968629176B6E0034D05A /* AuthViewModel.swift in Sources */,
-				870B582F291371F500ED1810 /* CardSelectorType.swift in Sources */,
 				870B58262912447800ED1810 /* SelectedCardsView.swift in Sources */,
 				87E6B18E291B905A00DA254C /* BudgetUseCase.swift in Sources */,
-				870B582C2913718400ED1810 /* CardSelectionInput.swift in Sources */,
 				871E963E29165E480034D05A /* TransactionDataModel.swift in Sources */,
 				8768B58D2928FD6E00D01CFE /* TransactionScreenViewModel.swift in Sources */,
 				8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */,
@@ -1047,18 +1014,17 @@
 				8765BF8E291F955300989F81 /* CardManagementScreen.swift in Sources */,
 				871E969B29177AA30034D05A /* FirstCardViewModel.swift in Sources */,
 				8765BFC42928DB8A00989F81 /* BudgetRowModel.swift in Sources */,
-				870B583A2913928900ED1810 /* TransactionUseCase.swift in Sources */,
+				8768B5A12929F08800D01CFE /* ExpensesTransactionInput.swift in Sources */,
+				870B583A2913928900ED1810 /* ExpensesTransactionUseCase.swift in Sources */,
 				8768B58B2928FCBA00D01CFE /* HomeScreenViewModel.swift in Sources */,
 				871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */,
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
 				87E6B169291A0CEA00DA254C /* CardDetailsView.swift in Sources */,
-				870B583629137B4E00ED1810 /* AmountRemainCounterType.swift in Sources */,
 				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
 				87E6B188291B903C00DA254C /* BudgetOutput.swift in Sources */,
 				8765BFBC2928D73E00989F81 /* BudgetListScreen.swift in Sources */,
 				87E6B15E291A0A6300DA254C /* FirstCardOutput.swift in Sources */,
 				871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */,
-				870B58312913727C00ED1810 /* CardSelectionUseCase.swift in Sources */,
 				871E969629177A1B0034D05A /* AuthUseCase.swift in Sources */,
 				8765BF88291CB37300989F81 /* CardDetailsScreenViewModel.swift in Sources */,
 				871E9692291779E20034D05A /* AuthViewModelType.swift in Sources */,
@@ -1080,7 +1046,6 @@
 				871E9688291772480034D05A /* FailureView.swift in Sources */,
 				8776A20B291165830082D606 /* Date + Extensions.swift in Sources */,
 				8768B5892928FC8000D01CFE /* HomeScreenUseCase.swift in Sources */,
-				870B581E29123C6200ED1810 /* MonthAllowedBudgetView.swift in Sources */,
 				871E967D291766860034D05A /* CardHolder.swift in Sources */,
 				870B584229143CA900ED1810 /* LocalDataSource.swift in Sources */,
 				871E9680291766E50034D05A /* BudgetCategoryRepository.swift in Sources */,
@@ -1090,16 +1055,15 @@
 				8765BFC72928F7F400989F81 /* HomeScreen.swift in Sources */,
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
 				8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */,
-				8776A203291052200082D606 /* WalletView.swift in Sources */,
+				8776A203291052200082D606 /* ExpensesScreen.swift in Sources */,
 				871E966B2916A4BF0034D05A /* Router.swift in Sources */,
 				871E9690291779CA0034D05A /* AuthError.swift in Sources */,
 				871E969829177A630034D05A /* AuthUser.swift in Sources */,
+				8768B5A32929F1E400D01CFE /* SelectedCardContent.swift in Sources */,
 				8765BF7E291CB2F000989F81 /* CardDetailsInput.swift in Sources */,
 				871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */,
 				871E9656291695C40034D05A /* StartTabView.swift in Sources */,
-				870B583829137BC000ED1810 /* AmountRemainingUseCase.swift in Sources */,
 				871E964E29165F250034D05A /* CreditCardCD+CoreDataProperties.swift in Sources */,
-				870B583429137AF900ED1810 /* AmountRemainingInput.swift in Sources */,
 				8765BFAB291FC12D00989F81 /* CardManagementUseCaseDelegate.swift in Sources */,
 				871E96522916618C0034D05A /* UserRepository.swift in Sources */,
 				8768B5872928FC6A00D01CFE /* HomeScreenOutputType.swift in Sources */,
