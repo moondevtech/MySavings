@@ -59,7 +59,7 @@ struct TransactionsScreen_Previews: PreviewProvider {
             transactions: .init(arrayLiteral: .init(
                 id: "1",
                 amount: 300,
-                transactionData: .init(),
+                transactionDate: .init(),
                 transactionTitle: "Food"))
         )
     }

@@ -27,7 +27,7 @@ extension TransactionsCD {
 extension TransactionsCD : Identifiable {
     
     func toTransactionDataModel() -> TransactionDataModel {
-        TransactionDataModel(id: id!, amount: amount, transactionData: transactionDate!, transactionTitle: transactionTitle!)
+        TransactionDataModel(id: id!, amount: amount, transactionDate: transactionDate!, transactionTitle: transactionTitle!)
     }
 
 }

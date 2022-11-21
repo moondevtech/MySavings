@@ -42,7 +42,7 @@ class CardListUseCase {
             .map { card in
                 let transactions = card.budgets?.compactMap{$0.transactions}.flatMap{$0}
                 let transactionData =  transactions?.compactMap({ t in
-                    TransactionData(date: t.transactionData, reason: t.transactionTitle, amount: t.amount)
+                    TransactionData(date: t.transactionDate, reason: t.transactionTitle, amount: t.amount)
                 }) ?? []
                return  CardModel(
                     id: card.id,

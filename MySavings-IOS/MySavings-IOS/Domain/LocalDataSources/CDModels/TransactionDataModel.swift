@@ -11,6 +11,6 @@ struct TransactionDataModel : DataSourceModelDelegate, Equatable, Hashable {
     
     var id : String
     var amount : Double
-    var transactionData : Date
+    var transactionDate : Date
     var transactionTitle : String
 }

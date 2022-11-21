@@ -64,9 +64,8 @@ struct MainScreen: View {
                         .navigationBarTitle("Expenses")
 
                 case .history:
-                    Text("History")
+                    PaymentHistoryScreen()
                         .navigationBarTitle("History")
-
 
                 case .settings:
                     Text("Settings")
