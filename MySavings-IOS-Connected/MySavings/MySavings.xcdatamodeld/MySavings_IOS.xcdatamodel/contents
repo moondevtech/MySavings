@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BudgetCategoryCD" representedClassName="BudgetCategoryCD" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="689397960" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+    </entity>
+    <entity name="BudgetCD" representedClassName="BudgetCD" syncable="YES">
+        <attribute name="amountSpent" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="maxAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="fromCard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CreditCardCD" inverseName="budgets" inverseEntity="CreditCardCD"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionsCD" inverseName="budget" inverseEntity="TransactionsCD"/>
+    </entity>
+    <entity name="CreditCardCD" representedClassName="CreditCardCD" syncable="YES">
+        <attribute name="accountNumber" attributeType="String" defaultValueString=""/>
+        <attribute name="cardHolder" attributeType="String" defaultValueString=""/>
+        <attribute name="cardNumber" attributeType="String" defaultValueString=""/>
+        <attribute name="cardType" attributeType="String" defaultValueString=""/>
+        <attribute name="cvv" attributeType="String" defaultValueString=""/>
+        <attribute name="expirationDate" attributeType="Date" defaultDateTimeInterval="689191920" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="budgets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BudgetCD" inverseName="fromCard" inverseEntity="BudgetCD"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserCD" inverseName="cards" inverseEntity="UserCD"/>
+    </entity>
+    <entity name="TransactionsCD" representedClassName="TransactionsCD" syncable="YES">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="transactionDate" attributeType="Date" defaultDateTimeInterval="689331840" usesScalarValueType="NO"/>
+        <attribute name="transactionTitle" attributeType="String" defaultValueString=""/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BudgetCD" inverseName="transactions" inverseEntity="BudgetCD"/>
+    </entity>
+    <entity name="UserCD" representedClassName="UserCD" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="password" attributeType="String" defaultValueString=""/>
+        <attribute name="registrationDate" attributeType="Date" defaultDateTimeInterval="689191980" usesScalarValueType="NO"/>
+        <attribute name="username" attributeType="String" defaultValueString=""/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CreditCardCD" inverseName="owner" inverseEntity="CreditCardCD"/>
+    </entity>
+</model>
