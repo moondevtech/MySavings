@@ -5,6 +5,7 @@ import models.login.AppUser
 
 var mockUser = AppUser(
     id = "testUser1".hashCode().toString(),
+    email = "jo@gmail.com",
     firstname = "Jhonny",
     lastname = "Card",
     dateOfBirth = GMTDate(
@@ -22,6 +23,7 @@ var mockUser = AppUser(
 
 var mockUserToDelete = AppUser(
     id = "toDelete",
+    email = "jo@gmail.com",
     firstname = "Jhonny",
     lastname = "Card",
     dateOfBirth = GMTDate(
