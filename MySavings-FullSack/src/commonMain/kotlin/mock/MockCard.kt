@@ -18,5 +18,6 @@ val mockCard = AppCreditCard(
         month = Month.JANUARY,
         year = 2028
     ).timestamp,
-    budgets = null
+    budgets = null,
+    bankName = "Hapoalim"
 )

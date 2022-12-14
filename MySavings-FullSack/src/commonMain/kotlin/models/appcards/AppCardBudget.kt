@@ -9,6 +9,6 @@ data class AppCardBudget(
     val maxAmount : Double,
     val amountSpent : Double,
     val cardId : String,
-    val  transactions: List<AppTransactions>?
+    val transactions: List<AppTransactions>?
 ) {
 }

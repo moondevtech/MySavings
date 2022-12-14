@@ -8,6 +8,7 @@ import models.appcards.AppCreditCard
 data class AppUser(
     override val id : String,
     val email : String,
+    val phoneNumber : String,
     val firstname : String,
     val lastname : String,
     val dateOfBirth : Long,
@@ -22,6 +23,7 @@ data class AppUser(
     companion object{
         const val PATH = "/user"
         const val PATH_LOGIN = "/login/user"
+        const val PATH_LOGIN_PHONE = "/login_phone/user"
         const val PATH_REGISTRATION = "/register/user"
         const val DB = "MY_SAVINGS_DB"
     }

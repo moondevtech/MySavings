@@ -42,5 +42,11 @@ class AppUserCollection(
         return user.first()
     }
 
+    suspend fun fetchWithPhoneNumber(phoneNumber : String) : AppUser? {
+        val phoneNumberBson = BsonDocument("phoneNumber", BsonString(phoneNumber))
+        val user =  collection.find(phoneNumberBson)
+        return user.first()
+    }
+
 }
 
