@@ -15,6 +15,10 @@ struct MySavings_App: App {
         WindowGroup {
             BaseFlowView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onAppear{
+                    testPostApi()
+                }
         }
     }
 }
+

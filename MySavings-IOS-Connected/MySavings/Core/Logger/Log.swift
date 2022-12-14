@@ -15,9 +15,10 @@ struct Log {
                   error : any Error
     ){
         print("""
-              ⭕️ - \(error.localizedDescription) \n
-                line - \(line)
+                <===========================>
                 function - \(function)
+                ⭕️ - \(error.localizedDescription) \n
+                line - \(line)
                 class - \(file)
         """)
     }
@@ -28,9 +29,10 @@ struct Log {
                   content : Any
     ){
         print("""
-              ✅ - \(content) \n
-                line - \(line)
+                <===========================>
                 function - \(function)
+                ✅ - \(content) \n
+                line - \(line)
                 class - \(file)
         """)
     }
@@ -41,9 +43,10 @@ struct Log {
                   content : Any
     ){
         print("""
-              ℹ️ - \(content) \n
-                line - \(line)
+                <===========================>
                 function - \(function)
+                ℹ️ - \(content) \n
+                line - \(line)
                 class - \(file)
         """)
     }
@@ -54,9 +57,10 @@ struct Log {
                   content : Any
     ){
         print("""
-              ⚠️ - \(content) \n
-                line - \(line)
+                <===========================>
                 function - \(function)
+                ⚠️ - \(content) \n
+                line - \(line)
                 class - \(file)
         """)
     }
