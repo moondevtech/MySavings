@@ -45,5 +45,6 @@ struct CardStackView_Previews: PreviewProvider {
         CardStackView()
             .environmentObject(CardStackViewModel())
             .environmentObject(Router())
+            .environmentObject(HomeScreenViewModel())
     }
 }

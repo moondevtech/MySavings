@@ -32,6 +32,7 @@ struct MainScreen: View {
     @StateObject var mainRouter : MainRouter = .init()
     @StateObject var viewModel : CardStackViewModel = .init()
     
+    @State var showAddFirstCard : Bool = false
     @State var showAddNewBudget : Bool = false
     @State var showMenu : Bool = false
     @State var scaleEffect : CGFloat = 1.0
@@ -90,22 +91,12 @@ struct MainScreen: View {
         
         }
         .environmentObject(viewModel)
-        .onChange(of: showMenu) { isShow in
-            menuTransitions(isShown: isShow)
-        }
+        .onChange(of: showMenu, perform: menuTransitions(_:))
         .toolbar {
             if !showMenu && mainRouter.route == .main{
                 
                 ToolbarItem(placement : .navigationBarLeading) {
-                    Button {
-                        showAddNewBudget.toggle()
-                    } label: {
-                        let image = "plus"
-                        Image(systemName: image)
-                            .foregroundColor(.white)
-                    }
-                    
-                    
+                    AddButton()
                 }
             }
             
@@ -118,6 +109,11 @@ struct MainScreen: View {
         }
         .sheet(isPresented: $showAddNewBudget) {
             NewBudgetFlow()
+        }
+        .sheet(isPresented: $showAddFirstCard) {
+            AddFirstCardTab(
+                tabSelection: .constant(0),
+                onCardAdded: handleFirstCardAdded)
         }
 
     }
@@ -256,15 +252,37 @@ struct MainScreen: View {
         }
     }
     
-//    
-//    @ViewBuilder
-//    func BaseView() -> some View {
-//            VStack{
-//                BudgetView()
-//                Spacer()
-//                CardStackView()
-//            }
-//    }
+    
+    @ViewBuilder
+    func AddButton() -> some View {
+        if viewModel.cards.count > 0 {
+            AddNewBudgetButton()
+        }else{
+            AddNewCardButton()
+        }
+    }
+    
+    @ViewBuilder
+    func AddNewCardButton() -> some View {
+        Button {
+            showAddFirstCard.toggle()
+        } label: {
+            let image = "creditcard"
+            Image(systemName: image)
+                .foregroundColor(.white)
+        }
+    }
+    
+    @ViewBuilder
+    func AddNewBudgetButton() -> some View {
+        Button {
+            showAddNewBudget.toggle()
+        } label: {
+            let image = "plus"
+            Image(systemName: image)
+                .foregroundColor(.white)
+        }
+    }
     
     @ViewBuilder
     func MenuButtonOpener() -> some View{
@@ -288,12 +306,17 @@ struct MainScreen: View {
     }
     
     
-    private func menuTransitions(isShown : Bool){
+    private func menuTransitions( _ isShown : Bool){
         withAnimation(.spring()) {
             scaleEffect = isShown ? 0.8 : 1.0
             angleRotation = isShown ? -90 : 0
             offsetX = isShown ? 100 : 0
         }
+    }
+    
+    private func handleFirstCardAdded() {
+        viewModel.handleInput(.fetchCards)
+        showAddFirstCard = false
     }
     
 

@@ -11,8 +11,9 @@ import Charts
 
 struct ExpensesScreen: View {
     
+    @EnvironmentObject var cardStackViewModel : CardStackViewModel
+
     @StateObject var viewModel : ExpensesScreenViewModel = .init()
-    @StateObject var cardStackViewModel : CardStackViewModel = .init()
     @State var selectedCards : SelectedCardContent? = nil
     
     var body: some View {
@@ -55,5 +56,6 @@ struct ExpensesScreen: View {
 struct ExpensesScreen_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesScreen()
+            .environmentObject(CardStackViewModel())
     }
 }

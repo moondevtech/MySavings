@@ -44,13 +44,7 @@ struct CardDetailsScreen: View {
             })
             .toolbar {
                 ToolbarItem(placement : .navigationBarLeading) {
-                    Button {
-                        newTransaction.tabButtonNavigation()
-                    } label: {
-                        Image(systemName: newTransaction.tabImage)
-                            .foregroundColor(.white)
-                    }
-                    
+                    AddTransactionButton()
                 }
             }
         }
@@ -76,6 +70,18 @@ struct CardDetailsScreen: View {
         .onAppear{
             withAnimation {
                 scaleEffect = 1.5
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func AddTransactionButton() -> some View {
+        if viewModel.budgetRow.count > 0 {
+            Button {
+                newTransaction.tabButtonNavigation()
+            } label: {
+                Image(systemName: newTransaction.tabImage)
+                    .foregroundColor(.white)
             }
         }
     }
