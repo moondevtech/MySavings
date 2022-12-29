@@ -324,8 +324,16 @@ struct MainScreen: View {
 }
 
 struct MainScreen_Previews: PreviewProvider {
+    
+
     static var previews: some View {
-        MainScreen()
+        
+        var viewModel : CardStackViewModel = .init()
+        
+        MainScreen(viewModel: viewModel)
             .environmentObject(Router())
+            .onAppear{
+                viewModel.cards = .init(repeating: .init(cardData: .init()), count: 1)
+            }
     }
 }

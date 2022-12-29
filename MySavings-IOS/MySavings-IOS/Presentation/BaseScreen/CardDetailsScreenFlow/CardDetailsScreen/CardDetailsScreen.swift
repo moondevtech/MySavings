@@ -60,7 +60,6 @@ struct CardDetailsScreen: View {
     }
     
     
-    
     @ViewBuilder
     func BudgetAndTransactions() ->some View{
         CardBudgetListScreenView(header: {
@@ -76,14 +75,12 @@ struct CardDetailsScreen: View {
     
     @ViewBuilder
     func AddTransactionButton() -> some View {
-        if viewModel.budgetRow.count > 0 {
             Button {
                 newTransaction.tabButtonNavigation()
             } label: {
                 Image(systemName: newTransaction.tabImage)
                     .foregroundColor(.white)
             }
-        }
     }
 }
 

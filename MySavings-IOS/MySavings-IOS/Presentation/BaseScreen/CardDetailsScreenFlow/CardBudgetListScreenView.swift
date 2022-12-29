@@ -22,6 +22,7 @@ struct CardBudgetListScreenView<Header> : View where Header :  View {
                     BudgetButtonOrLink(row)
                 }
                 .padding(.top, 50)
+                .redacted(reason: parentViewModel.budgetRow.isEmpty ? .placeholder : [])
             }
         }
         .preferredColorScheme(.dark)
