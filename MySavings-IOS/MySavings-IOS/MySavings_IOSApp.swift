@@ -13,8 +13,9 @@ struct MySavings_IOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            BaseFlowView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            OtpScreen()
+//            BaseFlowView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
