@@ -147,6 +147,8 @@
 		8776A210291171060082D606 /* Double + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A20F291171060082D606 /* Double + extensions.swift */; };
 		8776A21229121E650082D606 /* Color + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A21129121E650082D606 /* Color + Extensions.swift */; };
 		8776A214291222590082D606 /* ExpenseGraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8776A213291222590082D606 /* ExpenseGraphModel.swift */; };
+		87928CFE29607664003A1397 /* ValidOtpModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87928CFD29607664003A1397 /* ValidOtpModifiers.swift */; };
+		87928D01296076B4003A1397 /* ShakeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87928D00296076B4003A1397 /* ShakeModifier.swift */; };
 		87D84B13292B3DB5001FCA1F /* PaymentHistoyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B12292B3DB5001FCA1F /* PaymentHistoyViewModel.swift */; };
 		87D84B16292B3DEE001FCA1F /* PaymentHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B15292B3DEE001FCA1F /* PaymentHistoryUseCase.swift */; };
 		87D84B18292B3E16001FCA1F /* PaymentHistoryOutputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B17292B3E16001FCA1F /* PaymentHistoryOutputType.swift */; };
@@ -333,6 +335,8 @@
 		8776A20F291171060082D606 /* Double + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + extensions.swift"; sourceTree = "<group>"; };
 		8776A21129121E650082D606 /* Color + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extensions.swift"; sourceTree = "<group>"; };
 		8776A213291222590082D606 /* ExpenseGraphModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGraphModel.swift; sourceTree = "<group>"; };
+		87928CFD29607664003A1397 /* ValidOtpModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ValidOtpModifiers.swift; path = ../../../../../../../../../ValidOtpModifiers.swift; sourceTree = "<group>"; };
+		87928D00296076B4003A1397 /* ShakeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShakeModifier.swift; path = ../../../../../../../ShakeModifier.swift; sourceTree = "<group>"; };
 		87D84B12292B3DB5001FCA1F /* PaymentHistoyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoyViewModel.swift; sourceTree = "<group>"; };
 		87D84B15292B3DEE001FCA1F /* PaymentHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryUseCase.swift; sourceTree = "<group>"; };
 		87D84B17292B3E16001FCA1F /* PaymentHistoryOutputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryOutputType.swift; sourceTree = "<group>"; };
@@ -603,6 +607,7 @@
 		873D1294295F132F00151B2D /* OtpScreen */ = {
 			isa = PBXGroup;
 			children = (
+				87928CFC2960764B003A1397 /* Modifiers */,
 				873D12AB295F38E200151B2D /* OtpScreen.swift */,
 				873D129C295F230E00151B2D /* OtpModels */,
 				873D1296295F134200151B2D /* OtpFieldView.swift */,
@@ -638,13 +643,6 @@
 				873D12A5295F299300151B2D /* Flag.swift */,
 			);
 			path = Flags;
-			sourceTree = "<group>";
-		};
-		873D12E72960285E00151B2D /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Libraries;
 			sourceTree = "<group>";
 		};
 		873D12EF296031EB00151B2D /* PhoneNumberUseCase */ = {
@@ -879,7 +877,7 @@
 		8776A1F92910495E0082D606 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				873D12E72960285E00151B2D /* Libraries */,
+				87928CFF296076A4003A1397 /* Modifiers */,
 				873D1284295E02CB00151B2D /* DataStructure */,
 				87E6B16A291A118600DA254C /* CardMatcher */,
 				870B584729143E2B00ED1810 /* Logger */,
@@ -939,6 +937,22 @@
 			children = (
 			);
 			path = PreferenceKey;
+			sourceTree = "<group>";
+		};
+		87928CFC2960764B003A1397 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				87928CFD29607664003A1397 /* ValidOtpModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		87928CFF296076A4003A1397 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				87928D00296076B4003A1397 /* ShakeModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		87D84B14292B3DD6001FCA1F /* PaymentHistoryUseCase */ = {
@@ -1183,6 +1197,7 @@
 				87E6B1592918D1A300DA254C /* View.swift in Sources */,
 				8765BF86291CB31B00989F81 /* CardDetailsUseCase.swift in Sources */,
 				870B5864291657C000ED1810 /* BudgetDataModel.swift in Sources */,
+				87928CFE29607664003A1397 /* ValidOtpModifiers.swift in Sources */,
 				870B584C29143F6900ED1810 /* UserDataModel.swift in Sources */,
 				871E964729165F250034D05A /* UserCD+CoreDataClass.swift in Sources */,
 				8765BF6B291C1C6800989F81 /* CardDetailsScreen.swift in Sources */,
@@ -1269,6 +1284,7 @@
 				873D12F529603E5400151B2D /* OtpInputView.swift in Sources */,
 				8768B5872928FC6A00D01CFE /* HomeScreenOutputType.swift in Sources */,
 				87D84B16292B3DEE001FCA1F /* PaymentHistoryUseCase.swift in Sources */,
+				87928D01296076B4003A1397 /* ShakeModifier.swift in Sources */,
 				8765BFA9291FC12D00989F81 /* CardManagementUseCase.swift in Sources */,
 				87E6B164291A0A8F00DA254C /* FirstCardUseCaseDelegate.swift in Sources */,
 				87D84B18292B3E16001FCA1F /* PaymentHistoryOutputType.swift in Sources */,
