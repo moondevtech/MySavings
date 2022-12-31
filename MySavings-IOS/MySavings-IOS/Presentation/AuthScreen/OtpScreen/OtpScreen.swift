@@ -31,7 +31,6 @@ struct OtpScreen: View {
                     ScrollView{
                         ScrollViewReader{ reader in
                             VStack{
-                                
                                 PhoneNumberChoiceView()
                                     .frame(width: frame.width, height: frame.height  , alignment: .center)
                                     .id(0)
