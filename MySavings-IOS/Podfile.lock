@@ -1,0 +1,26 @@
+PODS:
+  - PhoneNumberKit (3.5.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.5.3)
+    - PhoneNumberKit/UIKit (= 3.5.3)
+  - PhoneNumberKit/PhoneNumberKitCore (3.5.3)
+  - PhoneNumberKit/UIKit (3.5.3):
+    - PhoneNumberKit/PhoneNumberKitCore
+
+DEPENDENCIES:
+  - PhoneNumberKit (from `https://github.com/marmelroy/PhoneNumberKit`)
+
+EXTERNAL SOURCES:
+  PhoneNumberKit:
+    :git: https://github.com/marmelroy/PhoneNumberKit
+
+CHECKOUT OPTIONS:
+  PhoneNumberKit:
+    :commit: b2c695c9aedc70edd8494e3ed0902a0817e57e41
+    :git: https://github.com/marmelroy/PhoneNumberKit
+
+SPEC CHECKSUMS:
+  PhoneNumberKit: 3070dc972345ce9df504b6cbb024835d7106c4e2
+
+PODFILE CHECKSUM: fc4b461316d5fa3067d7c24d67db8985c7ad52e4
+
+COCOAPODS: 1.11.3
