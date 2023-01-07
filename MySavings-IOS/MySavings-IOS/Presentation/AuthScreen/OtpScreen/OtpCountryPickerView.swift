@@ -15,20 +15,27 @@ struct OtpCountryPickerView: View , OtpViewScrolled {
     @EnvironmentObject var viewModel : OtpScreenViewModel
     
     var body: some View {
-        List(viewModel.searchResults, id:\.self,
-             selection : $viewModel.selectedFlag) { flag in
-            HStack{
-                Text(flag.emoji)
-                Text(flag.dial_code)
-                Text(flag.name)
+        NavigationView{
+            List(viewModel.searchResults, id:\.self,
+                 selection : $viewModel.selectedFlag) { flag in
+                HStack{
+                    Text(flag.emoji)
+                    Text(flag.dial_code)
+                    Text(flag.name)
+                }
+            }
+            .searchable(text: $viewModel.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always))
+            .navigationBarTitle("Pick a country")
+            .onReceive(viewModel.$selectedFlag, perform: { flag in
+                if flag == nil  { return }
+                print(flag!.emoji)
+                dismiss.callAsFunction()
+            })
+            .onAppear{
+                viewModel.searchText = ""
             }
         }
-        .searchable(text: $viewModel.searchText,
-                    placement: .navigationBarDrawer(displayMode: .always))
-        .navigationBarTitle("Pick a country")
-        .onReceive(viewModel.$selectedFlag, perform: { flag in
-            dismiss.callAsFunction()
-        })
     }
 }
 

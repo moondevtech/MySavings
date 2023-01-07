@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddFirstCardTab: View {
 
-    @Binding var tabSelection : Int
+    @Binding var authTabSelection : AuthScreen.AuthTab
     var onCardAdded : () -> Void
     //creditcard
     @State var card : CardHolder = .init()
@@ -23,8 +23,8 @@ struct AddFirstCardTab: View {
     @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var router : Router
     
-    init(tabSelection : Binding<Int>, onCardAdded : @escaping ()->Void) {
-        _tabSelection = tabSelection
+    init(authTabSelection : Binding<AuthScreen.AuthTab>, onCardAdded : @escaping ()->Void) {
+        _authTabSelection = authTabSelection
         self.onCardAdded = onCardAdded
     }
     
@@ -124,7 +124,7 @@ struct AddFirstCardTab: View {
 
 struct AddFirstCardTab_Previews: PreviewProvider {
     static var previews: some View {
-        AddFirstCardTab(tabSelection: .constant(1)){
+        AddFirstCardTab(authTabSelection: .constant(AuthScreen.AuthTab.addcard)){
             print("card added")
         }
             .environmentObject(AuthViewModel())

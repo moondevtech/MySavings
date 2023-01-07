@@ -13,5 +13,5 @@ enum OtpError {
 }
 
 enum OtpOutput {
-    case digitAdded(DigitModel), animatedOut(Int), removeDigit([DigitModel]), error(OtpError)
+    case digitAdded(DigitModel), animatedOut(Int), removeDigit([DigitModel]), error(OtpError), onDigitValidated
 }

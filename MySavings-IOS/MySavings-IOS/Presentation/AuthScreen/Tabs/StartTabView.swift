@@ -10,7 +10,7 @@ import SwiftUI
 struct StartTabView: View {
     
     @State var firstTabXOffset : CGFloat = -400
-    @Binding var tabSelection : Int 
+    @Binding var authTabselection : AuthScreen.AuthTab
     
     var body: some View {
         VStack{
@@ -20,7 +20,7 @@ struct StartTabView: View {
             
             LetsGoButton(title: "Let's go!"){
                 withAnimation(.spring()){
-                    tabSelection = 2
+                    authTabselection = .registration
                 }
             }
             .offset(x: firstTabXOffset)
@@ -36,6 +36,6 @@ struct StartTabView: View {
 
 struct StartTabView_Previews: PreviewProvider {
     static var previews: some View {
-        StartTabView(tabSelection: .constant(1))
+        StartTabView(authTabselection: .constant(.start) )
     }
 }

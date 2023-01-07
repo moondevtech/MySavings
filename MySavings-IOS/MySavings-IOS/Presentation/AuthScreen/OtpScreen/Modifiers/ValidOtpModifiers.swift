@@ -19,7 +19,7 @@ struct ValidOtpModifier : ViewModifier  {
                 Circle()
                     .trim(from: 0, to: isValid == .valid || isValid == .error ? 1 : 0)
                     .stroke(lineWidth: 2)
-                    .foregroundColor(isValid == .valid ? .green : .red)
+                    .foregroundColor(isValid == .valid ? .green :  isValid == .error ? .red : nil)
             }
             .animation(.linear.delay(delay), value: isValid)
     }

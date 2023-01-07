@@ -12,7 +12,7 @@ struct RegistrationSuccessTab: View {
     
     @State var imageScale : CGFloat =  0.0
     @State var successTabOffset : CGFloat = -800
-    @Binding var tabSelection : Int
+    @Binding var authTabSelection : AuthScreen.AuthTab
     @EnvironmentObject var authViewModel : AuthViewModel
     
     var body: some View {
@@ -25,7 +25,7 @@ struct RegistrationSuccessTab: View {
             HStack(spacing: 50){
                 LetsGoButton(title: "Add a card ?") {
                     withAnimation{
-                        tabSelection = 4
+                        authTabSelection = .addcard
                     }
                 }
                 
@@ -45,7 +45,7 @@ struct RegistrationSuccessTab: View {
 
 struct RegistrationSuccessTab_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationSuccessTab(tabSelection: .constant(3))
+        RegistrationSuccessTab(authTabSelection: .constant(.success))
             .environmentObject(AuthViewModel())
     }
 }

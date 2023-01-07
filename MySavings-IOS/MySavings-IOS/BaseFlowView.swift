@@ -42,11 +42,13 @@ struct BaseFlowView: View {
                         authViewModel.handleInput(authInput: .login)
                     }
                     .onReceive(authViewModel.isLoggedIn) { isLogged  in
-                        if isLogged{
-                            router.navigateToMain()
-                        }else{
-                            router.navigateToAuth()
-                        }
+//                        if isLogged{
+//                            router.navigateToMain()
+//                        }else{
+//                            router.navigateToAuth()
+//                        }
+                        router.navigateToAuth()
+
                 }
             }
         }

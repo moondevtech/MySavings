@@ -22,9 +22,14 @@ class OtpScreenViewModel : ObservableObject {
     var showError : PassthroughSubject<OtpScreenError, Never> = .init()
     var otpScreenScrollDestination : PassthroughSubject<Int, Never> = .init()
     var finishedRemovingEvent : PassthroughSubject<Void, Never> = .init()
+    var onOtpSuccessEvent : PassthroughSubject<Void, Never> = .init()
+
     var flags : [Flag] = []
+    
     @Published var selectedFlag : Flag?
     @Published var searchText : String = ""
+    @Published var digits : [DigitModel] = []
+
     
     var searchResults: [Flag] {
         if searchText.isEmpty {
@@ -34,12 +39,17 @@ class OtpScreenViewModel : ObservableObject {
         }
     }
     
-    @Published var digits : [DigitModel] = .init(arrayLiteral :.init(value: ""))
+    var subscriptions : Set<AnyCancellable> = .init()
+    
     
     init(){
         let reader = BundleResourceReader()
         flags = reader.fetch(.json(ResourceProvide.flags), type: [Flag].self)
-        selectedFlag = flags.first(where: {$0.emoji == "🇺🇸"})
+        initDigits()
+    }
+    
+    func initDigits(){
+        digits = .init(arrayLiteral :.init(value: ""))
     }
     
     private func handleDigitInput(_ digit : String){
@@ -62,6 +72,10 @@ class OtpScreenViewModel : ObservableObject {
         finishedRemovingEvent.send()
     }
     
+    private func handleOtpSuccess() {
+        onOtpSuccessEvent.send()
+    }
+    
     private func handleFormattedPhoneNumber(_ phoneNumber : Result<String, PhoneNumberCheckError>){
         switch phoneNumber {
         case .success(let success):
@@ -75,7 +89,7 @@ class OtpScreenViewModel : ObservableObject {
         }
         
     }
-    
+
     func otpScreenScroll(to destionationId : Int) {
         otpScreenScrollDestination.send(destionationId)
     }
@@ -92,8 +106,11 @@ extension OtpScreenViewModel : OtpInputType{
             handleInput(.remove)
         case .remove:
             useCase.onRemove(digits: Array(digits[1...]).reversed())
-        case .selectFlag(let flag) :
-            selectedFlag =  flag
+        case .validateDigits(let digits) :
+            useCase.validateDigits(digits: digits)
+        case .changePhoneNumber :
+            initDigits()
+            otpScreenScroll(to: 0)
         }
     }
 }
@@ -108,6 +125,8 @@ extension OtpScreenViewModel : OtpOutputType{
             handleRemovedDigit(digits)
         case .animatedOut(let index):
             handleAnimationOut(index)
+        case .onDigitValidated :
+            handleOtpSuccess()
         case .error(let error):
             //handle error
             break

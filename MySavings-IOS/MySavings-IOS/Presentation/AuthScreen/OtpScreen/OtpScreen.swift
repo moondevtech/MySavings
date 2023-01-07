@@ -20,50 +20,57 @@ struct OtpScreen: View {
     @State var displayedViewId : Int = -1
     @StateObject var viewModel : OtpScreenViewModel = .init()
     
+    @Binding var authTabselection : AuthScreen.AuthTab
+    
     var body: some View {
         
-        NavigationView {
-            VStack{
-                GeometryReader { geo in
-                    
-                    let frame = geo.frame(in : .global)
-                    
-                    ScrollView{
-                        ScrollViewReader{ reader in
-                            VStack{
-                                PhoneNumberChoiceView()
-                                    .frame(width: frame.width, height: frame.height  , alignment: .center)
-                                    .id(0)
-                                    .onAppear{
-                                        reader.scrollTo(0)
-                                    }
-                                
-                                
-                                OtpInputView()
-                                    .frame(width: frame.width, height: frame.height  , alignment: .center)
-                                    .id(1)
-                            }
-                            .frame(width: frame.width, height: frame.height * 2  , alignment: .center)
-                            .onReceive(viewModel.otpScreenScrollDestination) { destination in
-                                withAnimation(.spring()){
-                                    reader.scrollTo(destination)
+        VStack{
+            GeometryReader { geo in
+                
+                let frame = geo.frame(in : .global)
+                
+                ScrollView{
+                    ScrollViewReader{ reader in
+                        VStack{
+                            PhoneNumberChoiceView()
+                                .frame(width: frame.width, height: frame.height  , alignment: .center)
+                                .id(0)
+                                .onAppear{
+                                    reader.scrollTo(0)
                                 }
+                            
+                            
+                            OtpInputView()
+                                .frame(width: frame.width, height: frame.height  , alignment: .center)
+                                .id(1)
+                            
+                        }
+                        .frame(width: frame.width, height: frame.height * 2  , alignment: .center)
+                        .onReceive(viewModel.otpScreenScrollDestination) { destination in
+                            withAnimation(.spring()){
+                                reader.scrollTo(destination)
                             }
                         }
+                        .onReceive(viewModel.onOtpSuccessEvent) { _ in
+                            authTabselection = AuthScreen.AuthTab.success
+                        }
+                        
                     }
-                    .scrollEnabled(false)
                     
                 }
+                
             }
             .environmentObject(viewModel)
             .navigationBarTitle("")
         }
+        
     }
     
 }
 
 struct OtpScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OtpScreen()
+        OtpScreen(authTabselection: .constant(AuthScreen.AuthTab.otp))
+            .environmentObject(AuthViewModel())
     }
 }

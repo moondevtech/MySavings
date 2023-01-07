@@ -51,12 +51,11 @@ struct OtpInputView: View , OtpViewScrolled {
 
     var body: some View {
         ZStack{
-            
             HStack{
                 if viewModel.digits.count > 0 {
                     OneCaseField(digit: $viewModel.digits[0])
                         .focused($focusState, equals: .one)
-                        .onAppear(perform: updateFocusState)
+                      //  .onAppear(perform: updateFocusState)
                 }
                 
                 if viewModel.digits.count > 1 {
@@ -83,7 +82,6 @@ struct OtpInputView: View , OtpViewScrolled {
             .onReceive(viewModel.finishedRemovingEvent) { _ in
                 focusState = .one
             }
-            
             ChangePhoneNumberButton()
         }
         .onReceive(viewModel.moveFirstDigitIn, perform: { animateDigitIn(at:$0)})
@@ -97,7 +95,9 @@ struct OtpInputView: View , OtpViewScrolled {
         GeometryReader { geo in
             let frame =  geo.frame(in : .global)
             Button {
-                viewModel.otpScreenScroll(to: 0)
+                isValid = .idle
+                focusState = nil
+                viewModel.handleInput(.changePhoneNumber)
             } label: {
                 Text("Change phone number")
                     .foregroundColor(.white)
@@ -119,20 +119,15 @@ struct OtpInputView: View , OtpViewScrolled {
         
         OtpFieldView(viewModel: viewModel)
             .isOtpFieldValid(isValid: $isValid,delay : indexDelay * 0.2)
-          //  .shake(shakes: showError ? 2 :  0)
             .onTapGesture(perform: {viewModel.handleInput(.remove)})
             .frame(width: 50, height: 50)
     }
     
     
     private func onViewAppeared(){
-        moveFirstDigit()
+        animateDigitIn(at: 0)
     }
     
-    private func moveFirstDigit(){
-        animateDigitIn(at: 0)
-        focusState = .one
-    }
     
     private func updateFocusState(){
         if let next = focusState?.next{
@@ -162,6 +157,11 @@ struct OtpInputView: View , OtpViewScrolled {
         }
         //validate digits
         isValid = .valid
+        // test delay
+        DispatchQueue.main.asyncAfter(deadline : .now() + 0.5){
+            let ds =  digits.map(\.value).joined(separator: "")
+            viewModel.handleInput(.validateDigits(ds))
+        }
     }
     
 

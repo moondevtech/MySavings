@@ -49,7 +49,7 @@ struct CardManagementScreen : View {
             }
         }
         .sheet(isPresented: $showAddCard) {
-            AddFirstCardTab(tabSelection: .constant(0)) {
+            AddFirstCardTab(authTabSelection: .constant(AuthScreen.AuthTab.addcard)) {
                 showAddCard = false
                 viewModel.cards = []
                 viewModel.handleInput(.fetchCards)

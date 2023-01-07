@@ -13,6 +13,8 @@ struct PhoneNumberChoiceView: View {
     @State var phoneNumberChecked : Bool = false
     @State var offsetError : CGFloat = -400.0
     @State var showError : Bool = false
+    @State var showCountryPicker : Bool = false
+    @State var displayedFlag : Flag = .init(name: "United States", code: "US", emoji: "🇺🇸", dial_code: "+1")
 
     @EnvironmentObject var viewModel : OtpScreenViewModel
     
@@ -52,6 +54,13 @@ struct PhoneNumberChoiceView: View {
         .onReceive(viewModel.showError, perform: { error in
             showError =  error == .phoneNumberError
         })
+        .onReceive(viewModel.$selectedFlag) { flag in
+            displayedFlag =  flag ?? .init(name: "United States", code: "US", emoji: "🇺🇸", dial_code: "+1")
+        }
+        .sheet(isPresented: $showCountryPicker) { 
+            OtpCountryPickerView()
+                .environmentObject(viewModel)
+        }
         
     }
     
@@ -59,14 +68,11 @@ struct PhoneNumberChoiceView: View {
     @ViewBuilder
     func CheckPhoneNumberButton() -> some View  {
         Button {
-            if let flag = viewModel.selectedFlag{
-                viewModel.handlePhoneInput(
-                    .number(
-                        PhoneNumberCheckModel(countryCode: flag.code, dial_code: flag.dial_code, phoneNumber: phoneNumber)
-                    )
+            viewModel.handlePhoneInput(
+                .number(
+                    PhoneNumberCheckModel(countryCode: displayedFlag.code, dial_code: displayedFlag.dial_code, phoneNumber: phoneNumber)
                 )
-            }
-            
+            )
         } label: {
             Text("Check phone number")
                 .frame(width: 220, height: 40)
@@ -81,16 +87,17 @@ struct PhoneNumberChoiceView: View {
     
     @ViewBuilder
     func CountryPickerNavigator() -> some View {
-        NavigationLink {
-            OtpCountryPickerView()
-                .environmentObject(viewModel)
+        Button {
+            viewModel.selectedFlag = nil
+            showCountryPicker.toggle()
         } label: {
-            Text("\(viewModel.selectedFlag!.emoji) \(viewModel.selectedFlag!.dial_code)")
+            Text("\(displayedFlag.emoji) \(displayedFlag.dial_code)")
                 .frame(width:80 ,height: 40, alignment : .center)
                 .background(.white)
                 .foregroundColor(.black)
                 .clipShape(Capsule())
         }
+
     }
 }
 

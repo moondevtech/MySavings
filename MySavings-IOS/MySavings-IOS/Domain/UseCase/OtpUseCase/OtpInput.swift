@@ -9,5 +9,5 @@ import Foundation
 
 
 enum OtpInput {
-    case digit(String),animateOut, remove, selectFlag(Flag)
+    case digit(String),animateOut, remove, validateDigits(String), changePhoneNumber
 }

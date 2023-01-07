@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import Combine
 
+@dynamicMemberLookup
 struct Stack<Element> {
     
     private var elements : [Element]
@@ -43,7 +45,13 @@ struct Stack<Element> {
         elements.last
     }
     
+    subscript<T>(dynamicMember key: KeyPath<Self, T> ) -> T {
+        get { self[keyPath : key] }
+        set { }
+    }
+    
 }
+
 
 extension Stack : ExpressibleByArrayLiteral {
     

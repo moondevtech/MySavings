@@ -7,16 +7,36 @@
 
 import SwiftUI
 
+
 struct AuthScreen: View {
     
-    enum AuthTab {
-        case start, registration, success, addcard
+    enum AuthTab : Int {
+        case start, registration, otp ,success, addcard
+        
+        mutating func navigateBack(){
+            switch self {
+            default  :
+                self = .registration
+            }
+        }
+        
+        mutating func navigateForward(){
+            switch self{
+            case .start:
+                self = .registration
+            case .registration :
+                self = .otp
+            case .success :
+                self = .addcard
+            default:
+                break
+            }
+        }
     }
     
-    
-    @State var tabSelection : Int = 1
     @EnvironmentObject var authViewModel : AuthViewModel
     @EnvironmentObject var router : Router
+    @State var authTabSelection : AuthTab = .start
     
     
     init(){
@@ -24,29 +44,59 @@ struct AuthScreen: View {
     }
     
     var body: some View {
-        NavigationView{
-            TabView(selection: $tabSelection){
-                StartTabView(tabSelection: $tabSelection)
-                    .tag(1)
-                
-                RegisterTabView(tabSelection: $tabSelection)
-                    .tag(2)
+       // NavigationView{
+        ZStack {
+            TabView(selection: $authTabSelection){
+                    StartTabView(authTabselection: $authTabSelection)
+                        .tag(AuthTab.start)
+                    
+                    RegisterTabView(authTabselection: $authTabSelection)
+                        .tag(AuthTab.registration)
+                        .environmentObject(authViewModel)
+                    
+                    OtpScreen(authTabselection:$authTabSelection)
+                        .tag(AuthTab.otp)
+                        .environmentObject(authViewModel)
+                    
+                    RegistrationSuccessTab(authTabSelection: $authTabSelection)
+                        .tag(AuthTab.success)
+                        .environmentObject(authViewModel)
+                    
+                    AddFirstCardTab(authTabSelection: $authTabSelection){
+                        router.navigateToMain()
+                    }
+                    .tag(AuthTab.addcard)
                     .environmentObject(authViewModel)
-                
-                RegistrationSuccessTab(tabSelection: $tabSelection)
-                    .tag(3)
-                    .environmentObject(authViewModel)
-                
-                AddFirstCardTab(tabSelection: $tabSelection){
-                    router.navigateToMain()
+                    
                 }
-                .tag(4)
-                .environmentObject(authViewModel)
-                
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .navigationBarBackButtonHidden()
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .navigationBarBackButtonHidden()
             
+            BackButton()
+        }
+        .animation(.spring(), value: authTabSelection)
+            
+    }
+    
+    @ViewBuilder
+    func BackButton() -> some View{
+        if authTabSelection == .otp {
+            GeometryReader { geo in
+                let frame =  geo.frame(in : .global)
+                Button {
+                    authTabSelection.navigateBack()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.white)
+                        .frame( height: 40, alignment: .center)
+                        .padding(.horizontal)
+                }
+                .frame(height: 40, alignment: .center)
+                .background(.white.opacity(0.2))
+                .clipShape(Capsule())
+                .position(x: frame.minX + 50, y: frame.minY )
+                .opacity(0.8)
+            }
         }
     }
     

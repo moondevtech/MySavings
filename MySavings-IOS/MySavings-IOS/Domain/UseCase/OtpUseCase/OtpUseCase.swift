@@ -54,8 +54,10 @@ class OtpUseCase {
                 self?.delegate?.handleOuput(.animatedOut(index))
             }
             .store(in: &subscriptions)
-            
-        
+    }
+    
+    func validateDigits(digits : String){
+        delegate?.handleOuput(.onDigitValidated)
     }
     
 }

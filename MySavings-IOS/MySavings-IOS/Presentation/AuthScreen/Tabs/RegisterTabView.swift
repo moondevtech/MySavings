@@ -23,7 +23,8 @@ struct RegisterTabView: View {
     @State var isRegistering : Bool = false
     @State var showFailure : Bool = false
     @State var secondTabOffset : CGFloat = -800
-    @Binding var tabSelection : Int
+    @Binding var authTabselection : AuthScreen.AuthTab
+
     
     @EnvironmentObject var authViewModel : AuthViewModel
     
@@ -102,7 +103,7 @@ struct RegisterTabView: View {
                 isRegistering = false
                 if isRegistered{
                     withAnimation(.spring()){
-                        tabSelection = 3
+                        authTabselection = .otp
                     }
                 }
             })
@@ -123,6 +124,9 @@ struct RegisterTabView: View {
             .onAppear{
                 secondTabOffset = 0
             }
+            .onDisappear{
+                focusedField = nil
+            }
             .sheet(isPresented: $showFailure) {
                 userName = ""
                 password = ""
@@ -142,7 +146,7 @@ struct RegisterTabView: View {
 
 struct RegisterTabView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterTabView(tabSelection: .constant(2))
+        RegisterTabView(authTabselection: .constant(.registration))
             .environmentObject(AuthViewModel())
     }
 }

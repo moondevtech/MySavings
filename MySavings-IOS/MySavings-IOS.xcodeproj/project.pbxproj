@@ -23,8 +23,6 @@
 		871E963E29165E480034D05A /* TransactionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E963D29165E480034D05A /* TransactionDataModel.swift */; };
 		871E964729165F250034D05A /* UserCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E963F29165F250034D05A /* UserCD+CoreDataClass.swift */; };
 		871E964829165F250034D05A /* UserCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964029165F250034D05A /* UserCD+CoreDataProperties.swift */; };
-		871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964129165F250034D05A /* BudgetCD+CoreDataClass.swift */; };
-		871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964229165F250034D05A /* BudgetCD+CoreDataProperties.swift */; };
 		871E964B29165F250034D05A /* TransactionsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964329165F250034D05A /* TransactionsCD+CoreDataClass.swift */; };
 		871E964C29165F250034D05A /* TransactionsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964429165F250034D05A /* TransactionsCD+CoreDataProperties.swift */; };
 		871E964D29165F250034D05A /* CreditCardCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E964529165F250034D05A /* CreditCardCD+CoreDataClass.swift */; };
@@ -44,8 +42,6 @@
 		871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966C291760530034D05A /* BudgetCategoryDataModel.swift */; };
 		871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */; };
 		871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */; };
-		871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */; };
-		871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */; };
 		871E9679291766510034D05A /* AuthBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9678291766510034D05A /* AuthBudget.swift */; };
 		871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967A2917666A0034D05A /* AuthBudgets.swift */; };
 		871E967D291766860034D05A /* CardHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967C291766860034D05A /* CardHolder.swift */; };
@@ -149,6 +145,10 @@
 		87928D2129607B0D003A1397 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87928D2029607B0D003A1397 /* Flag.swift */; };
 		87928D2329607B13003A1397 /* BundleResourceReader .swift in Sources */ = {isa = PBXBuildFile; fileRef = 87928D2229607B13003A1397 /* BundleResourceReader .swift */; };
 		87928D2529607B2E003A1397 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87928D2429607B2E003A1397 /* Stack.swift */; };
+		87D768162969992500846DA1 /* BudgetCategoryCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D768122969992400846DA1 /* BudgetCategoryCD+CoreDataClass.swift */; };
+		87D768172969992500846DA1 /* BudgetCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D768132969992400846DA1 /* BudgetCD+CoreDataClass.swift */; };
+		87D768182969992500846DA1 /* BudgetCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D768142969992400846DA1 /* BudgetCD+CoreDataProperties.swift */; };
+		87D768192969992500846DA1 /* BudgetCategoryCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D768152969992500846DA1 /* BudgetCategoryCD+CoreDataProperties.swift */; };
 		87D84B13292B3DB5001FCA1F /* PaymentHistoyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B12292B3DB5001FCA1F /* PaymentHistoyViewModel.swift */; };
 		87D84B16292B3DEE001FCA1F /* PaymentHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B15292B3DEE001FCA1F /* PaymentHistoryUseCase.swift */; };
 		87D84B18292B3E16001FCA1F /* PaymentHistoryOutputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D84B17292B3E16001FCA1F /* PaymentHistoryOutputType.swift */; };
@@ -211,8 +211,6 @@
 		871E963D29165E480034D05A /* TransactionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDataModel.swift; sourceTree = "<group>"; };
 		871E963F29165F250034D05A /* UserCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		871E964029165F250034D05A /* UserCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		871E964129165F250034D05A /* BudgetCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCD+CoreDataClass.swift"; sourceTree = "<group>"; };
-		871E964229165F250034D05A /* BudgetCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		871E964329165F250034D05A /* TransactionsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		871E964429165F250034D05A /* TransactionsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		871E964529165F250034D05A /* CreditCardCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreditCardCD+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -232,8 +230,6 @@
 		871E966C291760530034D05A /* BudgetCategoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataModel.swift; sourceTree = "<group>"; };
 		871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSourceDelegate.swift; sourceTree = "<group>"; };
 		871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSource.swift; sourceTree = "<group>"; };
-		871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		871E9678291766510034D05A /* AuthBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudget.swift; sourceTree = "<group>"; };
 		871E967A2917666A0034D05A /* AuthBudgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudgets.swift; sourceTree = "<group>"; };
 		871E967C291766860034D05A /* CardHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHolder.swift; sourceTree = "<group>"; };
@@ -337,6 +333,10 @@
 		87928D2029607B0D003A1397 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		87928D2229607B13003A1397 /* BundleResourceReader .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BundleResourceReader .swift"; sourceTree = "<group>"; };
 		87928D2429607B2E003A1397 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		87D768122969992400846DA1 /* BudgetCategoryCD+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		87D768132969992400846DA1 /* BudgetCD+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		87D768142969992400846DA1 /* BudgetCD+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87D768152969992500846DA1 /* BudgetCategoryCD+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		87D84B12292B3DB5001FCA1F /* PaymentHistoyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoyViewModel.swift; sourceTree = "<group>"; };
 		87D84B15292B3DEE001FCA1F /* PaymentHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryUseCase.swift; sourceTree = "<group>"; };
 		87D84B17292B3E16001FCA1F /* PaymentHistoryOutputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryOutputType.swift; sourceTree = "<group>"; };
@@ -460,12 +460,12 @@
 		870B584D2914417A00ED1810 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */,
-				871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */,
+				87D768122969992400846DA1 /* BudgetCategoryCD+CoreDataClass.swift */,
+				87D768152969992500846DA1 /* BudgetCategoryCD+CoreDataProperties.swift */,
+				87D768132969992400846DA1 /* BudgetCD+CoreDataClass.swift */,
+				87D768142969992400846DA1 /* BudgetCD+CoreDataProperties.swift */,
 				871E963F29165F250034D05A /* UserCD+CoreDataClass.swift */,
 				871E964029165F250034D05A /* UserCD+CoreDataProperties.swift */,
-				871E964129165F250034D05A /* BudgetCD+CoreDataClass.swift */,
-				871E964229165F250034D05A /* BudgetCD+CoreDataProperties.swift */,
 				871E964329165F250034D05A /* TransactionsCD+CoreDataClass.swift */,
 				871E964429165F250034D05A /* TransactionsCD+CoreDataProperties.swift */,
 				871E964529165F250034D05A /* CreditCardCD+CoreDataClass.swift */,
@@ -1146,7 +1146,6 @@
 				8765BFAD291FC12D00989F81 /* CardManagementType.swift in Sources */,
 				873D12AC295F38E200151B2D /* OtpScreen.swift in Sources */,
 				87928D0529607A18003A1397 /* OtpScreenViewModel.swift in Sources */,
-				871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				8768B5982928FE7900D01CFE /* TransactionVMInput.swift in Sources */,
 				8768B5942928FE5100D01CFE /* TransactionInputType.swift in Sources */,
 				8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */,
@@ -1163,9 +1162,11 @@
 				87E6B181291B8FA000DA254C /* BudgetView.swift in Sources */,
 				8765BF77291C1E6700989F81 /* CardListUseCaseDelegate.swift in Sources */,
 				8776A214291222590082D606 /* ExpenseGraphModel.swift in Sources */,
+				87D768172969992500846DA1 /* BudgetCD+CoreDataClass.swift in Sources */,
 				8765BFBE2928DA9000989F81 /* NewTransactionFormScreen.swift in Sources */,
 				87E6B186291B903200DA254C /* BudgetInput.swift in Sources */,
 				8765BFAC291FC12D00989F81 /* CardManagementInput.swift in Sources */,
+				87D768162969992500846DA1 /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				87E6B16C291A119C00DA254C /* CardType.swift in Sources */,
 				870B58572914423D00ED1810 /* CreditCardDataModel.swift in Sources */,
 				87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */,
@@ -1212,6 +1213,7 @@
 				87E6B184291B902700DA254C /* BudgetDisplayType.swift in Sources */,
 				8768B59A2928FE9000D01CFE /* TransactionScreenModel.swift in Sources */,
 				8768B5A8292B27BD00D01CFE /* PaymentHistoryScreen.swift in Sources */,
+				87D768182969992500846DA1 /* BudgetCD+CoreDataProperties.swift in Sources */,
 				8768B5922928FE3400D01CFE /* TransactionOutputType.swift in Sources */,
 				8765BFB429260C7F00989F81 /* TransactionItemRow.swift in Sources */,
 				87D84B1C292B3E46001FCA1F /* PaymentHistoryOutput.swift in Sources */,
@@ -1225,7 +1227,6 @@
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
 				87E6B169291A0CEA00DA254C /* CardDetailsView.swift in Sources */,
 				87D84B20292B3E78001FCA1F /* HistoryTransactionModel.swift in Sources */,
-				871E964A29165F250034D05A /* BudgetCD+CoreDataProperties.swift in Sources */,
 				87E6B188291B903C00DA254C /* BudgetOutput.swift in Sources */,
 				87928D1E29607ADD003A1397 /* OtpUseCase.swift in Sources */,
 				8765BFBC2928D73E00989F81 /* BudgetListScreen.swift in Sources */,
@@ -1244,7 +1245,6 @@
 				8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */,
 				871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */,
 				870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */,
-				871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				8776A1FC291049840082D606 /* CardUser.swift in Sources */,
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
 				8765BFC12928DB3500989F81 /* NewTransactionModel.swift in Sources */,
@@ -1268,6 +1268,7 @@
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
 				8776A1E6291048E80082D606 /* MySavings_IOSApp.swift in Sources */,
 				8776A203291052200082D606 /* ExpensesScreen.swift in Sources */,
+				87D768192969992500846DA1 /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				87928D1129607AAF003A1397 /* ShakeModifier.swift in Sources */,
 				87928D0C29607A27003A1397 /* OtpFieldView.swift in Sources */,
 				87928D1C29607ADD003A1397 /* OtpOutputType.swift in Sources */,
@@ -1277,7 +1278,6 @@
 				8768B5A32929F1E400D01CFE /* SelectedCardContent.swift in Sources */,
 				87928D1F29607ADD003A1397 /* OtpInputType.swift in Sources */,
 				8765BF7E291CB2F000989F81 /* CardDetailsInput.swift in Sources */,
-				871E964929165F250034D05A /* BudgetCD+CoreDataClass.swift in Sources */,
 				871E9656291695C40034D05A /* StartTabView.swift in Sources */,
 				871E964E29165F250034D05A /* CreditCardCD+CoreDataProperties.swift in Sources */,
 				8765BFAB291FC12D00989F81 /* CardManagementUseCaseDelegate.swift in Sources */,

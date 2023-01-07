@@ -111,7 +111,7 @@ struct MainScreen: View {
         }
         .sheet(isPresented: $showAddFirstCard) {
             AddFirstCardTab(
-                tabSelection: .constant(0),
+                authTabSelection: .constant(AuthScreen.AuthTab.addcard),
                 onCardAdded: handleFirstCardAdded)
         }
 

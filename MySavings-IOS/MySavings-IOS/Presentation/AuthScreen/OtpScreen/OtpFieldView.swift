@@ -59,7 +59,6 @@ struct OtpFieldView : UIViewRepresentable {
         }
         
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            
             if let current =  textField.text{
                 if string == "" {
                     parent.viewModel.digits[3].value = ""
