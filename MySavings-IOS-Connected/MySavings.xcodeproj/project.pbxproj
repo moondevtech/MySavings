@@ -44,8 +44,6 @@
 		871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966C291760530034D05A /* BudgetCategoryDataModel.swift */; };
 		871E96702917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */; };
 		871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */; };
-		871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */; };
-		871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */; };
 		871E9679291766510034D05A /* AuthBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E9678291766510034D05A /* AuthBudget.swift */; };
 		871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967A2917666A0034D05A /* AuthBudgets.swift */; };
 		871E967D291766860034D05A /* CardHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E967C291766860034D05A /* CardHolder.swift */; };
@@ -156,6 +154,8 @@
 		87E6B18C291B905000DA254C /* BudgetUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B18B291B905000DA254C /* BudgetUseCaseDelegate.swift */; };
 		87E6B18E291B905A00DA254C /* BudgetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B18D291B905A00DA254C /* BudgetUseCase.swift */; };
 		87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B190291B90C100DA254C /* BudgetViewVM.swift */; };
+		87EC16992A11D69C00B5D592 /* BudgetCategoryCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16972A11D69C00B5D592 /* BudgetCategoryCD+CoreDataProperties.swift */; };
+		87EC169A2A11D69C00B5D592 /* BudgetCategoryCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16982A11D69C00B5D592 /* BudgetCategoryCD+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,8 +196,6 @@
 		871E966C291760530034D05A /* BudgetCategoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataModel.swift; sourceTree = "<group>"; };
 		871E966F2917612C0034D05A /* BudgetCategoryDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSourceDelegate.swift; sourceTree = "<group>"; };
 		871E96712917613E0034D05A /* BudgetCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategoryDataSource.swift; sourceTree = "<group>"; };
-		871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		871E9678291766510034D05A /* AuthBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudget.swift; sourceTree = "<group>"; };
 		871E967A2917666A0034D05A /* AuthBudgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBudgets.swift; sourceTree = "<group>"; };
 		871E967C291766860034D05A /* CardHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHolder.swift; sourceTree = "<group>"; };
@@ -309,6 +307,8 @@
 		87E6B18B291B905000DA254C /* BudgetUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCaseDelegate.swift; sourceTree = "<group>"; };
 		87E6B18D291B905A00DA254C /* BudgetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCase.swift; sourceTree = "<group>"; };
 		87E6B190291B90C100DA254C /* BudgetViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewVM.swift; sourceTree = "<group>"; };
+		87EC16972A11D69C00B5D592 /* BudgetCategoryCD+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87EC16982A11D69C00B5D592 /* BudgetCategoryCD+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BudgetCategoryCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,8 +401,8 @@
 		870B584D2914417A00ED1810 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				871E9673291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift */,
-				871E9674291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift */,
+				87EC16982A11D69C00B5D592 /* BudgetCategoryCD+CoreDataClass.swift */,
+				87EC16972A11D69C00B5D592 /* BudgetCategoryCD+CoreDataProperties.swift */,
 				871E963F29165F250034D05A /* UserCD+CoreDataClass.swift */,
 				871E964029165F250034D05A /* UserCD+CoreDataProperties.swift */,
 				871E964129165F250034D05A /* BudgetCD+CoreDataClass.swift */,
@@ -982,7 +982,6 @@
 				8768B5832928FC3E00D01CFE /* HomeScreenOutput.swift in Sources */,
 				87E6B171291A1B9300DA254C /* ValidationField.swift in Sources */,
 				8765BFAD291FC12D00989F81 /* CardManagementType.swift in Sources */,
-				871E9676291762370034D05A /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				8768B5982928FE7900D01CFE /* TransactionVMInput.swift in Sources */,
 				8768B5942928FE5100D01CFE /* TransactionInputType.swift in Sources */,
 				8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */,
@@ -991,6 +990,7 @@
 				870B582829136FEE00ED1810 /* ExpensesScreenViewModel.swift in Sources */,
 				871E968E291779B30034D05A /* AuthViewModelOutput.swift in Sources */,
 				87D84B1A292B3E2F001FCA1F /* PaymentHistoryInputType.swift in Sources */,
+				87EC16992A11D69C00B5D592 /* BudgetCategoryCD+CoreDataProperties.swift in Sources */,
 				87E6B166291A0A9E00DA254C /* FirstCardUseCase.swift in Sources */,
 				8765BF6D291C1DCC00989F81 /* CardStackView.swift in Sources */,
 				8768B5902928FDBD00D01CFE /* TransactionDetailsUseCase.swift in Sources */,
@@ -1031,6 +1031,7 @@
 				8765BF84291CB31200989F81 /* CardDetailUseCaseDelegate.swift in Sources */,
 				87E6B1592918D1A300DA254C /* View.swift in Sources */,
 				8765BF86291CB31B00989F81 /* CardDetailsUseCase.swift in Sources */,
+				87EC169A2A11D69C00B5D592 /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				870B5864291657C000ED1810 /* BudgetDataModel.swift in Sources */,
 				870B584C29143F6900ED1810 /* UserDataModel.swift in Sources */,
 				871E964729165F250034D05A /* UserCD+CoreDataClass.swift in Sources */,
@@ -1072,7 +1073,6 @@
 				8776A20129104AAD0082D606 /* CreditCardView.swift in Sources */,
 				871E96692916A4B60034D05A /* ScreenDelegate.swift in Sources */,
 				870B583E29143C8B00ED1810 /* UserLocalDataSource.swift in Sources */,
-				871E9675291762370034D05A /* BudgetCategoryCD+CoreDataClass.swift in Sources */,
 				8776A1FC291049840082D606 /* CardUser.swift in Sources */,
 				870B585E29155FB900ED1810 /* AuthScreen.swift in Sources */,
 				8765BFC12928DB3500989F81 /* NewTransactionModel.swift in Sources */,
