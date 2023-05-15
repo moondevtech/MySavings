@@ -60,8 +60,6 @@
 		871E969B29177AA30034D05A /* FirstCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E969A29177AA30034D05A /* FirstCardViewModel.swift */; };
 		873D12AA295F331600151B2D /* flags.json in Resources */ = {isa = PBXBuildFile; fileRef = 873D12A9295F331600151B2D /* flags.json */; };
 		873D12AC295F38E200151B2D /* OtpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D12AB295F38E200151B2D /* OtpScreen.swift */; };
-		873D12ED2960310400151B2D /* PhoneNumberKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873D12EB296030FA00151B2D /* PhoneNumberKit.xcframework */; };
-		873D12EE2960310400151B2D /* PhoneNumberKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 873D12EB296030FA00151B2D /* PhoneNumberKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8765BF6B291C1C6800989F81 /* CardDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */; };
 		8765BF6D291C1DCC00989F81 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF6C291C1DCC00989F81 /* CardStackView.swift */; };
 		8765BF71291C1E4700989F81 /* CardListVMInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF70291C1E4700989F81 /* CardListVMInput.swift */; };
@@ -178,6 +176,8 @@
 		87E6B18C291B905000DA254C /* BudgetUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B18B291B905000DA254C /* BudgetUseCaseDelegate.swift */; };
 		87E6B18E291B905A00DA254C /* BudgetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B18D291B905A00DA254C /* BudgetUseCase.swift */; };
 		87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B190291B90C100DA254C /* BudgetViewVM.swift */; };
+		87EC169D2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; };
+		87EC169E2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -187,7 +187,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				873D12EE2960310400151B2D /* PhoneNumberKit.xcframework in Embed Frameworks */,
+				87EC169E2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +248,6 @@
 		871E969A29177AA30034D05A /* FirstCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardViewModel.swift; sourceTree = "<group>"; };
 		873D12A9295F331600151B2D /* flags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flags.json; sourceTree = "<group>"; };
 		873D12AB295F38E200151B2D /* OtpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpScreen.swift; sourceTree = "<group>"; };
-		873D12EB296030FA00151B2D /* PhoneNumberKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PhoneNumberKit.xcframework; path = Carthage/Build/PhoneNumberKit.xcframework; sourceTree = "<group>"; };
 		8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsScreen.swift; sourceTree = "<group>"; };
 		8765BF6C291C1DCC00989F81 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		8765BF70291C1E4700989F81 /* CardListVMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListVMInput.swift; sourceTree = "<group>"; };
@@ -366,6 +365,7 @@
 		87E6B18B291B905000DA254C /* BudgetUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCaseDelegate.swift; sourceTree = "<group>"; };
 		87E6B18D291B905A00DA254C /* BudgetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCase.swift; sourceTree = "<group>"; };
 		87E6B190291B90C100DA254C /* BudgetViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewVM.swift; sourceTree = "<group>"; };
+		87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PhoneNumberKit.xcframework; path = Carthage/Build/PhoneNumberKit.xcframework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,7 +373,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873D12ED2960310400151B2D /* PhoneNumberKit.xcframework in Frameworks */,
+				87EC169D2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,7 +838,7 @@
 		8776A1E4291048E80082D606 /* MySavings-IOS */ = {
 			isa = PBXGroup;
 			children = (
-				873D12EB296030FA00151B2D /* PhoneNumberKit.xcframework */,
+				87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */,
 				873D129F295F28F900151B2D /* Resources */,
 				8765BFB0291FC55F00989F81 /* Persistence */,
 				8776A1FA291049680082D606 /* Presentation */,
@@ -1422,6 +1422,7 @@
 				DEVELOPMENT_TEAM = STFH26U9BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1451,6 +1452,7 @@
 				DEVELOPMENT_TEAM = STFH26U9BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
