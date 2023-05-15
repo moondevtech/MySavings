@@ -37,6 +37,9 @@ struct ExpensesScreen: View {
             .onAppear{
                 cardStackViewModel.handleInput(.fetchCards)
             }
+            .onDisappear{
+                cardStackViewModel.cards = []
+            }
             .onReceive(cardStackViewModel.$cards, perform: { cards in
                 viewModel.getTransactions(cards)
             })

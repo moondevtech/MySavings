@@ -747,7 +747,6 @@
 			children = (
 				87E6B16A291A118600DA254C /* CardMatcher */,
 				870B584729143E2B00ED1810 /* Logger */,
-				8776A20C291168880082D606 /* PreferenceKey */,
 				8776A209291165730082D606 /* Extensions */,
 				8776A1FF29104A930082D606 /* Data */,
 			);
@@ -795,13 +794,6 @@
 				87E6B1582918D1A300DA254C /* View.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8776A20C291168880082D606 /* PreferenceKey */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PreferenceKey;
 			sourceTree = "<group>";
 		};
 		87D84B14292B3DD6001FCA1F /* PaymentHistoryUseCase */ = {
