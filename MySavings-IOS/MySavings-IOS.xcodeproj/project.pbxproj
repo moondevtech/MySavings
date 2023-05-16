@@ -178,6 +178,10 @@
 		87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B190291B90C100DA254C /* BudgetViewVM.swift */; };
 		87EC169D2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; };
 		87EC169E2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87EC16A12A11DBA700B5D592 /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A02A11DBA700B5D592 /* CaptureManager.swift */; };
+		87EC16A32A11E2B100B5D592 /* CaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A22A11E2B100B5D592 /* CaptureController.swift */; };
+		87EC16A52A11E69000B5D592 /* CardDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A42A11E69000B5D592 /* CardDetector.swift */; };
+		87EC16A72A12020B00B5D592 /* CapturedTextHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -366,6 +370,10 @@
 		87E6B18D291B905A00DA254C /* BudgetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCase.swift; sourceTree = "<group>"; };
 		87E6B190291B90C100DA254C /* BudgetViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewVM.swift; sourceTree = "<group>"; };
 		87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PhoneNumberKit.xcframework; path = Carthage/Build/PhoneNumberKit.xcframework; sourceTree = SOURCE_ROOT; };
+		87EC16A02A11DBA700B5D592 /* CaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
+		87EC16A22A11E2B100B5D592 /* CaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureController.swift; sourceTree = "<group>"; };
+		87EC16A42A11E69000B5D592 /* CardDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetector.swift; sourceTree = "<group>"; };
+		87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedTextHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -877,6 +885,7 @@
 		8776A1F92910495E0082D606 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				87EC169F2A11DB7400B5D592 /* Capture */,
 				87928CFF296076A4003A1397 /* Modifiers */,
 				873D1284295E02CB00151B2D /* DataStructure */,
 				87E6B16A291A118600DA254C /* CardMatcher */,
@@ -1053,6 +1062,17 @@
 			path = BudgetView;
 			sourceTree = "<group>";
 		};
+		87EC169F2A11DB7400B5D592 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				87EC16A02A11DBA700B5D592 /* CaptureManager.swift */,
+				87EC16A22A11E2B100B5D592 /* CaptureController.swift */,
+				87EC16A42A11E69000B5D592 /* CardDetector.swift */,
+				87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1177,6 +1197,7 @@
 				87E6B17F291B75A500DA254C /* MainScreen.swift in Sources */,
 				8765BF82291CB30700989F81 /* CardDetailsOutput.swift in Sources */,
 				8765BF71291C1E4700989F81 /* CardListVMInput.swift in Sources */,
+				87EC16A12A11DBA700B5D592 /* CaptureManager.swift in Sources */,
 				8768B5812928FC2000D01CFE /* HomeScreenInput.swift in Sources */,
 				871E968629176B6E0034D05A /* AuthViewModel.swift in Sources */,
 				870B58262912447800ED1810 /* SelectedCardsView.swift in Sources */,
@@ -1222,6 +1243,7 @@
 				8765BFC42928DB8A00989F81 /* BudgetRowModel.swift in Sources */,
 				8768B5A12929F08800D01CFE /* ExpensesTransactionInput.swift in Sources */,
 				870B583A2913928900ED1810 /* ExpensesTransactionUseCase.swift in Sources */,
+				87EC16A52A11E69000B5D592 /* CardDetector.swift in Sources */,
 				8768B58B2928FCBA00D01CFE /* HomeScreenViewModel.swift in Sources */,
 				871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */,
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
@@ -1238,6 +1260,7 @@
 				8765BFB92928D3B700989F81 /* CardBudgetListScreenView.swift in Sources */,
 				8765BF73291C1E5200989F81 /* CardListVMOutput.swift in Sources */,
 				87928D1529607AD1003A1397 /* PhoneNumberCheckUseCase.swift in Sources */,
+				87EC16A32A11E2B100B5D592 /* CaptureController.swift in Sources */,
 				87E6B18A291B904600DA254C /* BudgetVMType.swift in Sources */,
 				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
 				87928D0B29607A27003A1397 /* OtpCountryPickerView.swift in Sources */,
@@ -1263,6 +1286,7 @@
 				871E9680291766E50034D05A /* BudgetCategoryRepository.swift in Sources */,
 				871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */,
 				871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */,
+				87EC16A72A12020B00B5D592 /* CapturedTextHandler.swift in Sources */,
 				87E6B16E291A122100DA254C /* CardMatcher.swift in Sources */,
 				8765BFC72928F7F400989F81 /* HomeScreen.swift in Sources */,
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
@@ -1422,7 +1446,8 @@
 				DEVELOPMENT_TEAM = STFH26U9BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "In order to scan your credit card the requires to use your camera, do you allow it ?";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1452,7 +1477,8 @@
 				DEVELOPMENT_TEAM = STFH26U9BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "In order to scan your credit card the requires to use your camera, do you allow it ?";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
