@@ -1,74 +1,108 @@
-//
-//  CardDetector.swift
-//  MySavings-IOS
-//
-//  Created by Ruben Mimoun on 15/05/2023.
-//
+    //
+    //  CardDetector.swift
+    //  MySavings-IOS
+    //
+    //  Created by Ruben Mimoun on 15/05/2023.
+    //
 
 import Foundation
 import Vision
+import CoreImage
+import UIKit
 
 protocol CardDetectorProtocol : AnyObject {
-    func onDetecRectable(in image: CVPixelBuffer)
+    
+    var snapped: Bool { get set }
+    
+    func onDetecRectangle(in image: CVPixelBuffer)
 }
 
 protocol CardDetectionResultProtocol : AnyObject {
     func onError(error : Error?)
-    func onDetect(rect : VNRectangleObservation)
-    func onTextDetected(text : String)
-}
+    func onDetect(rect : VNRectangleObservation,and image: UIImage)
+    func doPerspectiveCorrection(_ observation: VNRectangleObservation, from buffer: CVImageBuffer)}
 
 class CardDetector {
     
-    weak var delegate: CardDetectionResultProtocol?
+    weak var delegate: (CapturedController & CardDetectionResultProtocol)?
     
     private var frameCount = 0
-
-    init(delegate: CardDetectionResultProtocol? = nil) {
+    private var normalizedFrame: CGRect = .zero
+    private var _snapped: Bool = false
+    let paymentCardAspectRatio: Float = 86.60 / 53.98
+    
+    init(delegate:  (CapturedController & CardDetectionResultProtocol)? = nil) {
         self.delegate = delegate
+        normalizedFrame = getPointOfInterest()
+        print(normalizedFrame)
     }
+    
+    private func getPointOfInterest() -> CGRect {
+        let width: CGFloat = 340
+        let height: CGFloat = 211
+        guard let viewFrame = delegate?.view.bounds else { return .zero  }
+        let frame: CGRect = .init(origin: .init(x: (viewFrame.width - width) / 2, y: ( viewFrame.height - height) / 2),
+                                        size: .init(width: width, height: height))
+        let screenFrame =  UIScreen.main.bounds
+        let currentMiny =  (screenFrame.height - frame.height) / 2
+        let currentMinX = (screenFrame.width - frame.width) / 2
+        let normalizedFrame = CGRect(
+            origin: .init(x: currentMinX / screenFrame.maxX , y: currentMiny / screenFrame.maxY ),
+            size: .init(width: frame.width / screenFrame.width, height: frame.height / screenFrame.height)
+        )
+        return normalizedFrame
+    }
+    
+    var textRecognitionRequest: VNRecognizeTextRequest? = nil
 }
 
 extension CardDetector: CardDetectorProtocol {
     
-    func onDetecRectable(in image: CVPixelBuffer) {
-        
-        frameCount += 1
-        guard frameCount > 15 else { return }
-        self.frameCount = 0
-        
+    var snapped: Bool {
+        get { _snapped }
+        set { _snapped = newValue }
+    }
+    
+    func onDetecRectangle(in image: CVPixelBuffer) {
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: image)
-
         
-        let textRecognitionRequest = VNRecognizeTextRequest {[weak self] (request, error) in
-               guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-               for observation in observations {
-                   guard let topCandidate = observation.topCandidates(1).first else { return }
-                   self?.delegate?.onTextDetected(text: topCandidate.string)
-               }            
-           }
-        
-        let request = VNDetectRectanglesRequest { [weak self] request, error in
+        let rectangleRequest = VNDetectRectanglesRequest { [weak self] request, error in
             guard let self = self else { return }
-
+            
             if let error = error {
                 self.delegate?.onError(error: error)
             }
-
             if let results =  request.results as? [VNRectangleObservation],
-               let rect = results.first {
+               let rect = results.first{
+//                
+//                guard  rect.boundingBox.width >= normalizedFrame.width - 0.2  &&
+//                        rect.boundingBox.height >= normalizedFrame.height - 0.15 else { return }
+                
                 DispatchQueue.main.async {
-                    self.delegate?.onDetect(rect: rect)
+                    self.delegate?.onDetect(rect: rect, and: image.toUIImage())
+                    
+                    if self.snapped {
+                        self.snapped = false
+                        self.delegate?.doPerspectiveCorrection(rect, from: image)
+                    }
                 }
-                try? imageRequestHandler.perform([textRecognitionRequest])
             }
         }
-
-        request.minimumAspectRatio = VNAspectRatio(1.3)
-        request.maximumAspectRatio = VNAspectRatio(1.75)
-        request.maximumObservations =  1
         
-        try? imageRequestHandler.perform([request])
+        rectangleRequest.minimumAspectRatio = paymentCardAspectRatio * 0.95
+        rectangleRequest.maximumAspectRatio = paymentCardAspectRatio * 1.10
+        //rectangleRequest.minimumSize = Float(0.7)
+        rectangleRequest.regionOfInterest = normalizedFrame
+
+        try? imageRequestHandler.perform([rectangleRequest])
     }
     
+}
+
+fileprivate extension CVPixelBuffer {
+    func toUIImage() -> UIImage {
+        let ciImage = CIImage(cvPixelBuffer: self)
+        let uiImage = UIImage(ciImage: ciImage)
+        return uiImage
+    }
 }

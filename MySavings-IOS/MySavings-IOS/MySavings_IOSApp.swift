@@ -15,7 +15,8 @@ struct MySavings_IOSApp: App {
         WindowGroup {
 //            OtpScreen(authTabselection : .constant(.otp))
           // BaseFlowView()
-            CardScannerView()
+            CardScannerFlow { extracted in  }
+               // .frame(width: 340,height: 230)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

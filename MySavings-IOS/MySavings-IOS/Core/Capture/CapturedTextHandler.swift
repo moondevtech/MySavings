@@ -41,6 +41,7 @@ class CapturedTextHandler {
                 $0.expirationDate < Date.now &&
                 $0.cardType != nil
             }
+            .receive(on: DispatchQueue.main)
             .sink {[weak self] card in
                 self?.delegate?.onCaptureCard(card: card)
                 self?.capturedCard = .init()

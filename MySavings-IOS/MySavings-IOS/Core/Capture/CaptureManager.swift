@@ -17,7 +17,7 @@ class CaptureManager: NSObject {
     private var captureSession : AVCaptureSession
     private let videoDataOutput = AVCaptureVideoDataOutput()
     
-    var previewLayer   : CameraPreview
+    var previewLayer   : CameraPreview!
     weak var delegate: CardDetectorProtocol?
 
     let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes:
@@ -26,10 +26,6 @@ class CaptureManager: NSObject {
     
     override init() {
         captureSession =  AVCaptureSession()
-        previewLayer = CameraPreview(frame: CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height))
-        previewLayer.videoPreviewLayer.videoGravity = .resizeAspectFill
-        previewLayer.videoPreviewLayer.connection?.videoOrientation =  .portrait
-        previewLayer.videoPreviewLayer.session  = captureSession
         super.init()
         captureDevice  = bestDevice(in: .back)
     }
@@ -83,8 +79,12 @@ class CaptureManager: NSObject {
             self.captureSession.startRunning()
         }
     }
-        
+    
     func addTo(view : UIView) {
+        previewLayer = CameraPreview(frame: view.bounds)
+        previewLayer.videoPreviewLayer.videoGravity = .resizeAspectFill
+        previewLayer.videoPreviewLayer.connection?.videoOrientation =  .portrait
+        previewLayer.videoPreviewLayer.session  = captureSession
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             view.layer.insertSublayer(self.previewLayer.videoPreviewLayer, at: 0)
@@ -113,13 +113,13 @@ extension CaptureManager : AVCaptureVideoDataOutputSampleBufferDelegate {
              debugPrint("unable to get image from sample buffer")
              return
          }
-        delegate!.onDetecRectable(in: pixelBuffer)
+        delegate?.onDetecRectangle(in: pixelBuffer)
     }
-    
 }
 
 
 class CameraPreview: UIView {
+    
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self
     }
@@ -129,6 +129,8 @@ class CameraPreview: UIView {
     }
     
     override func layoutSubviews() {
-        self.videoPreviewLayer.frame =  self.bounds
+        self.videoPreviewLayer.frame = self.bounds
     }
+    
+
 }
