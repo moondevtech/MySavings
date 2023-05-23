@@ -64,6 +64,7 @@ extension CardDetector: CardDetectorProtocol {
     }
     
     func onDetecRectangle(in image: CVPixelBuffer) {
+        
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: image)
         
         let rectangleRequest = VNDetectRectanglesRequest { [weak self] request, error in
@@ -74,9 +75,6 @@ extension CardDetector: CardDetectorProtocol {
             }
             if let results =  request.results as? [VNRectangleObservation],
                let rect = results.first{
-//                
-//                guard  rect.boundingBox.width >= normalizedFrame.width - 0.2  &&
-//                        rect.boundingBox.height >= normalizedFrame.height - 0.15 else { return }
                 
                 DispatchQueue.main.async {
                     self.delegate?.onDetect(rect: rect, and: image.toUIImage())
@@ -89,8 +87,8 @@ extension CardDetector: CardDetectorProtocol {
             }
         }
         
-        rectangleRequest.minimumAspectRatio = paymentCardAspectRatio * 0.95
-        rectangleRequest.maximumAspectRatio = paymentCardAspectRatio * 1.10
+        rectangleRequest.minimumAspectRatio = paymentCardAspectRatio
+        rectangleRequest.maximumAspectRatio = paymentCardAspectRatio 
         //rectangleRequest.minimumSize = Float(0.7)
         rectangleRequest.regionOfInterest = normalizedFrame
 

@@ -7,16 +7,18 @@
 
 import SwiftUI
 
-struct CardScannerFlow: View {
+public struct CardScannerFlow: View {
     
     @StateObject var viewModel: CaptureState = .init()
     @FocusState var focusField: CaptureState.CaptureValue?
     
+    public var onFinish : (CaptureState.Extracted) -> Void
     
-    var onFinish : (CaptureState.Extracted) -> Void
+    public init(onFinish: @escaping (CaptureState.Extracted) -> Void) {
+        self.onFinish = onFinish
+    }
     
-    var body: some View {
-        
+    public var body: some View {
         NavigationStack(path: $viewModel.path) {
             ScannerView()
                 .environmentObject(viewModel)
@@ -28,34 +30,34 @@ struct CardScannerFlow: View {
     
     @ViewBuilder
     func ScannerView() -> some View {
-#if targetEnvironment(simulator)
-        Rectangle()
-            .fill(Color.gray.opacity(0.4))
-            .onTapGesture {
-                viewModel.onCaptured(captured: .init(systemName: "paperplane")!)
-            }
-#else
+//#if targetEnvironment(simulator)
+//        Rectangle()
+//            .fill(Color.gray.opacity(0.4))
+//            .onTapGesture {
+//                viewModel.onCaptured(captured: .init(systemName: "paperplane")!)
+//            }
+//#else
         CardScannerView()
-#endif
+//#endif
     }
     
     @ViewBuilder
     func CardExtractorScreen(scannedImage: UIImage) -> some View {
         List {
-#if targetEnvironment(simulator)
-            
-            Image(uiImage: scannedImage)
-                .resizable()
-                .frame(width: 300, height: 300)
-                .scaledToFit()
-                .background(Color.gray.opacity(0.5))
-            
-#else
+//#if targetEnvironment(simulator)
+//
+//            Image(uiImage: scannedImage)
+//                .resizable()
+//                .frame(width: 300, height: 300)
+//                .scaledToFit()
+//                .background(Color.gray.opacity(0.5))
+//
+//#else
             CardTextExtractorView(viewModel: viewModel, scannedImage: scannedImage)
                 .environmentObject(viewModel)
                 .frame(height: 300)
             
-#endif
+//#endif
             
             SelectionButton(viewModel: viewModel, captureValue: .cardNumber)
             

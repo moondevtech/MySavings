@@ -131,6 +131,4 @@ class CameraPreview: UIView {
     override func layoutSubviews() {
         self.videoPreviewLayer.frame = self.bounds
     }
-    
-
 }

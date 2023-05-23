@@ -10,20 +10,20 @@ import UIKit
 import Combine
 import SwiftUI
 
-class CaptureState: ObservableObject {
+public class CaptureState: ObservableObject {
     
-    struct Extracted : Equatable {
-        var holder: String = ""
-        var number: String = ""
-        var dateScanned : String = ""
+   public struct Extracted : Equatable {
+        public var holder: String = ""
+        public var number: String = ""
+        public var dateScanned : String = ""
         
-        var isFullfilled: Bool {
+        public var isFullfilled: Bool {
             !holder.isEmpty &&
             !number.isEmpty &&
             !dateScanned.isEmpty
         }
         
-        var date: Date {
+        public var date: Date {
             let dateFormatter =  DateFormatter()
             dateFormatter.dateFormat = "MM/YY"
             return dateFormatter.date(from: dateScanned)!

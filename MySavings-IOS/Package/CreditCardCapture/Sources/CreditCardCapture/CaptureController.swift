@@ -33,8 +33,6 @@ class CapturedController: UIViewController{
     
     lazy var captureManager : CaptureManager = .init()
     lazy var cardDetector   : CardDetectorProtocol = CardDetector(delegate: self)
-    lazy var capturedTextHandler: CapturedTextHandler = .init(delegate: self)
-
     var viewModel: CaptureState!
     
     @IBOutlet weak var snapButton: UIButton!
@@ -66,7 +64,6 @@ class CapturedController: UIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-       // maskLayer.scaleOut()
         self.previewLayer.videoPreviewLayer.sublayers?.remove(at: 1)
     }
     
@@ -98,9 +95,14 @@ class CapturedController: UIViewController{
     
     private func setupCaptureManager() {
         Task {
+            #if targetEnvironment(simulator)
+            let imageTest = UIImage(named: "cc-test", in: Bundle.module)!.buffer()
+            cardDetector.onDetecRectangle(in: imageTest)
+            #else
             await captureManager.initConfiguration()
             captureManager.delegate = cardDetector
             captureManager.addTo(view: self.view)
+            #endif
         }
     }
     
@@ -214,49 +216,47 @@ extension CapturedController: CardDetectionResultProtocol {
             //detectText(from: cgImage!)
         let output = UIImage(cgImage: cgImage!)
         viewModel.onCaptured(captured: output)
-//        let secondVC = TextExtractor(image: output)
-//        UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil)
-//        secondVC.isModalInPresentation = true
-//        secondVC.modalPresentationStyle = .fullScreen
-//        self.present(secondVC, animated: true)
-    }
-    
-//    func detectText(from image: CGImage){
-//        let imageRequestHandler: VNImageRequestHandler = .init(cgImage: image)
-//        DispatchQueue.global(qos: .userInteractive).async {
-//            let textRecognitionRequest = VNRecognizeTextRequest {[weak self] (request, error) in
-//                guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-//                for observation in observations {
-//
-//                    guard let topCandidate = observation.topCandidates(1).first else { return }
-//                    print(topCandidate.string)
-//                    print(topCandidate.confidence)
-//                    print(observation.boundingBox)
-//                    print("\n")
-//                    self?.capturedTextHandler.onCapturedText(text: topCandidate.string)
-//                }
-//            }
-//            textRecognitionRequest.recognitionLevel = .accurate
-//            try? imageRequestHandler.perform([textRecognitionRequest])
-//        }
-//    }
-    
-    
-}
-
-extension CapturedController: OnCapturedCardResultProtocol {
-    
-    func onCaptureCard(card: CapturedTextHandler.CapturedCard) {
-        print("onCaptureCard", card)
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.warning)
-        let impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        impactGenerator.impactOccurred()
     }
 }
 
 extension CGPoint {
     func scaled(to size: CGSize) -> CGPoint {
         return CGPoint(x: self.x * size.width, y: self.y * size.height)
+    }
+}
+
+extension UIViewController  {
+    static func load<T: UIViewController> (_ scene: String) -> T {
+        let identifier = String(describing: self)
+        let storyboard = UIStoryboard(name: scene, bundle: Bundle.module)
+        let vc = storyboard.instantiateViewController(withIdentifier: identifier) as! T
+        return vc
+    }
+}
+
+extension UIImage {
+    func buffer() -> CVPixelBuffer? {
+      let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
+      var pixelBuffer : CVPixelBuffer?
+      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(self.size.width), Int(self.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
+      guard (status == kCVReturnSuccess) else {
+        return nil
+      }
+
+      CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+      let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
+
+      let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+      let context = CGContext(data: pixelData, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+
+      context?.translateBy(x: 0, y: self.size.height)
+      context?.scaleBy(x: 1.0, y: -1.0)
+
+      UIGraphicsPushContext(context!)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+      UIGraphicsPopContext()
+      CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+
+      return pixelBuffer
     }
 }

@@ -102,7 +102,7 @@ class TextExtractor: UIViewController {
         setupVision()
         self.view.backgroundColor = .black
         imageView.image = scannedImage
-        overlay.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        overlay.backgroundColor = UIColor.red.withAlphaComponent(0.4)
         overlay.isHidden = true
         imageView.addSubview(overlay)
         imageView.bringSubviewToFront(overlay)
@@ -170,6 +170,7 @@ class TextExtractor: UIViewController {
     
     func drawSelectionArea(fromPoint: CGPoint, toPoint: CGPoint) {
         let rect = CGRect(x: min(fromPoint.x, toPoint.x), y: min(fromPoint.y, toPoint.y), width: abs(fromPoint.x - toPoint.x), height: abs(fromPoint.y - toPoint.y))
+        overlay.layer.cornerRadius = rect.height / 2
         overlay.frame = rect
     }
 }
