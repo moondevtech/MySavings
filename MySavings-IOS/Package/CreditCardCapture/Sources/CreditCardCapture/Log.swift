@@ -40,7 +40,7 @@ struct Log {
                   content : Any
     ){
         print("""
-              ℹ️ - \(content) \n
+              ℹ️ \n- \(content) \n
                 line - \(line)
                 function - \(function)
                 class - \(file)

@@ -29,13 +29,15 @@ struct CardScannerView: UIViewControllerRepresentable {
     
 }
 
-class CapturedController: UIViewController{
+class CapturedController: UIViewController {
     
     lazy var captureManager : CaptureManager = .init()
     lazy var cardDetector   : CardDetectorProtocol = CardDetector(delegate: self)
     var viewModel: CaptureState!
     
     @IBOutlet weak var snapButton: UIButton!
+    @IBOutlet weak var testImage: UIImageView!
+
     
     
     lazy var maskLayer : CAShapeLayer  = {
@@ -51,6 +53,8 @@ class CapturedController: UIViewController{
         captureManager.previewLayer
     }
     
+    var testTimer: Timer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
@@ -62,19 +66,23 @@ class CapturedController: UIViewController{
         cardDetector.snapped = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        captureManager.start()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        #if !targetEnvironment(simulator)
+        self.testTimer?.invalidate()
+        self.testTimer = nil
         self.previewLayer.videoPreviewLayer.sublayers?.remove(at: 1)
+        #endif
+        captureManager.stop()
     }
     
-    @IBAction func onSnap(_ sender: Any) {
-        cardDetector.snapped =  true
-    }
-    
-    private func initUI() {
-        self.view.layer.cornerRadius = 12
-        snapButton.backgroundColor = .white
-        snapButton.layer.cornerRadius = 30
+    deinit {
+        Log.i(content: "deinit")
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,17 +101,38 @@ class CapturedController: UIViewController{
         snapButton.layer.addSublayer(circle)
     }
     
+    @IBAction func onSnap(_ sender: Any) {
+        cardDetector.snapped =  true
+    }
+    
+    private func initUI() {
+        self.view.layer.cornerRadius = 12
+        snapButton.backgroundColor = .white
+        snapButton.layer.cornerRadius = 30
+    }
+        
     private func setupCaptureManager() {
+        captureManager.delegate = cardDetector
+
+        #if targetEnvironment(simulator)
+       // 86.60 / 53.98
+        let image = UIImage(named: "c-test", in: Bundle.module, with: nil)!
+        testImage.image = image
+        testImage.isHidden = false
+        
+        testTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.functionOne), userInfo: nil, repeats: true)
+        testTimer?.fire()
+
+        #else
         Task {
-            #if targetEnvironment(simulator)
-            let imageTest = UIImage(named: "cc-test", in: Bundle.module)!.buffer()
-            cardDetector.onDetecRectangle(in: imageTest)
-            #else
             await captureManager.initConfiguration()
-            captureManager.delegate = cardDetector
             captureManager.addTo(view: self.view)
-            #endif
         }
+        #endif
+    }
+    
+    @objc func functionOne () {
+        self.cardDetector.onDetecRectangle(in: testImage.image!.buffer()!)
     }
     
     func getConvertedRect(boundingBox: CGRect, inImage imageSize: CGSize, containedIn containerSize: CGSize) -> CGRect {
@@ -142,7 +171,11 @@ class CapturedController: UIViewController{
     
     private func createLayer(in rect: CGRect) {
         self.maskLayer.frame = rect
+        #if targetEnvironment(simulator)
+        self.view.layer.addSublayer(maskLayer)
+        #else
         self.previewLayer.videoPreviewLayer.insertSublayer(maskLayer, at: 1)
+        #endif
     }
     
 }
@@ -217,6 +250,19 @@ extension CapturedController: CardDetectionResultProtocol {
         let output = UIImage(cgImage: cgImage!)
         viewModel.onCaptured(captured: output)
     }
+    
+}
+
+extension UIImage {
+    
+    func imageWith(newSize: CGSize) -> UIImage {
+        let image = UIGraphicsImageRenderer(size: newSize).image { _ in
+            draw(in: CGRect(origin: .zero, size: newSize))
+        }
+
+        return self.withRenderingMode(renderingMode)
+    }
+
 }
 
 extension CGPoint {
@@ -238,7 +284,7 @@ extension UIImage {
     func buffer() -> CVPixelBuffer? {
       let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
       var pixelBuffer : CVPixelBuffer?
-      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(self.size.width), Int(self.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
+        let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(self.size.width), Int(self.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
       guard (status == kCVReturnSuccess) else {
         return nil
       }
@@ -247,9 +293,9 @@ extension UIImage {
       let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
 
       let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-      let context = CGContext(data: pixelData, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+        let context = CGContext(data: pixelData, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
 
-      context?.translateBy(x: 0, y: self.size.height)
+        context?.translateBy(x: 0, y: self.size.height)
       context?.scaleBy(x: 1.0, y: -1.0)
 
       UIGraphicsPushContext(context!)
@@ -260,3 +306,4 @@ extension UIImage {
       return pixelBuffer
     }
 }
+

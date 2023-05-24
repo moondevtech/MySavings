@@ -27,7 +27,13 @@ class CaptureManager: NSObject {
     override init() {
         captureSession =  AVCaptureSession()
         super.init()
-        captureDevice  = bestDevice(in: .back)
+        #if !targetEnvironment(simulator)
+        captureDevice = bestDevice(in: .back)
+        #endif
+    }
+    
+    deinit {
+        Log.i(content: "deinit")
     }
     
     private func bestDevice(in position: AVCaptureDevice.Position) -> AVCaptureDevice {
@@ -76,7 +82,6 @@ class CaptureManager: NSObject {
             self.captureSession.addInput(videoDeviceInput)
             self.captureSession.commitConfiguration()
             self.setCameraOutput()
-            self.captureSession.startRunning()
         }
     }
     

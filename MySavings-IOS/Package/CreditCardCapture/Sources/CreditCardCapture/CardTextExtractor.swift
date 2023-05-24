@@ -33,7 +33,7 @@ class TextExtractor: UIViewController {
     let overlay = UIView()
     var lastPoint = CGPoint.zero
     
-    var textRecognitionRequest = VNRecognizeTextRequest(completionHandler: nil)
+    var textRecognitionRequest: VNRecognizeTextRequest?
     private let textRecognitionWorkQueue = DispatchQueue(label: "MyVisionScannerQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
     
     var viewModel: CaptureState
@@ -52,30 +52,7 @@ class TextExtractor: UIViewController {
         b.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         return b
     }()
-//
-//    lazy var button : UIButton = {
-//        let b = UIButton(type: .system)
-//        b.setTitle("Extract Digits", for: .normal)
-//        view.addSubview(b)
-//        b.translatesAutoresizingMaskIntoConstraints = false
-//        b.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        b.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        b.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 30).isActive = true
-//        b.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        return b
-//    }()
-//    
-//    lazy var digitsLabel : UILabel = {
-//        let b = UILabel(frame: .zero)
-//        view.addSubview(b)
-//        b.translatesAutoresizingMaskIntoConstraints = false
-//        b.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        b.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        b.bottomAnchor.constraint(equalTo: self.button.topAnchor, constant: -20).isActive = true
-//        b.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        return b
-//    }()
-//    
+
     @objc func doExtraction(sender: UIButton!){
         processImage(snapshot(in: imageView, rect: overlay.frame))
     }
@@ -93,6 +70,10 @@ class TextExtractor: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    deinit {
+        Log.i(content: "deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -106,7 +87,12 @@ class TextExtractor: UIViewController {
         overlay.isHidden = true
         imageView.addSubview(overlay)
         imageView.bringSubviewToFront(overlay)
-      //  button.addTarget(self, action: #selector(doExtraction(sender:)), for: .touchUpInside)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        textRecognitionWorkQueue.suspend()
+        textRecognitionRequest = nil
     }
     
     private func setupVision() {
@@ -115,16 +101,14 @@ class TextExtractor: UIViewController {
             var detectedText = ""
             for observation in observations {
                 guard let topCandidate = observation.topCandidates(1).first else { return }
-                detectedText += topCandidate.string
-                detectedText += "\n"
+                detectedText = topCandidate.string
             }
             
-            DispatchQueue.main.async{
-              //  self.digitsLabel.text = detectedText
-                self.viewModel.onExtract(detectedText)
+            DispatchQueue.main.async{[weak self] in
+                self?.viewModel.onExtract(detectedText)
             }
         }
-        textRecognitionRequest.recognitionLevel = .accurate
+        textRecognitionRequest?.recognitionLevel = .accurate
     }
     
     private func processImage(_ image: UIImage) {
@@ -133,11 +117,10 @@ class TextExtractor: UIViewController {
     
     private func recognizeTextInImage(_ image: UIImage) {
         guard let cgImage = image.cgImage else { return }
-        
         textRecognitionWorkQueue.async {
             let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
             do {
-                try requestHandler.perform([self.textRecognitionRequest])
+                try requestHandler.perform([self.textRecognitionRequest!])
             } catch {
                 print(error)
             }
@@ -156,7 +139,6 @@ class TextExtractor: UIViewController {
         }
     }
     
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let currentPoint = touch.location(in: view)
@@ -169,7 +151,11 @@ class TextExtractor: UIViewController {
     }
     
     func drawSelectionArea(fromPoint: CGPoint, toPoint: CGPoint) {
-        let rect = CGRect(x: min(fromPoint.x, toPoint.x), y: min(fromPoint.y, toPoint.y), width: abs(fromPoint.x - toPoint.x), height: abs(fromPoint.y - toPoint.y))
+        let rect = CGRect(x: min(fromPoint.x, toPoint.x),
+                          y: min(fromPoint.y, toPoint.y),
+                          width: abs(fromPoint.x - toPoint.x),
+                          height: abs(fromPoint.y - toPoint.y))
+        
         overlay.layer.cornerRadius = rect.height / 2
         overlay.frame = rect
     }

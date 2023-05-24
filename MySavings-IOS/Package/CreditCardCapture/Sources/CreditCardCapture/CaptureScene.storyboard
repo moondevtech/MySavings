@@ -12,7 +12,7 @@
         <!--Captured Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="CapturedController" id="Y6W-OH-hqX" customClass="CapturedController" customModule="MySavings_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CapturedController" id="Y6W-OH-hqX" customClass="CapturedController" customModule="CreditCardCapture" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,13 +40,20 @@
                                     <constraint firstAttribute="height" constant="90" id="oLF-3B-qQu"/>
                                 </constraints>
                             </view>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caO-bU-35k">
+                                <rect key="frame" x="0.0" y="59" width="393" height="703"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="caO-bU-35k" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="51W-k1-can"/>
+                            <constraint firstItem="caO-bU-35k" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="8eH-KE-nUq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9Fr-lv-U5T" secondAttribute="trailing" id="BQV-1G-l0D"/>
+                            <constraint firstItem="9Fr-lv-U5T" firstAttribute="top" secondItem="caO-bU-35k" secondAttribute="bottom" id="Sa3-Fb-TtB"/>
                             <constraint firstAttribute="bottom" secondItem="9Fr-lv-U5T" secondAttribute="bottom" id="ete-Ij-KyI"/>
                             <constraint firstItem="9Fr-lv-U5T" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="gjk-u0-Ys9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="caO-bU-35k" secondAttribute="trailing" id="hwh-oO-peX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oVN-dn-IAa"/>
@@ -54,6 +61,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="snapButton" destination="dia-Sg-Mdf" id="oaI-9y-qoY"/>
+                        <outlet property="testImage" destination="caO-bU-35k" id="7dj-co-zWi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

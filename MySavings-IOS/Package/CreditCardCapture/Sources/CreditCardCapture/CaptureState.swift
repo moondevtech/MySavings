@@ -25,8 +25,12 @@ public class CaptureState: ObservableObject {
         
         public var date: Date {
             let dateFormatter =  DateFormatter()
-            dateFormatter.dateFormat = "MM/YY"
-            return dateFormatter.date(from: dateScanned)!
+            dateFormatter.dateFormat = "MM/yy"
+            dateFormatter.locale = .init(identifier: "en_US_POSIX")
+            let dateStr = dateScanned.trimmingCharacters(in: .whitespacesAndNewlines)
+            let formatted =  dateFormatter.date(from: dateStr)!
+            Log.i(content: formatted)
+            return formatted
         }
         
     }

@@ -12,10 +12,15 @@ public struct CardScannerFlow: View {
     @StateObject var viewModel: CaptureState = .init()
     @FocusState var focusField: CaptureState.CaptureValue?
     
+    @Binding var showCaptureFlow: Bool
+
     public var onFinish : (CaptureState.Extracted) -> Void
     
-    public init(onFinish: @escaping (CaptureState.Extracted) -> Void) {
+    public init (
+        showCaptureFlow: Binding<Bool>,
+        onFinish: @escaping (CaptureState.Extracted) -> Void) {
         self.onFinish = onFinish
+        self._showCaptureFlow =  showCaptureFlow
     }
     
     public var body: some View {
@@ -30,35 +35,29 @@ public struct CardScannerFlow: View {
     
     @ViewBuilder
     func ScannerView() -> some View {
-//#if targetEnvironment(simulator)
-//        Rectangle()
-//            .fill(Color.gray.opacity(0.4))
-//            .onTapGesture {
-//                viewModel.onCaptured(captured: .init(systemName: "paperplane")!)
-//            }
-//#else
         CardScannerView()
-//#endif
+            .overlay(alignment: .topLeading) {
+                Button {
+                    showCaptureFlow = false
+                } label: {
+                   Image(systemName: "xmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.white)
+                }
+                .padding(20)
+            
+            }
     }
     
     @ViewBuilder
     func CardExtractorScreen(scannedImage: UIImage) -> some View {
         List {
-//#if targetEnvironment(simulator)
-//
-//            Image(uiImage: scannedImage)
-//                .resizable()
-//                .frame(width: 300, height: 300)
-//                .scaledToFit()
-//                .background(Color.gray.opacity(0.5))
-//
-//#else
             CardTextExtractorView(viewModel: viewModel, scannedImage: scannedImage)
                 .environmentObject(viewModel)
                 .frame(height: 300)
-            
-//#endif
-            
+                        
             SelectionButton(viewModel: viewModel, captureValue: .cardNumber)
             
             SelectionButton(viewModel: viewModel, captureValue: .name)
@@ -71,6 +70,8 @@ public struct CardScannerFlow: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         onFinish(viewModel.extracted)
+
+                        showCaptureFlow  = false
                     } label: {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(Color.green)
@@ -180,7 +181,7 @@ fileprivate extension TextField {
 
 struct CardScannerFlow_Previews: PreviewProvider {
     static var previews: some View {
-        CardScannerFlow(onFinish: { _ in })
+        CardScannerFlow(showCaptureFlow: .constant(false), onFinish: { _ in })
             .preferredColorScheme(.dark)
     }
 }

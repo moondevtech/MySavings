@@ -30,11 +30,16 @@ class CardDetector {
     private var normalizedFrame: CGRect = .zero
     private var _snapped: Bool = false
     let paymentCardAspectRatio: Float = 86.60 / 53.98
+    var rectangleRequest : VNDetectRectanglesRequest?
     
     init(delegate:  (CapturedController & CardDetectionResultProtocol)? = nil) {
         self.delegate = delegate
         normalizedFrame = getPointOfInterest()
         print(normalizedFrame)
+    }
+    
+    deinit {
+        Log.i(content: "deinit")
     }
     
     private func getPointOfInterest() -> CGRect {
@@ -67,9 +72,8 @@ extension CardDetector: CardDetectorProtocol {
         
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: image)
         
-        let rectangleRequest = VNDetectRectanglesRequest { [weak self] request, error in
+         rectangleRequest = VNDetectRectanglesRequest { [weak self] request, error in
             guard let self = self else { return }
-            
             if let error = error {
                 self.delegate?.onError(error: error)
             }
@@ -87,12 +91,14 @@ extension CardDetector: CardDetectorProtocol {
             }
         }
         
-        rectangleRequest.minimumAspectRatio = paymentCardAspectRatio
-        rectangleRequest.maximumAspectRatio = paymentCardAspectRatio 
+        rectangleRequest?.minimumAspectRatio = paymentCardAspectRatio
+        rectangleRequest?.maximumAspectRatio = paymentCardAspectRatio
         //rectangleRequest.minimumSize = Float(0.7)
-        rectangleRequest.regionOfInterest = normalizedFrame
+        #if !targetEnvironment(simulator)
+        rectangleRequest?.regionOfInterest = normalizedFrame
+        #endif
 
-        try? imageRequestHandler.perform([rectangleRequest])
+        try? imageRequestHandler.perform([rectangleRequest!])
     }
     
 }
