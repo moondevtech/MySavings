@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CreditCardCapture
 
 struct AddFirstCardTab: View {
 
@@ -18,6 +19,7 @@ struct AddFirstCardTab: View {
     @State var canAddBudget : Bool = false
     @State var addedBudgets : AuthBudgets = .init()
     @State var listHeight : CGFloat = 140
+    @State var showCaptureFlow: Bool = false
     
     @StateObject var viewModel : FirstCardViewModel = .init()
     @EnvironmentObject var authViewModel : AuthViewModel
@@ -30,12 +32,27 @@ struct AddFirstCardTab: View {
     
     var body: some View {
         VStack{
-            TitleTab(content: "Credit Card ")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.top, 80)
-                .offset(x: addCardOffset)
-                .animation(.spring().delay(0.2), value: addCardOffset)
+            
+            HStack {
+                TitleTab(content: "Credit Card ")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                    .offset(x: addCardOffset)
+                    .animation(.spring().delay(0.2), value: addCardOffset)
+                
+                Button {
+                    showCaptureFlow.toggle()
+                } label: {
+                    Image(systemName: "camera")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.white)
+                }
+
+            }
+            .padding(.top, 80)
+
             
             
             CardDetailsView(card: $card)
@@ -70,6 +87,16 @@ struct AddFirstCardTab: View {
             checkTempBudgets()
         }) {
             BudgetListFirstCard(addedBudgets: $addedBudgets, isAddingBudgets: $isAddingBudgets)
+        }
+        .fullScreenCover(isPresented: $showCaptureFlow, content: CaptureFlowView)
+    }
+    
+    @ViewBuilder
+    private func CaptureFlowView() -> some View {
+        CardScannerFlow(showCaptureFlow: $showCaptureFlow) { extractedCard in
+            card.cardnumber = extractedCard.number
+            card.cardholder = extractedCard.holder
+            card.expirationDate = extractedCard.date
         }
     }
     

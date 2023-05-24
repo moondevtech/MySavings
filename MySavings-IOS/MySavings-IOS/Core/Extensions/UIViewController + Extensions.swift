@@ -15,5 +15,4 @@ extension UIViewController  {
         let vc = storyboard.instantiateViewController(withIdentifier: identifier) as! T
         return vc
     }
-    
 }

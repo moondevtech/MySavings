@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CreditCardCapture
 
 @main
 struct MySavings_IOSApp: App {
@@ -14,8 +15,8 @@ struct MySavings_IOSApp: App {
     var body: some Scene {
         WindowGroup {
 //            OtpScreen(authTabselection : .constant(.otp))
-          // BaseFlowView()
-            CardScannerFlow { extracted in  }
+           BaseFlowView()
+          //  CardScannerFlow(onFinish: { _ in})
                // .frame(width: 340,height: 230)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

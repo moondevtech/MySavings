@@ -60,11 +60,8 @@
 		871E969B29177AA30034D05A /* FirstCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E969A29177AA30034D05A /* FirstCardViewModel.swift */; };
 		873D12AA295F331600151B2D /* flags.json in Resources */ = {isa = PBXBuildFile; fileRef = 873D12A9295F331600151B2D /* flags.json */; };
 		873D12AC295F38E200151B2D /* OtpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D12AB295F38E200151B2D /* OtpScreen.swift */; };
-		874396AA2A15D72200C4CAFC /* CardTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874396A92A15D72200C4CAFC /* CardTextExtractor.swift */; };
 		874396AE2A15D84500C4CAFC /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874396AD2A15D84500C4CAFC /* UIViewController + Extensions.swift */; };
-		874396B02A19C64300C4CAFC /* CaptureScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 874396AF2A19C64300C4CAFC /* CaptureScene.storyboard */; };
-		874396B22A19C77800C4CAFC /* CaptureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874396B12A19C77800C4CAFC /* CaptureState.swift */; };
-		874396B42A19C92A00C4CAFC /* CardScannerFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874396B32A19C92A00C4CAFC /* CardScannerFlow.swift */; };
+		874396B92A1C654400C4CAFC /* CreditCardCapture in Frameworks */ = {isa = PBXBuildFile; productRef = 874396B82A1C654400C4CAFC /* CreditCardCapture */; };
 		8765BF6B291C1C6800989F81 /* CardDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */; };
 		8765BF6D291C1DCC00989F81 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF6C291C1DCC00989F81 /* CardStackView.swift */; };
 		8765BF71291C1E4700989F81 /* CardListVMInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765BF70291C1E4700989F81 /* CardListVMInput.swift */; };
@@ -183,10 +180,6 @@
 		87E6B191291B90C100DA254C /* BudgetViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6B190291B90C100DA254C /* BudgetViewVM.swift */; };
 		87EC169D2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; };
 		87EC169E2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		87EC16A12A11DBA700B5D592 /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A02A11DBA700B5D592 /* CaptureManager.swift */; };
-		87EC16A32A11E2B100B5D592 /* CaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A22A11E2B100B5D592 /* CaptureController.swift */; };
-		87EC16A52A11E69000B5D592 /* CardDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A42A11E69000B5D592 /* CardDetector.swift */; };
-		87EC16A72A12020B00B5D592 /* CapturedTextHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -257,11 +250,8 @@
 		871E969A29177AA30034D05A /* FirstCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCardViewModel.swift; sourceTree = "<group>"; };
 		873D12A9295F331600151B2D /* flags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flags.json; sourceTree = "<group>"; };
 		873D12AB295F38E200151B2D /* OtpScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpScreen.swift; sourceTree = "<group>"; };
-		874396A92A15D72200C4CAFC /* CardTextExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTextExtractor.swift; sourceTree = "<group>"; };
 		874396AD2A15D84500C4CAFC /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
-		874396AF2A19C64300C4CAFC /* CaptureScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CaptureScene.storyboard; sourceTree = "<group>"; };
-		874396B12A19C77800C4CAFC /* CaptureState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureState.swift; sourceTree = "<group>"; };
-		874396B32A19C92A00C4CAFC /* CardScannerFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScannerFlow.swift; sourceTree = "<group>"; };
+		874396B62A1C64D100C4CAFC /* CreditCardCapture */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CreditCardCapture; path = Package/CreditCardCapture; sourceTree = "<group>"; };
 		8765BF6A291C1C6800989F81 /* CardDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsScreen.swift; sourceTree = "<group>"; };
 		8765BF6C291C1DCC00989F81 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		8765BF70291C1E4700989F81 /* CardListVMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListVMInput.swift; sourceTree = "<group>"; };
@@ -380,10 +370,6 @@
 		87E6B18D291B905A00DA254C /* BudgetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUseCase.swift; sourceTree = "<group>"; };
 		87E6B190291B90C100DA254C /* BudgetViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewVM.swift; sourceTree = "<group>"; };
 		87EC169B2A11DA9700B5D592 /* PhoneNumberKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PhoneNumberKit.xcframework; path = Carthage/Build/PhoneNumberKit.xcframework; sourceTree = SOURCE_ROOT; };
-		87EC16A02A11DBA700B5D592 /* CaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
-		87EC16A22A11E2B100B5D592 /* CaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureController.swift; sourceTree = "<group>"; };
-		87EC16A42A11E69000B5D592 /* CardDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetector.swift; sourceTree = "<group>"; };
-		87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedTextHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874396B92A1C654400C4CAFC /* CreditCardCapture in Frameworks */,
 				87EC169D2A11DAA500B5D592 /* PhoneNumberKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,6 +658,21 @@
 			path = PhoneNumberUseCase;
 			sourceTree = "<group>";
 		};
+		874396B52A1C64D100C4CAFC /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				874396B62A1C64D100C4CAFC /* CreditCardCapture */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		874396B72A1C654400C4CAFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8765BF63291C1B3900989F81 /* CardDetailsScreenFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,8 +842,10 @@
 		8776A1D9291048E80082D606 = {
 			isa = PBXGroup;
 			children = (
+				874396B52A1C64D100C4CAFC /* Packages */,
 				8776A1E4291048E80082D606 /* MySavings-IOS */,
 				8776A1E3291048E80082D606 /* Products */,
+				874396B72A1C654400C4CAFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -895,7 +899,6 @@
 		8776A1F92910495E0082D606 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				87EC169F2A11DB7400B5D592 /* Capture */,
 				87928CFF296076A4003A1397 /* Modifiers */,
 				873D1284295E02CB00151B2D /* DataStructure */,
 				87E6B16A291A118600DA254C /* CardMatcher */,
@@ -1073,21 +1076,6 @@
 			path = BudgetView;
 			sourceTree = "<group>";
 		};
-		87EC169F2A11DB7400B5D592 /* Capture */ = {
-			isa = PBXGroup;
-			children = (
-				874396AF2A19C64300C4CAFC /* CaptureScene.storyboard */,
-				87EC16A02A11DBA700B5D592 /* CaptureManager.swift */,
-				87EC16A22A11E2B100B5D592 /* CaptureController.swift */,
-				874396A92A15D72200C4CAFC /* CardTextExtractor.swift */,
-				87EC16A42A11E69000B5D592 /* CardDetector.swift */,
-				87EC16A62A12020B00B5D592 /* CapturedTextHandler.swift */,
-				874396B12A19C77800C4CAFC /* CaptureState.swift */,
-				874396B32A19C92A00C4CAFC /* CardScannerFlow.swift */,
-			);
-			path = Capture;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1105,6 +1093,9 @@
 			dependencies = (
 			);
 			name = "MySavings-IOS";
+			packageProductDependencies = (
+				874396B82A1C654400C4CAFC /* CreditCardCapture */,
+			);
 			productName = "MySavings-IOS";
 			productReference = 8776A1E2291048E80082D606 /* MySavings-IOS.app */;
 			productType = "com.apple.product-type.application";
@@ -1147,7 +1138,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				874396B02A19C64300C4CAFC /* CaptureScene.storyboard in Resources */,
 				8776A1ED291048E90082D606 /* Preview Assets.xcassets in Resources */,
 				873D12AA295F331600151B2D /* flags.json in Resources */,
 				8776A1EA291048E90082D606 /* Assets.xcassets in Resources */,
@@ -1174,7 +1164,6 @@
 				87E6B18C291B905000DA254C /* BudgetUseCaseDelegate.swift in Sources */,
 				870B584529143CF800ED1810 /* DataSourceModelDelegate.swift in Sources */,
 				871E966D291760530034D05A /* BudgetCategoryDataModel.swift in Sources */,
-				874396B42A19C92A00C4CAFC /* CardScannerFlow.swift in Sources */,
 				8768B59F2929F07100D01CFE /* ExpensesTransactionType.swift in Sources */,
 				871E96582916960D0034D05A /* TitleTab.swift in Sources */,
 				8768B5832928FC3E00D01CFE /* HomeScreenOutput.swift in Sources */,
@@ -1187,7 +1176,6 @@
 				8768B5942928FE5100D01CFE /* TransactionInputType.swift in Sources */,
 				8765BF8B291CBA8700989F81 /* MenuView.swift in Sources */,
 				87E6B160291A0A7700DA254C /* FirstCardError.swift in Sources */,
-				874396B22A19C77800C4CAFC /* CaptureState.swift in Sources */,
 				8776A210291171060082D606 /* Double + extensions.swift in Sources */,
 				870B582829136FEE00ED1810 /* ExpensesScreenViewModel.swift in Sources */,
 				871E968E291779B30034D05A /* AuthViewModelOutput.swift in Sources */,
@@ -1215,13 +1203,11 @@
 				87E6B17F291B75A500DA254C /* MainScreen.swift in Sources */,
 				8765BF82291CB30700989F81 /* CardDetailsOutput.swift in Sources */,
 				8765BF71291C1E4700989F81 /* CardListVMInput.swift in Sources */,
-				87EC16A12A11DBA700B5D592 /* CaptureManager.swift in Sources */,
 				8768B5812928FC2000D01CFE /* HomeScreenInput.swift in Sources */,
 				871E968629176B6E0034D05A /* AuthViewModel.swift in Sources */,
 				870B58262912447800ED1810 /* SelectedCardsView.swift in Sources */,
 				87E6B18E291B905A00DA254C /* BudgetUseCase.swift in Sources */,
 				871E963E29165E480034D05A /* TransactionDataModel.swift in Sources */,
-				874396AA2A15D72200C4CAFC /* CardTextExtractor.swift in Sources */,
 				8768B58D2928FD6E00D01CFE /* TransactionScreenViewModel.swift in Sources */,
 				8776A1FE291049B10082D606 /* CreditCardData.swift in Sources */,
 				87928D0729607A18003A1397 /* PhoneNumberChoiceView.swift in Sources */,
@@ -1263,7 +1249,6 @@
 				8765BFC42928DB8A00989F81 /* BudgetRowModel.swift in Sources */,
 				8768B5A12929F08800D01CFE /* ExpensesTransactionInput.swift in Sources */,
 				870B583A2913928900ED1810 /* ExpensesTransactionUseCase.swift in Sources */,
-				87EC16A52A11E69000B5D592 /* CardDetector.swift in Sources */,
 				8768B58B2928FCBA00D01CFE /* HomeScreenViewModel.swift in Sources */,
 				871E9682291766F50034D05A /* BudgetCategoryRepositoryDelegate.swift in Sources */,
 				871E965A291696470034D05A /* LetsGoButton.swift in Sources */,
@@ -1280,7 +1265,6 @@
 				8765BFB92928D3B700989F81 /* CardBudgetListScreenView.swift in Sources */,
 				8765BF73291C1E5200989F81 /* CardListVMOutput.swift in Sources */,
 				87928D1529607AD1003A1397 /* PhoneNumberCheckUseCase.swift in Sources */,
-				87EC16A32A11E2B100B5D592 /* CaptureController.swift in Sources */,
 				87E6B18A291B904600DA254C /* BudgetVMType.swift in Sources */,
 				871E965D291697380034D05A /* RegisterTabView.swift in Sources */,
 				87928D0B29607A27003A1397 /* OtpCountryPickerView.swift in Sources */,
@@ -1306,7 +1290,6 @@
 				871E9680291766E50034D05A /* BudgetCategoryRepository.swift in Sources */,
 				871E967B2917666A0034D05A /* AuthBudgets.swift in Sources */,
 				871E96722917613E0034D05A /* BudgetCategoryDataSource.swift in Sources */,
-				87EC16A72A12020B00B5D592 /* CapturedTextHandler.swift in Sources */,
 				87E6B16E291A122100DA254C /* CardMatcher.swift in Sources */,
 				8765BFC72928F7F400989F81 /* HomeScreen.swift in Sources */,
 				8776A2052911175D0082D606 /* TransactionData.swift in Sources */,
@@ -1537,6 +1520,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		874396B82A1C654400C4CAFC /* CreditCardCapture */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CreditCardCapture;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8776A1F0291048E90082D606 /* MySavings_IOS.xcdatamodeld */ = {
